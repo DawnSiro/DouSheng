@@ -3,20 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rank_nav"
-    app:startDestination="@id/movieRankFragment">
+    app:startDestination="@id/movie_menu_item">
     <fragment
-        android:id="@+id/artRankFragment"
+        android:id="@+id/art_menu_item"
         android:name="com.example.dousheng.ArtRankFragment"
-        android:label="fragment_art_rank"
+        android:label="@string/art_rank"
         tools:layout="@layout/fragment_art_rank" />
     <fragment
-        android:id="@+id/videoRankFragment"
+        android:id="@+id/video_menu_item"
         android:name="com.example.dousheng.VideoRankFragment"
-        android:label="fragment_video_rank"
+        android:label="@string/video_rank"
         tools:layout="@layout/fragment_video_rank" />
     <fragment
-        android:id="@+id/movieRankFragment"
+        android:id="@+id/movie_menu_item"
         android:name="com.example.dousheng.MovieRankFragment"
-        android:label="fragment_movie_rank"
+        android:label="@string/movie_rank"
         tools:layout="@layout/fragment_movie_rank" />
 </navigation>
