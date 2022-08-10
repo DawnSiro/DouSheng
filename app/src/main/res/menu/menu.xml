@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/movie_rank" />
+    <item android:title="@string/player_rank" />
+    <item android:title="@string/art_rank" />
+</menu>
