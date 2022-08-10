@@ -17,5 +17,9 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Button!", Toast.LENGTH_LONG).show()
         }
 
+        binding.finishButton.setOnClickListener {
+            finish()
+        }
+
     }
 }
