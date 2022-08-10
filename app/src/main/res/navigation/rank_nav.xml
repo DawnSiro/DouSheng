@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/rank_nav">
-
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rank_nav"
+    app:startDestination="@id/movieRankFragment">
+    <fragment
+        android:id="@+id/artRankFragment"
+        android:name="com.example.dousheng.ArtRankFragment"
+        android:label="fragment_art_rank"
+        tools:layout="@layout/fragment_art_rank" />
+    <fragment
+        android:id="@+id/videoRankFragment"
+        android:name="com.example.dousheng.VideoRankFragment"
+        android:label="fragment_video_rank"
+        tools:layout="@layout/fragment_video_rank" />
+    <fragment
+        android:id="@+id/movieRankFragment"
+        android:name="com.example.dousheng.MovieRankFragment"
+        android:label="fragment_movie_rank"
+        tools:layout="@layout/fragment_movie_rank" />
 </navigation>

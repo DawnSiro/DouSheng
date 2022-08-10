@@ -7,24 +7,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-class RankOfArtFragment : Fragment() {
+class MovieRankFragment : Fragment() {
 
     companion object {
-        fun newInstance() = RankOfArtFragment()
+        fun newInstance() = MovieRankFragment()
     }
 
-    private lateinit var viewModel: RankOfArtViewModel
+    private lateinit var viewModel: MovieRankViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_rank_of_art, container, false)
+        return inflater.inflate(R.layout.fragment_movie_rank, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(RankOfArtViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(MovieRankViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

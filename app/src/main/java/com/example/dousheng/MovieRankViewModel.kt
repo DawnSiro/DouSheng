@@ -2,6 +2,6 @@ package com.example.dousheng
 
 import androidx.lifecycle.ViewModel
 
-class RankOfVideoViewModel : ViewModel() {
+class MovieRankViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 }
