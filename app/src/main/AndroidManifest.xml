@@ -34,7 +34,7 @@
             android:name=".douyinapi.DouYinEntryActivity"
             android:exported="true"
             android:launchMode="singleTask"
-            android:taskAffinity="com.qxy.dousheng"></activity>
+            android:taskAffinity="com.qxy.dousheng" />
     </application>
 
 </manifest>

@@ -1,7 +1,6 @@
 package com.qxy.dousheng
 
 import android.os.Bundle
-
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -15,7 +14,6 @@ class MainActivity : BaseAppCompatActivity() {
 
         // Http
         httpInit()
-
 
         // load bottom
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
