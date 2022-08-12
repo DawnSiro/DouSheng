@@ -6,17 +6,17 @@
     app:startDestination="@id/movie_menu_item">
     <fragment
         android:id="@+id/art_menu_item"
-        android:name="com.example.dousheng.ArtRankFragment"
+        android:name="com.qxy.dousheng.ArtRankFragment"
         android:label="@string/art_rank"
         tools:layout="@layout/fragment_art_rank" />
     <fragment
         android:id="@+id/video_menu_item"
-        android:name="com.example.dousheng.VideoRankFragment"
+        android:name="com.qxy.dousheng.VideoRankFragment"
         android:label="@string/video_rank"
         tools:layout="@layout/fragment_video_rank" />
     <fragment
         android:id="@+id/movie_menu_item"
-        android:name="com.example.dousheng.MovieRankFragment"
+        android:name="com.qxy.dousheng.MovieRankFragment"
         android:label="@string/movie_rank"
         tools:layout="@layout/fragment_movie_rank" />
 </navigation>

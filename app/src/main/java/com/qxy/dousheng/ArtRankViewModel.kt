@@ -1,7 +1,7 @@
-package com.example.dousheng
+package com.qxy.dousheng
 
 import androidx.lifecycle.ViewModel
 
-class MovieRankViewModel : ViewModel() {
+class ArtRankViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 }

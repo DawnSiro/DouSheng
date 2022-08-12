@@ -1,6 +1,7 @@
-package com.example.dousheng
+package com.qxy.dousheng
 
 import android.os.Bundle
+
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -13,9 +14,8 @@ class MainActivity : BaseAppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // Http
-        httpRequest()
+        httpInit()
 
-        // database
 
         // load bottom
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)

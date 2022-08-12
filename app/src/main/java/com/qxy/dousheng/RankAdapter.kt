@@ -1,4 +1,4 @@
-package com.example.dousheng
+package com.qxy.dousheng
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
+/**
+ * RecyclerView 的显示
+ * @param rankList 一个 List<RankItem> 列表
+ */
 class RankAdapter(private val rankList: List<RankItem>) :
     RecyclerView.Adapter<RankAdapter.ViewHolder>() {
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
