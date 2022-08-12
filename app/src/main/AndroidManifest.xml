@@ -29,6 +29,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".douyinapi.DouYinEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:taskAffinity="com.qxy.dousheng"></activity>
     </application>
 
 </manifest>

@@ -26,7 +26,8 @@ open class BaseAppCompatActivity : AppCompatActivity() {
 
         request.scope = mScope // 用户授权时必选权限
         request.state = "ww" // 用于保持请求和回调的状态，授权请求后原样带回给第三方。
-        request.callerLocalEntry = "com.qxy.dousheng.douyinapi.DouYinEntryActivity"
+        // request.optionalScope0 = "mobile" // 用户授权时可选权限（默认选择）
+        // request.callerLocalEntry = "com.qxy.dousheng.douyinapi.DouYinEntryActivity"
         douYinOpenApi?.authorize(request)
         if (douYinOpenApi != null) {
             this.douYinOpenApi = douYinOpenApi
