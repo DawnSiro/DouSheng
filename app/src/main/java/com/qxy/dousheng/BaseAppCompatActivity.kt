@@ -8,7 +8,7 @@ import com.bytedance.sdk.open.douyin.DouYinOpenConfig
 import com.bytedance.sdk.open.douyin.api.DouYinOpenApi
 
 open class BaseAppCompatActivity : AppCompatActivity() {
-    private val mScope = "trial.whitelist,user_info"
+    private val mScope = "trial.whitelist,user_info,discovery.ent"
     private var douYinOpenApi: DouYinOpenApi? = null
     private val clientKey = "awr4g04kxg26jk2l" // 需要到开发者网站申请并替换
     private val clientSecret = "ce6a9c54648b7f99565a66f20fd70866"
@@ -26,8 +26,6 @@ open class BaseAppCompatActivity : AppCompatActivity() {
 
         request.scope = mScope // 用户授权时必选权限
         request.state = "ww" // 用于保持请求和回调的状态，授权请求后原样带回给第三方。
-        // request.optionalScope0 = "mobile" // 用户授权时可选权限（默认选择）
-        // request.callerLocalEntry = "com.qxy.dousheng.douyinapi.DouYinEntryActivity"
         douYinOpenApi?.authorize(request)
         if (douYinOpenApi != null) {
             this.douYinOpenApi = douYinOpenApi
@@ -36,8 +34,8 @@ open class BaseAppCompatActivity : AppCompatActivity() {
         return false
     }
 
-    fun foo() {
-        this.douYinOpenApi
+    fun getAccessToken() {
+
     }
 
     public fun loadData() {
