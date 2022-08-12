@@ -34,7 +34,7 @@ class MovieRankFragment : Fragment() {
             requireActivity(),
             ItemDatabase::class.java,
             "movie_database"
-        ).build()
+        ).allowMainThreadQueries().build()
         itemDao = itemDatabase.getItemDao()
         viewModel = ViewModelProvider(this).get(MovieRankViewModel::class.java)
         val buttonInsert: Button = requireActivity().findViewById(R.id.buttonInsert)
