@@ -11,10 +11,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 
 class MovieRankFragment : Fragment() {
-    private lateinit var itemDatabase: ItemDatabase
-    private lateinit var itemDao: ItemDao
     private lateinit var viewModel: MovieRankViewModel
-    private lateinit var allItemLive: LiveData<List<Item>>
 
     companion object {
         fun newInstance() = MovieRankFragment()
@@ -38,17 +35,17 @@ class MovieRankFragment : Fragment() {
 
             viewModel.getLiveData().observe(requireActivity()) {
                 var s = ""
-                for (i: Item in it) {
+                for (i: MovieItem in it) {
                     s += i.id + ": " + i.name + "=" + i.hot + '\n'
                 }
                 textView.text = s
             }
 
             buttonInsert.setOnClickListener {
-                val item1 = Item("1", "1", "1", "1", "1")
-                val item2 = Item("2", "2", "2", "2", "2")
-                val item3 = Item("3", "3", "3", "3", "3")
-                viewModel.insertItem(item1, item2, item3)
+                val movieItem1 = MovieItem("1", "1", "1", "1", "1")
+                val movieItem2 = MovieItem("2", "2", "2", "2", "2")
+                val movieItem3 = MovieItem("3", "3", "3", "3", "3")
+                viewModel.insertItem(movieItem1, movieItem2, movieItem3)
             }
 
             buttonClear.setOnClickListener {

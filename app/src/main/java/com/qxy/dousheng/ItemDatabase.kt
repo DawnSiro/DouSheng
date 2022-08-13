@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import org.jetbrains.annotations.NotNull
 
 //singleton
-@Database(entities = [Item::class], version = 1, exportSchema = false)
+@Database(entities = [MovieItem::class], version = 1, exportSchema = false)
 abstract class ItemDatabase : RoomDatabase() {
 
     companion object {
@@ -26,5 +26,5 @@ abstract class ItemDatabase : RoomDatabase() {
         }
     }
 
-    abstract fun getItemDao(): ItemDao
+    abstract fun getItemDao(): MovieDao
 }

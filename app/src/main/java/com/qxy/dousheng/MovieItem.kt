@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class Item(
+data class MovieItem(
     @PrimaryKey
     val id: String,
     @ColumnInfo

@@ -5,44 +5,43 @@ import android.app.Application
 import android.os.AsyncTask
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
 
 class MovieRankViewModel(application: Application) : AndroidViewModel(application) {
-    private lateinit var itemDao: ItemDao
-    private lateinit var allItemLive: LiveData<List<Item>>
+    private var movieDao: MovieDao
+    private var allMovieItemLive: LiveData<List<MovieItem>>
 
     init {
         val itemDatabase = ItemDatabase.getDatabase(application.applicationContext)
-        itemDao = itemDatabase.getItemDao()
-        allItemLive = itemDao.allItemLive()
+        movieDao = itemDatabase.getItemDao()
+        allMovieItemLive = movieDao.allItemLive()
     }
 
-    fun insertItem(vararg item: Item) {
-        InsertItem(itemDao).execute(*item)
+    fun insertItem(vararg movieItem: MovieItem) {
+        InsertItem(movieDao).execute(*movieItem)
     }
 
     fun clearItem() {
-        ClearItem(itemDao).execute()
+        ClearItem(movieDao).execute()
     }
 
-    fun getLiveData(): LiveData<List<Item>> {
-        return allItemLive
+    fun getLiveData(): LiveData<List<MovieItem>> {
+        return allMovieItemLive
     }
 
     // 后台异步插入数据
     @SuppressLint("StaticFieldLeak")
-    inner class InsertItem(private val itemDao: ItemDao) : AsyncTask<Item, Int, Boolean>() {
-        override fun doInBackground(vararg item: Item): Boolean {
-            itemDao.insertItem(*item)
+    inner class InsertItem(private val movieDao: MovieDao) : AsyncTask<MovieItem, Int, Boolean>() {
+        override fun doInBackground(vararg movieItem: MovieItem): Boolean {
+            movieDao.insertItem(*movieItem)
             return true
         }
     }
 
     // 后台异步清除数据
     @SuppressLint("StaticFieldLeak")
-    inner class ClearItem(private val itemDao: ItemDao) : AsyncTask<Void, Int, Boolean>() {
+    inner class ClearItem(private val movieDao: MovieDao) : AsyncTask<Void, Int, Boolean>() {
         override fun doInBackground(vararg void: Void): Boolean {
-            itemDao.clearItem()
+            movieDao.clearItem()
             return true
         }
     }
