@@ -10,13 +10,6 @@
     </queries>
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <activity
-        android:name=".douyinapi.DouYinEntryActivity"
-        android:launchMode="singleTask"
-        android:taskAffinity="com.qxy.dousheng"
-        android:exported="true"
-        tools:ignore="WrongManifestParent">
-    </activity>
 
     <application
         android:allowBackup="true"
@@ -37,6 +30,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <activity
+            android:name=".douyinapi.DouYinEntryActivity"
+            android:launchMode="singleTask"
+            android:taskAffinity="com.qxy.dousheng"
+            android:exported="true"
+            tools:ignore="WrongManifestParent">
+        </activity>
+
     </application>
 
 </manifest>
