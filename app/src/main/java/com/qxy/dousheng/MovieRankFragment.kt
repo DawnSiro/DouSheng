@@ -1,6 +1,5 @@
 package com.qxy.dousheng
 
-import android.os.AsyncTask
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,21 +16,8 @@ class MovieRankFragment : Fragment() {
     private lateinit var viewModel: MovieRankViewModel
     private lateinit var allItemLive: LiveData<List<Item>>
 
-    companion object : AsyncTask<Item, Int, Boolean>() {
-        private lateinit var itemDao: ItemDao
-
+    companion object {
         fun newInstance() = MovieRankFragment()
-
-        @JvmStatic
-        fun insertItem(itemDao: ItemDao) {
-            this.itemDao = itemDao
-        }
-
-        // 后台异步更新数据
-        override fun doInBackground(vararg item: Item): Boolean {
-            itemDao.insertItem(*item)
-            return true
-        }
     }
 
 
@@ -45,16 +31,13 @@ class MovieRankFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         if (activity != null) {
-            itemDatabase = ItemDatabase.getDatabase(requireActivity())
-            itemDao = itemDatabase.getItemDao()
-            allItemLive = itemDao.allItemLive()
-            viewModel = ViewModelProvider(this).get(MovieRankViewModel::class.java)
+            viewModel = ViewModelProvider(this)[MovieRankViewModel::class.java]
             val buttonInsert: Button = requireActivity().findViewById(R.id.buttonInsert)
             val buttonClear: Button = requireActivity().findViewById(R.id.buttonClear)
             val textView: TextView = requireActivity().findViewById(R.id.textView)
 
-            allItemLive.observe(requireActivity()) {
-                var s: String = ""
+            viewModel.getLiveData().observe(requireActivity()) {
+                var s = ""
                 for (i: Item in it) {
                     s += i.id + ": " + i.name + "=" + i.hot + '\n'
                 }
@@ -65,15 +48,14 @@ class MovieRankFragment : Fragment() {
                 val item1 = Item("1", "1", "1", "1", "1")
                 val item2 = Item("2", "2", "2", "2", "2")
                 val item3 = Item("3", "3", "3", "3", "3")
-                itemDao.insertItem(item1, item2, item3)
+                viewModel.insertItem(item1, item2, item3)
             }
 
             buttonClear.setOnClickListener {
-                itemDao.clearItem()
+                viewModel.clearItem()
             }
         }
 
-        // TODO: Use the ViewModel
     }
 
 }
