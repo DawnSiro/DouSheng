@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Project/AndroidDouYin/DouSheng/app/src/main/res/layout/activity_main.xml" value="0.1125" />
+        <entry key="..\:/Project/AndroidDouYin/DouSheng/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Project/AndroidDouYin/DouSheng/app/src/main/res/layout/fragment_art_rank.xml" value="0.25364583333333335" />
+        <entry key="..\:/Project/AndroidDouYin/DouSheng/app/src/main/res/layout/fragment_movie_rank.xml" value="0.1125" />
+        <entry key="..\:/Project/AndroidDouYin/DouSheng/app/src/main/res/layout/fragment_video_rank.xml" value="0.25364583333333335" />
+        <entry key="..\:/Project/AndroidDouYin/DouSheng/app/src/main/res/layout/item.xml" value="0.25364583333333335" />
       </map>
     </option>
   </component>
