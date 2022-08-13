@@ -1,5 +1,6 @@
 package com.qxy.dousheng
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
@@ -17,6 +18,9 @@ interface ItemDao {
     fun clearItem();
 
     @Query("SELECT * FROM Item ORDER BY hot DESC")
-    fun allItem(): List<Item>
+    fun allItem(): LiveData<List<Item>>
+
+    @Query("SELECT * FROM Item ORDER BY hot DESC")
+    fun allItemLive(): LiveData<List<Item>>
 
 }

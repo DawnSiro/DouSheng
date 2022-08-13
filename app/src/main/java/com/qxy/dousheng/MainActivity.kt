@@ -12,6 +12,9 @@ class MainActivity : BaseAppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // init database manage &&load database
+        ItemDatabase.getDatabase(applicationContext)
+
         // Http
         httpInit()
 
