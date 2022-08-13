@@ -18,9 +18,6 @@ interface MovieDao {
     fun clearItem()
 
     @Query("SELECT * FROM MovieItem ORDER BY hot DESC")
-    fun allItem(): LiveData<List<MovieItem>>
-
-    @Query("SELECT * FROM MovieItem ORDER BY hot DESC")
     fun allItemLive(): LiveData<List<MovieItem>>
 
 }

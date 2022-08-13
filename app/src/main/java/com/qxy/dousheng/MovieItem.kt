@@ -7,12 +7,12 @@ import androidx.room.PrimaryKey
 @Entity
 data class MovieItem(
     @PrimaryKey
-    val id: String,
+    val id: Long,
     @ColumnInfo
     val name: String,
     val poster: String,
     val time: String,
-    val hot: String
+    val hot: Long
 )
 
 /*
