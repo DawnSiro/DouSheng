@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">DouSheng</string>
+    <string name="movie_rank">Movie Rank</string>
+    <string name="video_rank">Video Rank</string>
+    <string name="art_rank">Art Rank</string>
+    <string name="item_name">Name</string>
+    <string name="item_rank">Rank</string>
+    <string name="item_time">Time</string>
+    <string name="item_hot">Hot</string>
 </resources>
