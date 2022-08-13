@@ -29,7 +29,7 @@ class MovieRankFragment : Fragment() {
 
         // 后台异步更新数据
         override fun doInBackground(vararg item: Item): Boolean {
-            itemDao.insertItem(item)
+            itemDao.insertItem(*item)
             return true
         }
     }

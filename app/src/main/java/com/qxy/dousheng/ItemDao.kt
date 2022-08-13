@@ -6,16 +6,16 @@ import androidx.room.*
 @Dao
 interface ItemDao {
     @Insert
-    fun insertItem(vararg item: Item);
+    fun insertItem(vararg item: Item)
 
     @Update
-    fun updateItem(vararg item: Item);
+    fun updateItem(vararg item: Item)
 
     @Delete
-    fun deleteItem(vararg item: Item);
+    fun deleteItem(vararg item: Item)
 
     @Query("DELETE FROM Item")
-    fun clearItem();
+    fun clearItem()
 
     @Query("SELECT * FROM Item ORDER BY hot DESC")
     fun allItem(): LiveData<List<Item>>
