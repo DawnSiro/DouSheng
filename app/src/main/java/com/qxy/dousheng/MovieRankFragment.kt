@@ -1,14 +1,15 @@
 package com.qxy.dousheng
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class MovieRankFragment : Fragment() {
     private lateinit var viewModel: MovieRankViewModel
@@ -25,27 +26,40 @@ class MovieRankFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_movie_rank, container, false)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         if (activity != null) {
             viewModel = ViewModelProvider(this)[MovieRankViewModel::class.java]
             val buttonInsert: Button = requireActivity().findViewById(R.id.buttonInsert)
             val buttonClear: Button = requireActivity().findViewById(R.id.buttonClear)
-            val textView: TextView = requireActivity().findViewById(R.id.textView)
+
+            val list: List<MovieItem> = if (viewModel.getLiveData().value != null) {
+                viewModel.getLiveData().value!!
+            } else listOf()
+            val adapter = RankAdapter(list)
+            val recyclerView: RecyclerView = requireView().findViewById(R.id.movie_recycler)
+
+            recyclerView.layoutManager = LinearLayoutManager(requireActivity())
+            recyclerView.adapter = adapter
 
             viewModel.getLiveData().observe(requireActivity()) {
-                var s = ""
-                for (i: MovieItem in it) {
-                    s += i.id + ": " + i.name + "=" + i.hot + '\n'
-                }
-                textView.text = s
+                adapter.rankList = it
+                adapter.notifyDataSetChanged()
             }
 
             buttonInsert.setOnClickListener {
-                val movieItem1 = MovieItem("1", "1", "1", "1", "1")
-                val movieItem2 = MovieItem("2", "2", "2", "2", "2")
-                val movieItem3 = MovieItem("3", "3", "3", "3", "3")
-                viewModel.insertItem(movieItem1, movieItem2, movieItem3)
+                for (i in 1..30) {
+                    val movieItem = MovieItem(
+                        i.toLong(),
+                        i.toString(),
+                        i.toString(),
+                        i.toString(),
+                        i.toLong()
+                    )
+                    viewModel.insertItem(movieItem)
+
+                }
             }
 
             buttonClear.setOnClickListener {

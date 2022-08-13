@@ -24,6 +24,7 @@ class MovieRankViewModel(application: Application) : AndroidViewModel(applicatio
         ClearItem(movieDao).execute()
     }
 
+
     fun getLiveData(): LiveData<List<MovieItem>> {
         return allMovieItemLive
     }

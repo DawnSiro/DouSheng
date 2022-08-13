@@ -17,14 +17,12 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.75" />
 
-        <TextView
-            android:id="@+id/textView"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/movie_recycler"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:text="TextView"
             app:layout_constraintBottom_toTopOf="@+id/guideline2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.58"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,5 +47,6 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/buttonInsert"
             app:layout_constraintTop_toTopOf="@+id/buttonInsert" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

@@ -4,4 +4,8 @@
     <string name="movie_rank">电影排名</string>
     <string name="video_rank">电视剧排名</string>
     <string name="art_rank">综艺排名</string>
+    <string name="item_name">名称</string>
+    <string name="item_rank">排名</string>
+    <string name="item_time">时间</string>
+    <string name="item_hot">热度</string>
 </resources>
