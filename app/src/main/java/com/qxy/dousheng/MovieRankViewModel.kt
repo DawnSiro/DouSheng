@@ -15,14 +15,14 @@ class MovieRankViewModel(application: Application) : AndroidViewModel(applicatio
     init {
         val itemDatabase = ItemDatabase.getDatabase(application.applicationContext)
         rankDao = itemDatabase.getItemDao()
-        allRankItemLive = rankDao.allItemLive()
+        allRankItemLive = rankDao.allMovieItemLive()
     }
 
-    fun insertItem(vararg rankItem: RankItem) {
+    private fun insertItem(vararg rankItem: RankItem) {
         InsertItem(rankDao).execute(*rankItem)
     }
 
-    fun clearItem() {
+    private fun clearItem() {
         ClearItem(rankDao).execute()
     }
 
