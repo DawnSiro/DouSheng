@@ -42,7 +42,7 @@ class MovieRankViewModel(application: Application) : AndroidViewModel(applicatio
         val item = gson.fromJson(response, Item::class.java)
         for (i in item.data.list) {
             Log.d("okHttp", "update: ${i.name}")
-            insertItem(RankItem(i.name, i.poster, i.release_date, i.search_hot, 1))
+            insertItem(RankItem(i.name, i.poster, i.release_date, i.hot, 1))
         }
     }
 
