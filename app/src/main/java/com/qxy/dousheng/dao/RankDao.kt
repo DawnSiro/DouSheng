@@ -1,7 +1,8 @@
-package com.qxy.dousheng
+package com.qxy.dousheng.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.qxy.dousheng.model.RankItem
 
 @Dao
 interface RankDao {

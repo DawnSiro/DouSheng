@@ -1,4 +1,4 @@
-package com.qxy.dousheng
+package com.qxy.dousheng.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

@@ -1,4 +1,4 @@
-package com.qxy.dousheng.ui.follow
+package com.qxy.dousheng.ui.personal
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -7,27 +7,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.qxy.dousheng.R
-import com.qxy.dousheng.databinding.FragmentFollowBinding
+import com.qxy.dousheng.databinding.FragmentPersonalBinding
 
-class FollowFragment : Fragment() {
+class PersonalFragment : Fragment() {
 
     companion object {
-        fun newInstance() = FollowFragment()
+        fun newInstance() = PersonalFragment()
     }
 
-    private lateinit var viewModel: FollowViewModel
+    private lateinit var viewModel: PersonalViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val viewBinding = FragmentFollowBinding.inflate(inflater, container, false)
+        val viewBinding = FragmentPersonalBinding.inflate(inflater, container, false)
         return viewBinding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(FollowViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(PersonalViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

@@ -1,4 +1,4 @@
-package com.qxy.dousheng
+package com.qxy.dousheng.model
 
 data class Item(
     var data: Data,

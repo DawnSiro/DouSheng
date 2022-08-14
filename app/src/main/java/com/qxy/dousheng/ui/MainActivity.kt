@@ -1,4 +1,4 @@
-package com.qxy.dousheng
+package com.qxy.dousheng.ui
 
 import android.os.Bundle
 
@@ -7,6 +7,8 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.qxy.dousheng.R
+import com.qxy.dousheng.database.ItemDatabase
 
 class MainActivity : BaseAppCompatActivity() {
 
