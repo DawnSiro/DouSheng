@@ -7,24 +7,25 @@ import androidx.room.RoomDatabase
 import org.jetbrains.annotations.NotNull
 
 //singleton
-@Database(entities = [MovieItem::class], version = 1, exportSchema = false)
+@Database(entities = [RankItem::class], version = 4, exportSchema = false)
 abstract class ItemDatabase : RoomDatabase() {
 
     companion object {
         private lateinit var database: ItemDatabase
 
         @JvmStatic
+        @Synchronized
         fun getDatabase(@NotNull context: Context): ItemDatabase {
             if (!this::database.isInitialized) {
                 database = Room.databaseBuilder(
                     context.applicationContext,
                     ItemDatabase::class.java,
                     "movie_database"
-                ).build()
+                ).fallbackToDestructiveMigration().build()
             }
             return database
         }
     }
 
-    abstract fun getItemDao(): MovieDao
+    abstract fun getItemDao(): RankDao
 }

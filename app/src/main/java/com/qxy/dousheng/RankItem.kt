@@ -1,19 +1,19 @@
 package com.qxy.dousheng
 
-import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class MovieItem(
-    @PrimaryKey
-    val id: Long,
-    @ColumnInfo
+data class RankItem(
     val name: String,
     val poster: String,
     val time: String,
-    val hot: Long
-)
+    val hot: Int,
+    val type: Int
+) {
+    @PrimaryKey(autoGenerate = true)
+    var id: Long = 0
+}
 
 /*
 {
