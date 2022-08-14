@@ -1,4 +1,4 @@
-package com.qxy.dousheng
+package com.qxy.dousheng.ui.ranking
 
 import android.annotation.SuppressLint
 import android.app.Application
@@ -7,6 +7,10 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.google.gson.Gson
+import com.qxy.dousheng.model.Item
+import com.qxy.dousheng.database.ItemDatabase
+import com.qxy.dousheng.dao.RankDao
+import com.qxy.dousheng.model.RankItem
 
 class ArtRankViewModel(application: Application) : AndroidViewModel(application) {
     private var rankDao: RankDao

@@ -1,4 +1,4 @@
-package com.qxy.dousheng
+package com.qxy.dousheng.ui.ranking
 
 import android.annotation.SuppressLint
 import android.app.Application
@@ -7,16 +7,19 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.google.gson.Gson
+import com.qxy.dousheng.model.Item
+import com.qxy.dousheng.database.ItemDatabase
+import com.qxy.dousheng.dao.RankDao
+import com.qxy.dousheng.model.RankItem
 
-class VideoRankViewModel(application: Application) : AndroidViewModel(application) {
-
+class MovieRankViewModel(application: Application) : AndroidViewModel(application) {
     private var rankDao: RankDao
     private var allRankItemLive: LiveData<List<RankItem>>
 
     init {
         val itemDatabase = ItemDatabase.getDatabase(application.applicationContext)
         rankDao = itemDatabase.getItemDao()
-        allRankItemLive = rankDao.allVideoItemLive()
+        allRankItemLive = rankDao.allMovieItemLive()
     }
 
     private fun insertItem(vararg rankItem: RankItem) {
@@ -43,7 +46,7 @@ class VideoRankViewModel(application: Application) : AndroidViewModel(applicatio
         val item = gson.fromJson(response, Item::class.java)
         for (i in item.data.list) {
             Log.d("okHttp", "update: ${i.name}")
-            insertItem(RankItem(i.name, i.poster, i.release_date, i.hot, 2))
+            insertItem(RankItem(i.name, i.poster, i.release_date, i.hot, 1))
         }
     }
 

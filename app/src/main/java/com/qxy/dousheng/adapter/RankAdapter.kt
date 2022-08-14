@@ -1,10 +1,12 @@
-package com.qxy.dousheng
+package com.qxy.dousheng.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.qxy.dousheng.R
+import com.qxy.dousheng.model.RankItem
 
 class RankAdapter(var rankList: List<RankItem>) :
     RecyclerView.Adapter<RankAdapter.ViewHolder>() {

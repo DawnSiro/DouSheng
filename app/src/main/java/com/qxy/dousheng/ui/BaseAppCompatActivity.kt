@@ -1,4 +1,4 @@
-package com.qxy.dousheng
+package com.qxy.dousheng.ui
 
 import android.Manifest
 import androidx.appcompat.app.AppCompatActivity

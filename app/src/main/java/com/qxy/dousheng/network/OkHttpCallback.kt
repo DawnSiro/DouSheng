@@ -1,4 +1,4 @@
-package com.qxy.dousheng
+package com.qxy.dousheng.network
 
 interface OkHttpCallback {
     fun isFail()
