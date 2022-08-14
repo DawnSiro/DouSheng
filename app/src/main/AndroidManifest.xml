@@ -23,6 +23,7 @@
         android:supportsRtl="true"
         android:taskAffinity="com.qxy.dousheng"
         android:theme="@style/Theme.DouSheng"
+        android:name=".DouShengApplication"
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"
