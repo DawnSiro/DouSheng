@@ -2,10 +2,12 @@ package com.qxy.dousheng
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -34,7 +36,7 @@ class MovieRankFragment : Fragment() {
             val buttonInsert: Button = requireActivity().findViewById(R.id.buttonInsert)
             val buttonClear: Button = requireActivity().findViewById(R.id.buttonClear)
 
-            val list: List<MovieItem> = if (viewModel.getLiveData().value != null) {
+            val list: List<RankItem> = if (viewModel.getLiveData().value != null) {
                 viewModel.getLiveData().value!!
             } else listOf()
             val adapter = RankAdapter(list)
@@ -49,15 +51,33 @@ class MovieRankFragment : Fragment() {
             }
 
             buttonInsert.setOnClickListener {
+                OkHttpUtils.doMovieGet(object : OkHttpCallback {
+                    override fun isFail() {
+                        Log.d("okHttp", "Callback 出错")
+                        Toast.makeText(requireActivity(), "OkHttp出错", Toast.LENGTH_SHORT).show()
+                    }
+
+                    override fun isSuccess(json: String?) {
+                        if (json != null) {
+                            Log.d("okHttp", "Callback: $json")
+                            viewModel.update(json)
+                        } else {
+                            Toast.makeText(requireActivity(), "Response 为空", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                    }
+
+                })
+
                 for (i in 1..30) {
-                    val movieItem = MovieItem(
-                        i.toLong(),
+                    val rankItem = RankItem(
                         i.toString(),
                         i.toString(),
                         i.toString(),
-                        i.toLong()
+                        i,
+                        1
                     )
-                    viewModel.insertItem(movieItem)
+                    viewModel.insertItem(rankItem)
 
                 }
             }
