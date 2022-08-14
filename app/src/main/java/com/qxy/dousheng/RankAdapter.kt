@@ -22,9 +22,10 @@ class RankAdapter(var rankList: List<RankItem>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = rankList[position]
+        val rank = position.plus(1)
         holder.itemName.text = item.name
-        holder.itemRank.text = position.toString()
-        holder.itemHot.text = item.name
+        holder.itemRank.text = rank.toString()
+        holder.itemHot.text = item.hot.toString()
         holder.itemTime.text = item.time
     }
 

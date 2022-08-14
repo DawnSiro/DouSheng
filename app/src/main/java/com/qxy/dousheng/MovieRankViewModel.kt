@@ -15,14 +15,14 @@ class MovieRankViewModel(application: Application) : AndroidViewModel(applicatio
     init {
         val itemDatabase = ItemDatabase.getDatabase(application.applicationContext)
         rankDao = itemDatabase.getItemDao()
-        allRankItemLive = rankDao.allItemLive()
+        allRankItemLive = rankDao.allMovieItemLive()
     }
 
-    fun insertItem(vararg rankItem: RankItem) {
+    private fun insertItem(vararg rankItem: RankItem) {
         InsertItem(rankDao).execute(*rankItem)
     }
 
-    fun clearItem() {
+    private fun clearItem() {
         ClearItem(rankDao).execute()
     }
 
@@ -42,7 +42,7 @@ class MovieRankViewModel(application: Application) : AndroidViewModel(applicatio
         val item = gson.fromJson(response, Item::class.java)
         for (i in item.data.list) {
             Log.d("okHttp", "update: ${i.name}")
-            insertItem(RankItem(i.name, i.poster, i.release_date, i.search_hot, 1))
+            insertItem(RankItem(i.name, i.poster, i.release_date, i.hot, 1))
         }
     }
 
