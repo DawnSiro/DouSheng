@@ -11,12 +11,14 @@ class OkHttpUtils {
     companion object {
         private const val baseUrl = "https://mock.apifox.cn/m1/1441581-0-default"
         private const val TAG = "okHttp"
+        private lateinit var userRequest: Request
         private lateinit var movieRequest: Request
         private lateinit var videoRequest: Request
         private lateinit var artRequest: Request
 
         private val handle = Handler(Looper.getMainLooper())
         private val rankClient = OkHttpClient()
+        private val userClient = OkHttpClient()
         private val gson = Gson()
 
 
@@ -145,5 +147,51 @@ class OkHttpUtils {
 
             })
         }
+
+
+        // 获取用户公开信息请求
+        private fun getUserInfoRequest(): Request {
+            val interfaceUrl = "/oauth/userinfo/"
+            val url = baseUrl + interfaceUrl
+            val accessToken = getClientAccessToken()
+            if (!this::userRequest.isInitialized) {
+                userRequest = Request.Builder()
+                    .url(url)
+                    .header("Content-Type", "application/json")
+                    .header("access-token", accessToken)
+                    .build()
+            }
+            Log.d(TAG, "getUserInfoRequest: $url")
+            return artRequest
+        }
+
+        // 获取用户公开信息
+        fun doUserInfoGet(callback: OkHttpCallback) {
+            userClient.newCall(getUserInfoRequest()).enqueue(object : Callback{
+                override fun onFailure(call: Call, e: IOException) {
+                    Log.e(TAG, "onFailure: $e")
+                    handle.post {
+                        callback.isFail()
+                    }
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    Log.d(TAG, "onResponse: ${response.body}")
+                    val json = response.body?.string()
+                    if (json != null) {
+                        handle.post {
+                            callback.isSuccess(json)
+                        }
+                    } else {
+                        handle.post {
+                            callback.isFail()
+                        }
+                    }
+                }
+
+            })
+        }
+
+
     }
 }

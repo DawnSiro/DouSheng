@@ -12,12 +12,12 @@ open class BaseAppCompatActivity : AppCompatActivity() {
             "user_info," +
             "discovery.ent," +
             "fans.list," +
-            "fans.data, " +
-            "fans.check," +
             "following.list," +
+            "fans.check," +
+            "video.data," +
+            "video.list," +
             "data.external.user," +
             "data.external.item"
-
     private var douYinOpenApi: DouYinOpenApi? = null
     private val clientKey = "awr4g04kxg26jk2l" // 需要到开发者网站申请并替换
     private val clientSecret = "ce6a9c54648b7f99565a66f20fd70866"
