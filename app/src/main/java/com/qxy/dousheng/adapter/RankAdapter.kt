@@ -17,7 +17,8 @@ class RankAdapter(var rankList: List<RankItem>) :
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val itemPoster: ImageView = view.findViewById(R.id.imageViewPoster)
         val itemName: TextView = view.findViewById(R.id.textViewName)
-//        val itemRank: TextView = view.findViewById(R.id.textViewRank)
+
+        //        val itemRank: TextView = view.findViewById(R.id.textViewRank)
         val itemTime: TextView = view.findViewById(R.id.textViewTime)
         val itemHot: TextView = view.findViewById(R.id.textViewHot)
     }
@@ -38,11 +39,11 @@ class RankAdapter(var rankList: List<RankItem>) :
 
         val rank = position.plus(1)
 
-        holder.itemName.text = rank.toString() + item.name
+        holder.itemName.text = rank.toString() + ". " + item.name
 //        holder.itemRank.text = rank.toString()
-        if (item.hot > 10000){
+        if (item.hot > 10000) {
             holder.itemHot.text = ((item.hot / 10000).toString() + "万")
-        }else{
+        } else {
             holder.itemHot.text = item.hot.toString()
         }
 
