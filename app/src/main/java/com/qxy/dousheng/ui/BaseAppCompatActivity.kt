@@ -8,7 +8,16 @@ import com.bytedance.sdk.open.douyin.DouYinOpenConfig
 import com.bytedance.sdk.open.douyin.api.DouYinOpenApi
 
 open class BaseAppCompatActivity : AppCompatActivity() {
-    private val mScope = "trial.whitelist,user_info,discovery.ent,fans.list,following.list,fans.check,video.data,video.list"
+    private val mScope = "trial.whitelist," +
+            "user_info," +
+            "discovery.ent," +
+            "fans.list," +
+            "following.list," +
+            "fans.check," +
+            "video.data," +
+            "video.list," +
+            "data.external.user," +
+            "data.external.item"
     private var douYinOpenApi: DouYinOpenApi? = null
     private val clientKey = "awr4g04kxg26jk2l" // 需要到开发者网站申请并替换
     private val clientSecret = "ce6a9c54648b7f99565a66f20fd70866"
