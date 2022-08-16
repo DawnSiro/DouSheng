@@ -22,15 +22,16 @@ class MainActivity : BaseAppCompatActivity() {
         // Http
         httpInit()
 
-        // load bottom
+        // load
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
         val navHostFragment: NavHostFragment =
-            supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+            supportFragmentManager.findFragmentById(R.id.bottomFragmentContainerView) as NavHostFragment
         val navController: NavController = navHostFragment.navController
         val configuration: AppBarConfiguration =
             AppBarConfiguration.Builder(bottomNavigationView.menu).build()
         NavigationUI.setupActionBarWithNavController(this, navController, configuration)
         NavigationUI.setupWithNavController(bottomNavigationView, navController)
+
     }
 
 }

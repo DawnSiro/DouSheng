@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_nav"
+    app:startDestination="@id/rank_item">
+    <fragment
+        android:id="@+id/fans_item"
+        android:name="com.qxy.dousheng.FansFragment"
+        android:label="@string/fans"
+        tools:layout="@layout/fragment_fans" />
+    <fragment
+        android:id="@+id/info_item"
+        android:name="com.qxy.dousheng.InfoFragment"
+        android:label="@string/info"
+        tools:layout="@layout/fragment_info" />
+    <fragment
+        android:id="@+id/rank_item"
+        android:name="com.qxy.dousheng.RankFragment"
+        android:label="@string/rank"
+        tools:layout="@layout/fragment_rank" />
+    <fragment
+        android:id="@+id/video_item"
+        android:name="com.qxy.dousheng.VideoFragment"
+        android:label="@string/video"
+        tools:layout="@layout/fragment_video" />
+</navigation>

@@ -9,4 +9,8 @@
     <string name="item_time">时间</string>
     <string name="item_hot">热度</string>
     <string name="item_poster">海报</string>
+    <string name="rank">榜单</string>
+    <string name="video">视频</string>
+    <string name="fans">粉丝</string>
+    <string name="info">我的</string>
 </resources>
