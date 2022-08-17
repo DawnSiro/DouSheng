@@ -15,7 +15,7 @@ import com.qxy.dousheng.*
 import com.qxy.dousheng.adapter.RankAdapter
 import com.qxy.dousheng.model.RankItem
 import com.qxy.dousheng.network.OkHttpCallback
-import com.qxy.dousheng.network.OkHttpUtils
+import com.qxy.dousheng.network.RankOkHttpUtils
 
 class MovieRankFragment : Fragment() {
     private lateinit var viewModel: MovieRankViewModel
@@ -52,7 +52,7 @@ class MovieRankFragment : Fragment() {
                 adapter.notifyDataSetChanged()
             }
 
-            OkHttpUtils.doMovieGet(object : OkHttpCallback {
+            RankOkHttpUtils.doMovieGet(object : OkHttpCallback {
                 override fun isFail() {
                     Log.d("okHttp", "Callback 出错")
                     Toast.makeText(requireActivity(), "OkHttp出错", Toast.LENGTH_SHORT).show()

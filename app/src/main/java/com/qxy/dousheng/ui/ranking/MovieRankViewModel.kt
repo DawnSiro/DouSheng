@@ -7,7 +7,7 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.google.gson.Gson
-import com.qxy.dousheng.model.Item
+import com.qxy.dousheng.model.RankJson
 import com.qxy.dousheng.database.ItemDatabase
 import com.qxy.dousheng.dao.RankDao
 import com.qxy.dousheng.model.RankItem
@@ -43,8 +43,8 @@ class MovieRankViewModel(application: Application) : AndroidViewModel(applicatio
 
         Log.d("okHttp", "update: $response")
 
-        val item = gson.fromJson(response, Item::class.java)
-        for (i in item.data.list) {
+        val rankJson = gson.fromJson(response, RankJson::class.java)
+        for (i in rankJson.data.list) {
             Log.d("okHttp", "update: ${i.name}")
             insertItem(RankItem(i.name, i.poster, i.release_date, i.hot, 1))
         }
