@@ -15,7 +15,7 @@ class MainActivity : BaseAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+//        method()
         // init database manage &&load database
         ItemDatabase.getDatabase(applicationContext)
 
@@ -32,5 +32,12 @@ class MainActivity : BaseAppCompatActivity() {
         NavigationUI.setupActionBarWithNavController(this, navController, configuration)
         NavigationUI.setupWithNavController(bottomNavigationView, navController)
     }
+//    fun method() {
+//        try {
+//            Thread.sleep(400L)
+//        }catch (e:InterruptedException){
+//            e.printStackTrace()
+//        }
+//    }
 
 }
