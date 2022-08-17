@@ -7,10 +7,10 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.google.gson.Gson
-import com.qxy.dousheng.model.RankJson
-import com.qxy.dousheng.database.ItemDatabase
 import com.qxy.dousheng.dao.RankDao
+import com.qxy.dousheng.database.RankDatabase
 import com.qxy.dousheng.model.RankItem
+import com.qxy.dousheng.model.RankJson
 
 class VideoRankViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -18,8 +18,8 @@ class VideoRankViewModel(application: Application) : AndroidViewModel(applicatio
     private var allRankItemLive: LiveData<List<RankItem>>
 
     init {
-        val itemDatabase = ItemDatabase.getDatabase(application.applicationContext)
-        rankDao = itemDatabase.getItemDao()
+        val rankDatabase = RankDatabase.getDatabase(application.applicationContext)
+        rankDao = rankDatabase.getItemDao()
         allRankItemLive = rankDao.allVideoItemLive()
     }
 

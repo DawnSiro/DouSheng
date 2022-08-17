@@ -140,11 +140,24 @@ class InfoOkHttpUtils() {
         fun doInfoRequest(callback: OkHttpCallback) {
             infoClient.newCall(getInfoRequest()).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
-                    TODO("Not yet implemented")
+                    Log.e(TAG, "onFailure: $e")
+                    handle.post {
+                        callback.isFail()
+                    }
                 }
 
                 override fun onResponse(call: Call, response: Response) {
-                    TODO("Not yet implemented")
+                    Log.d(TAG, "onResponse: ${response.body}")
+                    val json = response.body?.string()
+                    if (json != null) {
+                        handle.post {
+                            callback.isSuccess(json)
+                        }
+                    } else {
+                        handle.post {
+                            callback.isFail()
+                        }
+                    }
                 }
 
             })
