@@ -15,17 +15,17 @@ import com.qxy.dousheng.network.OkHttpCallback
 
 class InfoFragment : Fragment() {
     private lateinit var binding: FragmentInfoBinding
+    private lateinit var viewModel: InfoViewModel
 
     companion object {
         fun newInstance() = InfoFragment()
     }
 
-    private lateinit var viewModel: InfoViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentInfoBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -37,13 +37,14 @@ class InfoFragment : Fragment() {
             viewModel = ViewModelProvider(this)[InfoViewModel::class.java]
 
             viewModel.getLiveData().observe(requireActivity()) {
-                if (it.isNotEmpty()) {
+                if (it.isNotEmpty() && activity != null) {
                     val info = it[0]
+                    binding.nicknameTextView.text = info.nickname
+
                     Glide.with(this)
                         .load(info.avatar_larger)
                         .override(500)
                         .into(binding.avatarImageView)
-                    binding.nicknameTextView.text = info.nickname
                     binding.cityTextView.text = "${info.country}/${info.city}"
                     binding.genderTextView.text = when (info.gender) {
                         0 -> "男"
@@ -70,5 +71,6 @@ class InfoFragment : Fragment() {
             })
         }
     }
+
 
 }
