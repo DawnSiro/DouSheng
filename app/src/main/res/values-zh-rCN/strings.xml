@@ -14,4 +14,8 @@
     <string name="fans">粉丝</string>
     <string name="info">我的</string>
     <string name="avatar">头像</string>
+    <string name="city">城市</string>
+    <string name="description">简介</string>
+    <string name="gender">性别</string>
+    <string name="nickname">昵称</string>
 </resources>

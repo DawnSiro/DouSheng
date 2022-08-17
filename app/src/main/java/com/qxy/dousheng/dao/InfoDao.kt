@@ -1,5 +1,6 @@
 package com.qxy.dousheng.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -13,6 +14,6 @@ interface InfoDao {
     @Query("DELETE FROM InfoItem")
     fun clearItem()
 
-    @Query("SELECT * FROM InfoItem LIMIT 1")
-    fun getInfo()
+    @Query("SELECT * FROM InfoItem")
+    fun getAllInfoLiveData(): LiveData<List<InfoItem>>
 }

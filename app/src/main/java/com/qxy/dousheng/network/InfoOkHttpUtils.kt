@@ -10,7 +10,6 @@ import android.util.Log
 import com.google.gson.Gson
 import com.qxy.dousheng.model.AccessTokenJson
 import okhttp3.*
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import java.io.IOException
 
 class InfoOkHttpUtils() {
@@ -65,12 +64,12 @@ class InfoOkHttpUtils() {
                     .addHeader("client_key", clientKey)
                     .build()
             }
-            Log.d(TAG, "getMovieRankRequest: $url")
+            Log.d(TAG, "getAccessRequest: $url")
             return accessRequest
         }
 
         @JvmName("getAccessToken1")
-        private fun getAccessToken(): AccessTokenJson {
+        fun getAccessToken(): AccessTokenJson {
             if (this::accessToken.isInitialized) return accessToken
             accessToken = AccessTokenJson() // 默认值
             doAccessGet(object : OkHttpCallback {
@@ -80,9 +79,8 @@ class InfoOkHttpUtils() {
 
                 override fun isSuccess(json: String?) {
                     if (json != null && json != "{}") {
-                        Log.d("okHttp", "Callback: $json")
+                        Log.d("okHttp", "getAccessToken: $json")
                         accessToken = gson.fromJson(json, AccessTokenJson::class.java)
-                        Log.d(TAG, "isSuccess: ${accessToken.toString()}")
                     } else {
                         Log.d(TAG, "getAccessToken 为空")
                     }
@@ -118,26 +116,33 @@ class InfoOkHttpUtils() {
             })
         }
 
-        fun getInfoRequest(): Request {
+        private fun getInfoRequest(): Request {
             val interfaceUrl = "/oauth/userinfo/"
             val url = baseUrl + interfaceUrl
+//            if (!this::infoRequest.isInitialized) {
+            // 初始化耗时参数
             val token = getAccessToken().data.access_token
             val id = getAccessToken().data.open_id
-            val json = "{\"access_token\": $token,\"open_id\": $id}"
-            Log.d(TAG, "InfoRequestJson: $json")
-            val body = RequestBody.create("application/json".toMediaTypeOrNull(), json)
-            if (!this::infoRequest.isInitialized) {
-                infoRequest = Request.Builder()
-                    .url(url)
-                    .addHeader("Content-Type", "application/json")
-                    .addHeader("access-token", token)
-                    .post(body)
-                    .build()
-            }
+            val body = FormBody
+                .Builder()
+                .addEncoded("access_token", token)
+                .addEncoded("open_id", id)
+                .build()
+            Log.d(TAG, "token:$token id:$id")
+
+
+            // 初始化 infoRequest
+            infoRequest = Request.Builder()
+                .url(url)
+                .addHeader("Content-Type", "application/json")
+                .addHeader("access-token", token)
+                .post(body)
+                .build()
+//            }
             return infoRequest
         }
 
-        fun doInfoRequest(callback: OkHttpCallback) {
+        fun doInfoPost(callback: OkHttpCallback) {
             infoClient.newCall(getInfoRequest()).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
                     Log.e(TAG, "onFailure: $e")
@@ -147,7 +152,7 @@ class InfoOkHttpUtils() {
                 }
 
                 override fun onResponse(call: Call, response: Response) {
-                    Log.d(TAG, "onResponse: ${response.body}")
+                    Log.d(TAG, "doInfoPost: ${response.body}")
                     val json = response.body?.string()
                     if (json != null) {
                         handle.post {

@@ -13,4 +13,8 @@
     <string name="fans">Fans</string>
     <string name="info">Info</string>
     <string name="avatar">Avatar</string>
+    <string name="city">City</string>
+    <string name="description">Description</string>
+    <string name="gender">Gender</string>
+    <string name="nickname">Nickname</string>
 </resources>

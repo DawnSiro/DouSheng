@@ -9,6 +9,7 @@ import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.qxy.dousheng.R
 import com.qxy.dousheng.database.RankDatabase
+import com.qxy.dousheng.network.InfoOkHttpUtils
 
 class MainActivity : BaseAppCompatActivity() {
 
@@ -21,6 +22,7 @@ class MainActivity : BaseAppCompatActivity() {
 
         // Http
         httpInit()
+        InfoOkHttpUtils.getAccessToken()
 
         // load
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)

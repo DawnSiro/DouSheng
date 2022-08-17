@@ -9,7 +9,7 @@ data class AccessTokenJson(
 data class AccessTokenData(
     var access_token: String = "",
     var description: String = "",
-    var error_code: Int = 0,
+    var error_code: Int = -1,
     var expires_in: Int = 0,
     var open_id: String = "",
     var refresh_expires_in: Int = 0,

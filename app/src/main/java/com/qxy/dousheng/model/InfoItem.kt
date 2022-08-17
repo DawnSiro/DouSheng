@@ -1,9 +1,12 @@
 package com.qxy.dousheng.model
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 @Entity
 data class InfoItem(
+    @ColumnInfo
     var avatar: String = "",
     var avatar_larger: String = "",
     var captcha: String = "",
@@ -21,4 +24,7 @@ data class InfoItem(
     var open_id: String = "",
     var province: String = "",
     var union_id: String = ""
-)
+) {
+    @PrimaryKey(autoGenerate = true)
+    var id: Int = 0
+}

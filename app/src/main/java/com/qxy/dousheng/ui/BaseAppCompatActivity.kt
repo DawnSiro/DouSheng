@@ -42,13 +42,6 @@ open class BaseAppCompatActivity : AppCompatActivity() {
         return false
     }
 
-    fun getAccessToken() {
-
-    }
-
-    public fun loadData() {
-
-    }
 
 
 }
