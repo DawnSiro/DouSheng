@@ -1,4 +1,4 @@
-package com.qxy.dousheng
+package com.qxy.dousheng.ui.fans
 
 import androidx.lifecycle.ViewModel
 

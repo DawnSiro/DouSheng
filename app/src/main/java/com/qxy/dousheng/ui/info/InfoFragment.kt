@@ -1,4 +1,4 @@
-package com.qxy.dousheng
+package com.qxy.dousheng.ui.info
 
 import android.annotation.SuppressLint
 import android.os.Bundle

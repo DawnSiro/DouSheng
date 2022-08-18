@@ -1,4 +1,4 @@
-package com.qxy.dousheng
+package com.qxy.dousheng.ui.video
 
 import android.annotation.SuppressLint
 import android.app.Application

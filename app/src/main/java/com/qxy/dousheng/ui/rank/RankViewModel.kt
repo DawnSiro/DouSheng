@@ -1,4 +1,4 @@
-package com.qxy.dousheng
+package com.qxy.dousheng.ui.rank
 
 import androidx.lifecycle.ViewModel
 

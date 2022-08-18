@@ -6,22 +6,22 @@
     app:startDestination="@id/rank_item">
     <fragment
         android:id="@+id/fans_item"
-        android:name="com.qxy.dousheng.FansFragment"
+        android:name="com.qxy.dousheng.ui.fans.FansFragment"
         android:label="@string/fans"
         tools:layout="@layout/fragment_fans" />
     <fragment
         android:id="@+id/info_item"
-        android:name="com.qxy.dousheng.InfoFragment"
+        android:name="com.qxy.dousheng.ui.info.InfoFragment"
         android:label="@string/info"
         tools:layout="@layout/fragment_info" />
     <fragment
         android:id="@+id/rank_item"
-        android:name="com.qxy.dousheng.RankFragment"
+        android:name="com.qxy.dousheng.ui.rank.RankFragment"
         android:label="@string/rank"
         tools:layout="@layout/fragment_rank" />
     <fragment
         android:id="@+id/video_item"
-        android:name="com.qxy.dousheng.VideoFragment"
+        android:name="com.qxy.dousheng.ui.video.VideoFragment"
         android:label="@string/video"
         tools:layout="@layout/fragment_video" />
 </navigation>
