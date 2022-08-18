@@ -34,6 +34,7 @@ class ArtRankFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_art_rank, container, false)
     }
 
+    @Deprecated("Deprecated in Java")
     @SuppressLint("NotifyDataSetChanged")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

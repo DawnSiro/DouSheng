@@ -3,7 +3,6 @@ package com.qxy.dousheng.network
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import com.google.gson.Gson
 import okhttp3.*
 import java.io.IOException
 
@@ -17,14 +16,14 @@ class RankOkHttpUtils {
 
         private val handle = Handler(Looper.getMainLooper())
         private val rankClient = OkHttpClient()
-        private val gson = Gson()
+//        private val gson = Gson()
 
 
         private fun getClientAccessToken(): String {
             return "clt.55179e5b40952a805aede83e26852ce8jEBWR5yhrhv4yWYG29KKPMkAZ1kS"
         }
 
-        fun getGson(): Gson = gson
+//        fun getGson(): Gson = gson
 
         private fun getMovieRankRequest(): Request {
             val interfaceUrl = "/discovery/ent/rank/item/?type=1"

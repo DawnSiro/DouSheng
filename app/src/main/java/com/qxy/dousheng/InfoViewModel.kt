@@ -38,10 +38,8 @@ class InfoViewModel(application: Application) : AndroidViewModel(application) {
         Log.d("okHttp", "clearItem: 清除成功")
         val gson = Gson()
         Log.d("okHttp", "Gson: 初始化成功")
-        Log.d("okHttp", "update: $response")
-
         val infoJson: InfoJson = gson.fromJson(response, InfoJson::class.java)
-        Log.d("okHttp", "update: ${infoJson.toString()}")
+        Log.d("okHttp", "update: $infoJson")
 
         insert(infoJson.data)
     }

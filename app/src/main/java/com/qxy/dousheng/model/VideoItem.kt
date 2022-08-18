@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 data class VideoItem(
     var title: String = "",
     var cover: String = "",
-    var create_time: Int = 0,
+    var create_time: Long = 0,
     var is_top: Boolean = false,
     var is_reviewed: Boolean = true,
     var video_status: Int = 0,
@@ -23,5 +23,5 @@ data class VideoItem(
     var comment_count: Int = 0
 ) {
     @PrimaryKey(autoGenerate = true)
-    private var id: Int = 0
+    var id: Int = 0
 }

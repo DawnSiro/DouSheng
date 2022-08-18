@@ -11,5 +11,5 @@ data class InfoJson(
 
 data class InfoExtra(
     var logid: String = "",
-    var now: Int = 0
+    var now: Long = 0
 )

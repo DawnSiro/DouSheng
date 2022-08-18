@@ -14,7 +14,7 @@ import java.io.IOException
 
 class InfoOkHttpUtils() {
     companion object {
-        private const val baseUrl = "https://open.douyin.com/"
+        private const val baseUrl = "https://open.douyin.com"
         private const val mockUrl = "https://mock.apifox.cn/m1/1441581-0-default"
         private const val clientKey = "awr4g04kxg26jk2l" // 需要到开发者网站申请并替换
         private const val clientSecret = "ce6a9c54648b7f99565a66f20fd70866"
