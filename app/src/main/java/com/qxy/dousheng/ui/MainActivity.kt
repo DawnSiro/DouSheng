@@ -22,6 +22,7 @@ class MainActivity : BaseAppCompatActivity() {
 
         // Http
         httpInit()
+        InfoOkHttpUtils.setContext(applicationContext)
         InfoOkHttpUtils.getAccessToken()
 
         // load

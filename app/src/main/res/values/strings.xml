@@ -17,4 +17,9 @@
     <string name="description">Description</string>
     <string name="gender">Gender</string>
     <string name="nickname">Nickname</string>
+    <string name="title">Title</string>
+    <string name="cover">Cover</string>
+    <string name="time">Time</string>
+    <string name="top">Top</string>
+    <string name="count">Count</string>
 </resources>

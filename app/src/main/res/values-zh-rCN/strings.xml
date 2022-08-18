@@ -18,4 +18,9 @@
     <string name="description">简介</string>
     <string name="gender">性别</string>
     <string name="nickname">昵称</string>
+    <string name="title">标题</string>
+    <string name="cover">封面</string>
+    <string name="time">时间</string>
+    <string name="top">置顶</string>
+    <string name="count">统计</string>
 </resources>

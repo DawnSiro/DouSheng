@@ -116,6 +116,7 @@ class InfoOkHttpUtils() {
             })
         }
 
+        // 因为 token 和 id 可能获取失败，所以无法采用单例模式，每次都要重新获取新的 request
         private fun getInfoRequest(): Request {
             val interfaceUrl = "/oauth/userinfo/"
             val url = baseUrl + interfaceUrl
