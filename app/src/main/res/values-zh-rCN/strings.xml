@@ -9,4 +9,18 @@
     <string name="item_time">时间</string>
     <string name="item_hot">热度</string>
     <string name="item_poster">海报</string>
+    <string name="rank">榜单</string>
+    <string name="video">视频</string>
+    <string name="fans">粉丝</string>
+    <string name="info">我的</string>
+    <string name="avatar">头像</string>
+    <string name="city">城市</string>
+    <string name="description">简介</string>
+    <string name="gender">性别</string>
+    <string name="nickname">昵称</string>
+    <string name="title">标题</string>
+    <string name="cover">封面</string>
+    <string name="time">时间</string>
+    <string name="top">置顶</string>
+    <string name="count">统计</string>
 </resources>

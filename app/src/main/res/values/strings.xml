@@ -8,4 +8,18 @@
     <string name="item_time">Time</string>
     <string name="item_hot">Hot</string>
     <string name="item_poster">Poster</string>
+    <string name="rank">Rank</string>
+    <string name="video">Video</string>
+    <string name="fans">Fans</string>
+    <string name="info">Info</string>
+    <string name="avatar">Avatar</string>
+    <string name="city">City</string>
+    <string name="description">Description</string>
+    <string name="gender">Gender</string>
+    <string name="nickname">Nickname</string>
+    <string name="title">Title</string>
+    <string name="cover">Cover</string>
+    <string name="time">Time</string>
+    <string name="top">Top</string>
+    <string name="count">Count</string>
 </resources>

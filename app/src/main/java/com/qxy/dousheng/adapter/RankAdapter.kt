@@ -24,7 +24,9 @@ class RankAdapter(var rankList: List<RankItem>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item, parent, false))
+        return ViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.rank_item, parent, false)
+        )
     }
 
     @SuppressLint("SetTextI18n")

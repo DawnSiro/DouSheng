@@ -8,7 +8,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.qxy.dousheng.R
-import com.qxy.dousheng.database.ItemDatabase
+import com.qxy.dousheng.database.RankDatabase
+import com.qxy.dousheng.network.InfoOkHttpUtils
 
 class MainActivity : BaseAppCompatActivity() {
 
@@ -17,20 +18,23 @@ class MainActivity : BaseAppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // init database manage &&load database
-        ItemDatabase.getDatabase(applicationContext)
+        RankDatabase.getDatabase(applicationContext)
 
         // Http
         httpInit()
+        InfoOkHttpUtils.setContext(applicationContext)
+        InfoOkHttpUtils.getAccessToken()
 
-        // load bottom
+        // load
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
         val navHostFragment: NavHostFragment =
-            supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+            supportFragmentManager.findFragmentById(R.id.bottomFragmentContainerView) as NavHostFragment
         val navController: NavController = navHostFragment.navController
         val configuration: AppBarConfiguration =
             AppBarConfiguration.Builder(bottomNavigationView.menu).build()
         NavigationUI.setupActionBarWithNavController(this, navController, configuration)
         NavigationUI.setupWithNavController(bottomNavigationView, navController)
+
     }
 
 }
