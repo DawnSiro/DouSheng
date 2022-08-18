@@ -43,7 +43,7 @@ class InfoFragment : Fragment() {
 
                     Glide.with(this)
                         .load(info.avatar_larger)
-                        .override(500)
+                        .override(900)
                         .into(binding.avatarImageView)
                     binding.cityTextView.text = "${info.country}/${info.city}"
                     binding.genderTextView.text = when (info.gender) {
