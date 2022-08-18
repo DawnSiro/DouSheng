@@ -48,8 +48,10 @@ class VideoRankFragment : Fragment() {
             recyclerView.adapter = adapter
 
             viewModel.getLiveData().observe(requireActivity()) {
-                adapter.rankList = it
-                adapter.notifyDataSetChanged()
+                if (activity != null) {
+                    adapter.rankList = it
+                    adapter.notifyDataSetChanged()
+                }
             }
 
 

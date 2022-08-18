@@ -50,10 +50,11 @@ class ArtRankFragment : Fragment() {
             recyclerView.adapter = adapter
 
             viewModel.getLiveData().observe(requireActivity()) {
-                adapter.rankList = it
-                adapter.notifyDataSetChanged()
+                if (activity != null) {
+                    adapter.rankList = it
+                    adapter.notifyDataSetChanged()
+                }
             }
-
 
             RankOkHttpUtils.doArtGet(object : OkHttpCallback {
                 override fun isFail() {
