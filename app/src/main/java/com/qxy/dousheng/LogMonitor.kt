@@ -5,27 +5,21 @@ import android.os.HandlerThread
 import android.os.Looper
 import android.util.Log
 
-object LogMonitor {
+public object LogMonitor {
     private val TAG = "LogMonitor"
-    private val sInstance:LogMonitor = LogMonitor
-    private lateinit var mIoHandler: Handler
+    private var mIoHandler: Handler
+    //方法耗时的卡口,300毫秒
     private val TIME_BLOCK = 300L
-    fun LogMonitor() {
-        val logThread = HandlerThread("log")
-        logThread.start()
-        mIoHandler = Handler(logThread.looper)
-    }
 
     private val mLogRunnable = Runnable() {
-        fun run() {
-            val sb = StringBuilder()
-            val stackTrace = Looper.getMainLooper().thread.stackTrace
-            for (s in stackTrace) {
-                sb.append(s.toString())
-                sb.append("\n")
-            }
-            Log.e(TAG,sb.toString())
+        //打印出执行的耗时方法的栈消息
+        val sb = StringBuilder()
+        val stackTrace = Looper.getMainLooper().thread.stackTrace
+        for (s in stackTrace) {
+            sb.append(s.toString())
+            sb.append("\n")
         }
+        Log.e(TAG,sb.toString())
     }
     /**
      * 开始计时
@@ -39,5 +33,10 @@ object LogMonitor {
      */
     fun removeMonitor() {
         mIoHandler.removeCallbacks(mLogRunnable)
+    }
+    init {
+        val logThread = HandlerThread("log")
+        logThread.start()
+        mIoHandler = Handler(logThread.looper)
     }
 }

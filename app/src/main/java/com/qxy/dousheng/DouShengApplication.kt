@@ -12,5 +12,7 @@ class DouShengApplication:Application() {
     override fun onCreate() {
         super.onCreate()
         context = applicationContext
+        //性能耗时监控
+        BlockDetectByPrinter.start()
     }
 }

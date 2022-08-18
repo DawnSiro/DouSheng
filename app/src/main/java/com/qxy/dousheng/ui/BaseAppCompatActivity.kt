@@ -1,6 +1,7 @@
 package com.qxy.dousheng.ui
 
 import android.Manifest
+import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.bytedance.sdk.open.aweme.authorize.model.Authorization
 import com.bytedance.sdk.open.douyin.DouYinOpenApiFactory
@@ -50,6 +51,4 @@ open class BaseAppCompatActivity : AppCompatActivity() {
     public fun loadData() {
 
     }
-
-
 }
