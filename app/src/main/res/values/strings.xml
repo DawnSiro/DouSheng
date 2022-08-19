@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">DouSheng</string>
     <string name="movie_rank">Movie Rank</string>
     <string name="video_rank">Video Rank</string>
@@ -8,4 +8,16 @@
     <string name="item_time">Time</string>
     <string name="item_hot">Hot</string>
     <string name="item_poster">Poster</string>
+    <!--follow-->
+    <string name="follow" translatable="false">关注</string>
+    <string name="fans" translatable="false">粉丝</string>
+    <string name="title_activity_follow" translatable="false">FollowActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="follow_fragment_label" tools:ignore="MissingTranslation">FollowFragment</string>
+    <string name="fans_fragment_label" translatable="false">FansFragment</string>
+    <string name="next" translatable="false">Next</string>
+    <string name="previous" translatable="false">Previous</string>
+
+<!--    <string name="hello_first_fragment">Hello first fragment</string>-->
+<!--    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>-->
 </resources>

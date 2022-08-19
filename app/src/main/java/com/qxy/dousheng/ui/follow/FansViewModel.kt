@@ -12,7 +12,7 @@ import com.qxy.dousheng.database.ItemDatabase
 import com.qxy.dousheng.model.FollowBean
 import com.qxy.dousheng.model.FollowItem
 
-class FollowViewModel(application: Application) : AndroidViewModel(application) {
+class FansViewModel(application: Application) : AndroidViewModel(application) {
 
     private var followDao: FollowDao
     private var followLiveData: LiveData<List<FollowItem>>
@@ -50,8 +50,10 @@ class FollowViewModel(application: Application) : AndroidViewModel(application) 
         for (i in bean.data.list) {
             Log.d("okHttp", "update: ${i.nickname}")
 
-            insertItem(FollowItem(i.avatar, i.nickname, i.gender, i.country,
-                i.province, i.city, isFollow = true)) // 关注列表里的默认关注了
+            insertItem(
+                FollowItem(i.avatar, i.nickname, i.gender, i.country,
+                i.province, i.city, isFollow = false)
+            ) // TODO 找到是否关注了粉丝的方法，目前默认未关注
         }
     }
 
@@ -72,5 +74,4 @@ class FollowViewModel(application: Application) : AndroidViewModel(application) 
             return true
         }
     }
-
 }

@@ -13,31 +13,29 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.qxy.dousheng.R
 import com.qxy.dousheng.adapter.FollowAdapter
-import com.qxy.dousheng.databinding.FragmentFollowBinding
+import com.qxy.dousheng.databinding.FragmentFansBinding
 import com.qxy.dousheng.model.FollowItem
 import com.qxy.dousheng.network.OkHttpCallback
 import com.qxy.dousheng.network.OkHttpUtils
 
 /**
- * A simple [Fragment] subclass as the default destination in the navigation.
+ * A simple [Fragment] subclass as the second destination in the navigation.
  */
+class FansFragment : Fragment() {
 
-class FollowFragment : Fragment() {
-
-    private var _binding: FragmentFollowBinding? = null
-
+    private var _binding: FragmentFansBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private lateinit var viewModel: FollowViewModel
+    private lateinit var viewModel: FansViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentFollowBinding.inflate(inflater, container, false)
+    ): View? {
+        _binding = FragmentFansBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -45,7 +43,7 @@ class FollowFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (activity != null) {
-            viewModel = ViewModelProvider(this)[FollowViewModel::class.java] //.get(FollowViewModel::class.java)
+            viewModel = ViewModelProvider(this)[FansViewModel::class.java] //.get(FollowViewModel::class.java)
 
             val list: List<FollowItem> = if(viewModel.getLiveData().value != null) {
                 viewModel.getLiveData().value!!
@@ -56,7 +54,7 @@ class FollowFragment : Fragment() {
             val adapter = FollowAdapter(requireActivity(), list)
 
             // 设置 View 的 LayoutManager 和 Adapter
-            val recyclerViewFollow = binding.recyclerViewFollow
+            val recyclerViewFollow = binding.recyclerViewFans
             recyclerViewFollow.layoutManager = LinearLayoutManager(requireActivity())
             recyclerViewFollow.adapter = adapter
 
@@ -67,8 +65,8 @@ class FollowFragment : Fragment() {
 
 
             // 发送网络请求
-            OkHttpUtils.doFollowGet(object : OkHttpCallback {
-                private val TAG = "Follow OkHttp"
+            OkHttpUtils.doFansGet(object : OkHttpCallback {
+                private val TAG = "Fans OkHttp"
                 override fun isFail() {
                     Log.d(TAG, "isFail: Callback 出错")
                     Toast.makeText(requireActivity(), "Follow OkHttp Callback 出错",
@@ -85,12 +83,8 @@ class FollowFragment : Fragment() {
                             .show()
                     }
                 }
-
             })
-
-
         }
-
     }
 
     override fun onDestroyView() {

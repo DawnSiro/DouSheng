@@ -38,7 +38,7 @@ class VideoRankViewModel(application: Application) : AndroidViewModel(applicatio
 
     fun update(response: String) {
         clearItem()
-        Log.d("okHttp", "clearItem: 清除成功")
+        Log.d("okHttp", "clearFollowItem: 清除成功")
         val gson = Gson()
         Log.d("okHttp", "Gson: 初始化成功")
 

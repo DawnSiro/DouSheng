@@ -15,10 +15,14 @@ class OkHttpUtils {
         private lateinit var movieRequest: Request
         private lateinit var videoRequest: Request
         private lateinit var artRequest: Request
+        private lateinit var followRequest: Request
+        private lateinit var fansRequest: Request
+        private lateinit var fansCheckRequest: Request
 
         private val handle = Handler(Looper.getMainLooper())
         private val rankClient = OkHttpClient()
         private val userClient = OkHttpClient()
+        private val followClient = OkHttpClient()
         private val gson = Gson()
 
 
@@ -162,7 +166,7 @@ class OkHttpUtils {
                     .build()
             }
             Log.d(TAG, "getUserInfoRequest: $url")
-            return artRequest
+            return userRequest
         }
 
         // 获取用户公开信息
@@ -191,6 +195,154 @@ class OkHttpUtils {
 
             })
         }
+
+        // 获取关注列表请求
+        private fun getFollowRequest() : Request {
+            // https://open.douyin.com/following/list/?count=10&open_id=_000E77KMHNLpL-XFNPzk8DofgVpPAAk-e0Y&cursor=0
+            val interfaceUrl = "/following/list/"
+            val count = 10
+            val open_id = "_000E77KMHNLpL-XFNPzk8DofgVpPAAk-e0Y"
+            val cursor = 0
+
+            val url = "$baseUrl$interfaceUrl?count=$count&open_id=$open_id&cursor=$cursor"
+            val accessToken = getClientAccessToken()
+            if (!this::followRequest.isInitialized) {
+                followRequest = Request.Builder()
+                    .url(url)
+                    .header("Content-Type", "application/json")
+                    .header("access-token", accessToken)
+                    .build()
+            }
+            Log.d(TAG, "getFollowRequest: $url")
+            return followRequest
+        }
+
+        // 获取粉丝列表请求
+        private fun getFansRequest() : Request {
+            // https://open.douyin.com/following/list/?count=10&open_id=_000E77KMHNLpL-XFNPzk8DofgVpPAAk-e0Y&cursor=0
+            val interfaceUrl = "/fans/list/"
+            val count = 10
+            val open_id = "_000E77KMHNLpL-XFNPzk8DofgVpPAAk-e0Y"
+            val cursor = 0
+
+            val url = "$baseUrl$interfaceUrl?count=$count&open_id=$open_id&cursor=$cursor"
+            val accessToken = getClientAccessToken()
+            if (!this::fansRequest.isInitialized) {
+                fansRequest = Request.Builder()
+                    .url(url)
+                    .header("Content-Type", "application/json")
+                    .header("access-token", accessToken)
+                    .build()
+            }
+            Log.d(TAG, "getFollowRequest: $url")
+            return fansRequest
+        }
+
+        // 粉丝判断请求
+        private fun getFansCheckRequest() : Request {
+            // https://open.douyin.com/fans/check/?follower_open_id=_0004qbdNBa3P3W4AQ1Tf0U-NIMA5b0jQhuB&open_id=_000E77KMHNLpL-XFNPzk8DofgVpPAAk-e0Y
+            val interfaceUrl = "/fans/check/"
+            val follower_open_id = "_0004qbdNBa3P3W4AQ1Tf0U-NIMA5b0jQhuB"
+            val open_id = "_000E77KMHNLpL-XFNPzk8DofgVpPAAk-e0Y"
+
+            val url = "$baseUrl$interfaceUrl?follower_open_id=$follower_open_id&open_id=$open_id"
+            val accessToken = getClientAccessToken()
+            if (!this::fansRequest.isInitialized) {
+                fansRequest = Request.Builder()
+                    .url(url)
+                    .header("Content-Type", "application/json")
+                    .header("access-token", accessToken)
+                    .build()
+            }
+            Log.d(TAG, "getFollowRequest: $url")
+            return fansRequest
+        }
+
+
+        // 获取关注列表
+        fun doFollowGet(callback: OkHttpCallback){
+            followClient.newCall(getFollowRequest()).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    Log.e(TAG, "onFailure: $e")
+                    handle.post {
+                        callback.isFail()
+                    }
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    Log.d(TAG, "onResponse: ${response.body}")
+                    val json = response.body?.string()
+                    if (json != null) {
+                        handle.post {
+                            callback.isSuccess(json)
+                        }
+                    } else {
+                        handle.post {
+                            callback.isFail()
+                        }
+                    }
+                }
+
+            })
+        }
+
+        // 获取粉丝列表
+        fun doFansGet(callback: OkHttpCallback){
+            followClient.newCall(getFansRequest()).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    Log.e(TAG, "onFailure: $e")
+                    handle.post {
+                        callback.isFail()
+                    }
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    Log.d(TAG, "onResponse: ${response.body}")
+                    val json = response.body?.string()
+                    if (json != null) {
+                        handle.post {
+                            callback.isSuccess(json)
+                        }
+                    } else {
+                        handle.post {
+                            callback.isFail()
+                        }
+                    }
+                }
+
+            })
+        }
+
+        // 判断是否为粉丝
+        fun doFansCheckGet(callback: OkHttpCallback){
+            followClient.newCall(getMovieRankRequest()).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    Log.e(TAG, "onFailure: $e")
+                    handle.post {
+                        callback.isFail()
+                    }
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    Log.d(TAG, "onResponse: ${response.body}")
+                    val json = response.body?.string()
+                    if (json != null) {
+                        handle.post {
+                            callback.isSuccess(json)
+                        }
+                    } else {
+                        handle.post {
+                            callback.isFail()
+                        }
+                    }
+                }
+
+            })
+        }
+
+
+
+
 
 
     }

@@ -71,7 +71,7 @@ class MovieRankFragment : Fragment() {
 
 //                for (i in 1..30) {
 //                    val rankItem = RankItem(i.toString(), i.toString(), i.toString(), i, 1)
-//                    viewModel.insertItem(rankItem)
+//                    viewModel.insertFollowItem(rankItem)
 //                }
         }
     }

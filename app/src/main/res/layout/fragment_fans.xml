@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.follow.FollowFragment">
-
+    tools:context=".ui.follow.FansFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewFollow"
+        android:id="@+id/recyclerViewFans"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

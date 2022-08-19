@@ -10,6 +10,8 @@ data class UserInfo(
     val id: Int,
     @ColumnInfo(name = "avatar")
     val avatar: String,
+    @ColumnInfo(name = "avatar_larger")
+    val avatarLarger: String,
     @ColumnInfo(name = "city")
     val city: String,
     @ColumnInfo(name = "nation")
@@ -18,8 +20,8 @@ data class UserInfo(
     val nickname: String,
     @ColumnInfo(name = "gender")
     val gender: String,
-    @ColumnInfo(name = "profile")
-    val profile: String)
+    @ColumnInfo(name = "description")
+    val description: String)
 
 
 
