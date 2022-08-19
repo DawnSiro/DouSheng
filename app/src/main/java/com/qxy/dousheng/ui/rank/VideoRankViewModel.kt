@@ -1,4 +1,4 @@
-package com.qxy.dousheng.ui.ranking
+package com.qxy.dousheng.ui.rank
 
 import android.annotation.SuppressLint
 import android.app.Application
@@ -7,10 +7,10 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.google.gson.Gson
-import com.qxy.dousheng.model.Item
-import com.qxy.dousheng.database.ItemDatabase
 import com.qxy.dousheng.dao.RankDao
+import com.qxy.dousheng.database.RankDatabase
 import com.qxy.dousheng.model.RankItem
+import com.qxy.dousheng.model.RankJson
 
 class VideoRankViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -18,8 +18,8 @@ class VideoRankViewModel(application: Application) : AndroidViewModel(applicatio
     private var allRankItemLive: LiveData<List<RankItem>>
 
     init {
-        val itemDatabase = ItemDatabase.getDatabase(application.applicationContext)
-        rankDao = itemDatabase.getItemDao()
+        val rankDatabase = RankDatabase.getDatabase(application.applicationContext)
+        rankDao = rankDatabase.getItemDao()
         allRankItemLive = rankDao.allVideoItemLive()
     }
 
@@ -38,14 +38,14 @@ class VideoRankViewModel(application: Application) : AndroidViewModel(applicatio
 
     fun update(response: String) {
         clearItem()
-        Log.d("okHttp", "clearFollowItem: 清除成功")
+        Log.d("okHttp", "clearItem: 清除成功")
         val gson = Gson()
         Log.d("okHttp", "Gson: 初始化成功")
 
         Log.d("okHttp", "update: $response")
 
-        val item = gson.fromJson(response, Item::class.java)
-        for (i in item.data.list) {
+        val rankJson = gson.fromJson(response, RankJson::class.java)
+        for (i in rankJson.data.list) {
             Log.d("okHttp", "update: ${i.name}")
             insertItem(RankItem(i.name, i.poster, i.release_date, i.hot, 2))
         }

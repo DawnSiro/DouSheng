@@ -1,4 +1,4 @@
-package com.qxy.dousheng.ui.ranking
+package com.qxy.dousheng.ui.rank
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -11,11 +11,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.qxy.dousheng.*
+import com.qxy.dousheng.R
 import com.qxy.dousheng.adapter.RankAdapter
 import com.qxy.dousheng.model.RankItem
 import com.qxy.dousheng.network.OkHttpCallback
-import com.qxy.dousheng.network.OkHttpUtils
+import com.qxy.dousheng.network.RankOkHttpUtils
 
 class VideoRankFragment : Fragment() {
     private lateinit var viewModel: VideoRankViewModel
@@ -48,12 +48,14 @@ class VideoRankFragment : Fragment() {
             recyclerView.adapter = adapter
 
             viewModel.getLiveData().observe(requireActivity()) {
-                adapter.rankList = it
-                adapter.notifyDataSetChanged()
+                if (activity != null) {
+                    adapter.rankList = it
+                    adapter.notifyDataSetChanged()
+                }
             }
 
 
-            OkHttpUtils.doVideoGet(object : OkHttpCallback {
+            RankOkHttpUtils.doVideoGet(object : OkHttpCallback {
                 override fun isFail() {
                     Log.d("okHttp", "Callback 出错")
                     Toast.makeText(requireActivity(), "OkHttp出错", Toast.LENGTH_SHORT).show()
@@ -72,7 +74,7 @@ class VideoRankFragment : Fragment() {
             })
 //                for (i in 1..30) {
 //                    val rankItem = RankItem(i.toString(), i.toString(), i.toString(), i, 1)
-//                    viewModel.insertFollowItem(rankItem)
+//                    viewModel.insertItem(rankItem)
 //                }
         }
     }
