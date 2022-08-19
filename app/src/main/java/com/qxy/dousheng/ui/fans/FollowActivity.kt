@@ -1,8 +1,6 @@
-package com.qxy.dousheng.ui.follow
+package com.qxy.dousheng.ui.friend
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration

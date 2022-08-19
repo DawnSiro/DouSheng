@@ -1,4 +1,4 @@
-package com.qxy.dousheng.ui.follow
+package com.qxy.dousheng.ui.friend
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -9,14 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.qxy.dousheng.R
 import com.qxy.dousheng.adapter.FollowAdapter
 import com.qxy.dousheng.databinding.FragmentFansBinding
 import com.qxy.dousheng.model.FollowItem
 import com.qxy.dousheng.network.OkHttpCallback
-import com.qxy.dousheng.network.OkHttpUtils
+import com.qxy.dousheng.network.FollowOkHttpUtils
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -65,7 +63,7 @@ class FansFragment : Fragment() {
 
 
             // 发送网络请求
-            OkHttpUtils.doFansGet(object : OkHttpCallback {
+            FollowOkHttpUtils.doFansGet(object : OkHttpCallback {
                 private val TAG = "Fans OkHttp"
                 override fun isFail() {
                     Log.d(TAG, "isFail: Callback 出错")

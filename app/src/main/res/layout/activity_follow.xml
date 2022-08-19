@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.follow.FollowActivity">
+    tools:context=".ui.friend.FollowActivity">
 
     <!--视图容器-->
     <androidx.fragment.app.FragmentContainerView
@@ -14,20 +14,20 @@
         android:layout_height="match_parent"
         android:layout_marginTop="?attr/actionBarSize"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/nav_follow" />
+        app:navGraph="@navigation/nav_friend" />
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Theme.DouSheng.AppBarOverlay">
+        >
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/Theme.DouSheng.PopupOverlay" />
+            />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -44,7 +44,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:menu="@menu/menu_follow">
+        app:menu="@menu/menu_friend">
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 

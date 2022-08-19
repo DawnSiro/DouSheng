@@ -1,4 +1,4 @@
-package com.qxy.dousheng.ui.follow
+package com.qxy.dousheng.ui.friend
 
 import android.annotation.SuppressLint
 import android.app.Application
@@ -8,7 +8,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.google.gson.Gson
 import com.qxy.dousheng.dao.FollowDao
-import com.qxy.dousheng.database.ItemDatabase
+import com.qxy.dousheng.database.FollowDatabase
 import com.qxy.dousheng.model.FollowBean
 import com.qxy.dousheng.model.FollowItem
 
@@ -18,8 +18,8 @@ class FansViewModel(application: Application) : AndroidViewModel(application) {
     private var followLiveData: LiveData<List<FollowItem>>
 
     init {
-        val itemDatabase = ItemDatabase.getDatabase(application.applicationContext)
-        followDao = itemDatabase.getFollowDao()
+        val followDatabase = FollowDatabase.getDatabase(application.applicationContext)
+        followDao = followDatabase.getFollowDao()
         followLiveData = followDao.getFollowItemLive()
     }
 
