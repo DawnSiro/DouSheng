@@ -1,7 +1,7 @@
-package com.qxy.dousheng.ui.fans
+package com.qxy.dousheng.ui.friend
 
 import androidx.lifecycle.ViewModel
 
-class FansViewModel : ViewModel() {
+class FriendViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 }
