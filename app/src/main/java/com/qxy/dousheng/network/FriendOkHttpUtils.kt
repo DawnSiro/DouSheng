@@ -54,24 +54,22 @@ class FriendOkHttpUtils {
                     .addHeader("access-token", token)
                     .build()
             }
-            Log.d(TAG, "getFollowRequest: $url")
+            Log.d(TAG, "getFansRequest: $url")
             return fansRequest
         }
 
         // 粉丝判断请求
+        @Synchronized
         private fun getFansCheckRequest(checkId: String): Request {
             val interfaceUrl = "/fans/check/"
-
             val url = "$baseUrl$interfaceUrl?follower_open_id=$checkId&open_id=$id"
-            if (!this::checkRequest.isInitialized) {
-                fansRequest = Request.Builder()
-                    .url(url)
-                    .addHeader("Content-Type", "application/json")
-                    .addHeader("access-token", token)
-                    .build()
-            }
+            checkRequest = Request.Builder()
+                .url(url)
+                .addHeader("Content-Type", "application/json")
+                .addHeader("access-token", token)
+                .build()
             Log.d(TAG, "getFansCheckRequest: $url")
-            return fansRequest
+            return checkRequest
         }
 
         // 获取关注列表

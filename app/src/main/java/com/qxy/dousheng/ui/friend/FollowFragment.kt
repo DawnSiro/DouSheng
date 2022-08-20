@@ -1,32 +1,75 @@
 package com.qxy.dousheng.ui.friend
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.qxy.dousheng.R
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.qxy.dousheng.adapter.FriendAdapter
+import com.qxy.dousheng.databinding.FragmentFollowBinding
+import com.qxy.dousheng.model.FriendItem
+import com.qxy.dousheng.network.FriendOkHttpUtils
+import com.qxy.dousheng.network.OkHttpCallback
 
 class FollowFragment : Fragment() {
+    private lateinit var binding: FragmentFollowBinding
+    private lateinit var viewModel: FollowViewModel
 
     companion object {
         fun newInstance() = FollowFragment()
     }
 
-    private lateinit var viewModel: FollowViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_follow, container, false)
+        binding = FragmentFollowBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
+    @Deprecated("Deprecated in Java")
+    @SuppressLint("NotifyDataSetChanged")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(FollowViewModel::class.java)
-        // TODO: Use the ViewModel
+        if (activity != null) {
+            viewModel = ViewModelProvider(this)[FollowViewModel::class.java]
+
+            val followList: List<FriendItem> =
+                if (viewModel.getLiveData().value != null) viewModel.getLiveData().value!! else listOf()
+
+            val followAdapter = FriendAdapter(followList)
+
+            binding.followRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
+            binding.followRecyclerView.adapter = followAdapter
+
+            viewModel.getLiveData().observe(requireActivity()) {
+                if (activity != null) {
+                    followAdapter.friendList = it
+                    followAdapter.notifyDataSetChanged()
+                }
+            }
+        }
+
+        FriendOkHttpUtils.doFollowGet(object : OkHttpCallback {
+            override fun isFail() {
+                Log.d("okHttp", "doFollowGet 出错")
+
+            }
+
+            override fun isSuccess(json: String?) {
+                if (json != null && json != "") {
+                    Log.d("okHttp", "doFollowGet: $json")
+                    viewModel.update(json)
+                } else {
+                    Log.d("okHttp", "doFollowGet: json=null")
+                }
+            }
+        })
     }
 
 }
