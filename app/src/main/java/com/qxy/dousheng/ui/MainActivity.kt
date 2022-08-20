@@ -21,9 +21,9 @@ class MainActivity : BaseAppCompatActivity() {
         RankDatabase.getDatabase(applicationContext)
 
         // Http
-        httpInit()
-        InfoOkHttpUtils.setContext(applicationContext)
-        InfoOkHttpUtils.getAccessToken()
+//        httpInit()
+//        InfoOkHttpUtils.setContext(applicationContext)
+//        InfoOkHttpUtils.getAccessToken()
 
         // load
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
