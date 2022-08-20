@@ -1,26 +1,26 @@
 package com.qxy.dousheng.model
 
 class FriendJson {
-    var data: DataDTO? = null
-    var extra: ExtraDTO? = null
+    var data: DataDTO = DataDTO()
+    var extra: ExtraDTO = ExtraDTO()
 
     class DataDTO {
-        var cursor: Int? = null
-        var has_more: Boolean? = null
-        var list: List<ListDTO>? = null
+        var cursor: Int = 0
+        var has_more: Boolean = false
+        var list: Array<ListDTO> = arrayOf()
         var total: Int? = null
         var error_code: Int? = null
         var description: String? = null
 
         class ListDTO {
-            var avatar: String? = null
-            var city: String? = null
-            var country: String? = null
-            var gender: Int? = null
-            var nickname: String? = null
-            var open_id: String? = null
-            var province: String? = null
-            var union_id: String? = null
+            var avatar: String = ""
+            var city: String = ""
+            var country: String = ""
+            var gender: Int = 0
+            var nickname: String = ""
+            var open_id: String = ""
+            var province: String = ""
+            var union_id: String = ""
         }
     }
 

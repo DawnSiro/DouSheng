@@ -19,10 +19,10 @@ data class FriendItem(
     @ColumnInfo(name = "city")
     val city: String,
     @ColumnInfo(name = "is_follow")
-    val isFollow: Boolean,
+    val isFollow: Int, // isFollow:1 noFollow:2 non:0
     @ColumnInfo(name = "flag")
-    val flag: Boolean  // 标志位 用于区分关注和粉丝
+    val flag: Int  // 标志位 fans:1 follow:2 non:0
 ) {
     @PrimaryKey(autoGenerate = true)
-    val id: Int = 0
+    var id: Int = 0
 }

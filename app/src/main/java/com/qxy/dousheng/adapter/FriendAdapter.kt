@@ -46,12 +46,17 @@ class FriendAdapter(var friendList: List<FriendItem>) :
         holder.userName.text = friendItem.name
         holder.location.text = "${friendItem.country} ${friendItem.province} ${friendItem.city}"
         holder.gender.text = when (friendItem.gender) {
-            1 -> R.string.male.toString()
-            2 -> R.string.female.toString()
+            1 -> holder.itemView.resources.getString(R.string.male)
+            2 -> holder.itemView.resources.getString(R.string.female)
             else -> "null"
         }
+
         holder.follow.text =
-            if (friendItem.isFollow) R.string.is_follow.toString() else R.string.follow.toString()
+            when (friendItem.isFollow) {
+                1 -> holder.itemView.resources.getString(R.string.is_follow)
+                2 -> holder.itemView.resources.getString(R.string.follow)
+                else -> "non"
+            }
     }
 
     override fun getItemCount(): Int = friendList.size
