@@ -18,7 +18,7 @@ class MainActivity : BaseAppCompatActivity() {
         // init database manage &&load database
         ItemDatabase.getDatabase(applicationContext)
         // Http
-        httpInit()
+//        httpInit()
 
         // load bottom
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
