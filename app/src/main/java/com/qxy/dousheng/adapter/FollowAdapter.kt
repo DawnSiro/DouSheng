@@ -3,14 +3,10 @@ package com.qxy.dousheng.adapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.qxy.dousheng.R
 import com.qxy.dousheng.databinding.ItemUserBinding
-import com.qxy.dousheng.model.FollowItem
+import com.qxy.dousheng.model.friend.FollowItem
 import com.qxy.dousheng.util.GlideUtils
 
 class FollowAdapter(val context: Context, var followList: List<FollowItem>) : RecyclerView.Adapter<FollowAdapter.FollowViewHolder>() {

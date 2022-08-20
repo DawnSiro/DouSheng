@@ -9,8 +9,8 @@ import androidx.lifecycle.LiveData
 import com.google.gson.Gson
 import com.qxy.dousheng.dao.FollowDao
 import com.qxy.dousheng.database.FollowDatabase
-import com.qxy.dousheng.model.FollowBean
-import com.qxy.dousheng.model.FollowItem
+import com.qxy.dousheng.model.friend.FollowBean
+import com.qxy.dousheng.model.friend.FollowItem
 
 class FansViewModel(application: Application) : AndroidViewModel(application) {
 

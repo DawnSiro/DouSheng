@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.qxy.dousheng.adapter.FollowAdapter
 import com.qxy.dousheng.databinding.FragmentFollowBinding
-import com.qxy.dousheng.model.FollowItem
+import com.qxy.dousheng.model.friend.FollowItem
 import com.qxy.dousheng.network.OkHttpCallback
 import com.qxy.dousheng.network.FollowOkHttpUtils
 
@@ -59,8 +59,10 @@ class FollowFragment : Fragment() {
             recyclerViewFollow.adapter = adapter
 
             viewModel.getLiveData().observe(requireActivity()) {
-                adapter.followList = it
-                adapter.notifyDataSetChanged()
+                if(activity != null){
+                    adapter.followList = it
+                    adapter.notifyDataSetChanged()
+                }
             }
 
 

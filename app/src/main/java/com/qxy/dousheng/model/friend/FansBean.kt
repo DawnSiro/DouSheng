@@ -1,13 +1,14 @@
-package com.qxy.dousheng.model
+package com.qxy.dousheng.model.friend
 
-class FollowBean {
+
+class FansBean {
     var data: DataDTO = DataDTO()
-    var extra: ExtraDTO? = ExtraDTO()
+    var extra: ExtraDTO = ExtraDTO()
 
     class DataDTO {
         var cursor: Int? = null
         var has_more: Boolean? = null
-        var list: List<ListDTO> = ArrayList<ListDTO>()
+        var list: List<ListDTO>? = null
         var total: Int? = null
         var error_code: Int? = null
         var description: String? = null

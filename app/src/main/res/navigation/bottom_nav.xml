@@ -25,4 +25,9 @@
         android:name="com.qxy.dousheng.ui.video.VideoFragment"
         android:label="@string/video"
         tools:layout="@layout/fragment_video" />
+    <fragment
+        android:id="@+id/play_item"
+        android:name="com.qxy.dousheng.ui.video.PlayFragment"
+        android:label="@string/video"
+        tools:layout="@layout/fragment_play" />
 </navigation>

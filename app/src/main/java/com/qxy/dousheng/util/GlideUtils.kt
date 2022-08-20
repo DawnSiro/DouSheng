@@ -5,6 +5,7 @@ import android.hardware.camera2.params.ColorSpaceTransform
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
@@ -26,6 +27,22 @@ class GlideUtils {
             // 加载图片
             Glide.with(view)
                 .load(url)
+                .apply(options)
+                .into(imageView)
+
+        }
+
+        // 将图片变成圆形
+        fun loadCircle(fragment: Fragment, url: String, imageView: ImageView, size: Int) {
+            // 设置
+            val options: RequestOptions  = RequestOptions().transform(CircleCrop())
+
+            Log.i(TAG, "loadCircle: $url")
+
+            // 加载图片
+            Glide.with(fragment)
+                .load(url)
+                .override(900)
                 .apply(options)
                 .into(imageView)
 

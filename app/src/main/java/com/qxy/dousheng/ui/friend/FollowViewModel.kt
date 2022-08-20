@@ -9,8 +9,8 @@ import androidx.lifecycle.LiveData
 import com.google.gson.Gson
 import com.qxy.dousheng.dao.FollowDao
 import com.qxy.dousheng.database.FollowDatabase
-import com.qxy.dousheng.model.FollowBean
-import com.qxy.dousheng.model.FollowItem
+import com.qxy.dousheng.model.friend.FollowBean
+import com.qxy.dousheng.model.friend.FollowItem
 
 class FollowViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -50,8 +50,10 @@ class FollowViewModel(application: Application) : AndroidViewModel(application) 
         for (i in bean.data.list) {
             Log.d("okHttp", "update: ${i.nickname}")
 
-            insertItem(FollowItem(i.avatar, i.nickname, i.gender, i.country,
-                i.province, i.city, isFollow = true)) // 关注列表里的默认关注了
+            insertItem(
+                FollowItem(i.avatar, i.nickname, i.gender, i.country,
+                i.province, i.city, isFollow = true)
+            ) // 关注列表里的默认关注了
         }
     }
 

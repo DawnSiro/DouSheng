@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.qxy.dousheng.databinding.FragmentInfoBinding
 import com.qxy.dousheng.network.InfoOkHttpUtils
 import com.qxy.dousheng.network.OkHttpCallback
+import com.qxy.dousheng.util.GlideUtils
 
 class InfoFragment : Fragment() {
     private lateinit var binding: FragmentInfoBinding
@@ -41,10 +42,17 @@ class InfoFragment : Fragment() {
                     val info = it[0]
                     binding.nicknameTextView.text = info.nickname
 
-                    Glide.with(this)
-                        .load(info.avatar_larger)
-                        .override(900)
-                        .into(binding.avatarImageView)
+//                    Glide.with(this)
+//                        .load(info.avatar_larger)
+//                        .override(900)
+//                        .into(binding.avatarImageView)
+
+                    // 圆形头像
+                    GlideUtils.loadCircle(this,info.avatar_larger,
+                        binding.avatarImageView, 900)
+
+
+
                     binding.cityTextView.text = "${info.country}/${info.city}"
                     binding.genderTextView.text = when (info.gender) {
                         0 -> "男"

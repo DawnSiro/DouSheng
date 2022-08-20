@@ -12,10 +12,18 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.qxy.dousheng.R
-import com.qxy.dousheng.model.VideoItem
+import com.qxy.dousheng.model.video.VideoItem
 
 class VideoAdapter(var videoList: List<VideoItem>) :
     RecyclerView.Adapter<VideoAdapter.ViewHolder>() {
+
+    //声明一个mItemClickListener接口
+    private var mOnItemClickListener: OnItemClickListener? = null
+
+    //添加setOnItemClickListener方法
+    fun setOnItemClickListener(listener: OnItemClickListener?) {
+        mOnItemClickListener = listener
+    }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val cover: ImageView = view.findViewById(R.id.videoCoverImageView)
@@ -48,6 +56,11 @@ class VideoAdapter(var videoList: List<VideoItem>) :
         if (!videoItem.is_top) {
             holder.top.visibility = View.INVISIBLE
         }
+
+        holder.itemView.setOnClickListener {
+            mOnItemClickListener?.onItemClick(position)
+        }
+
     }
 
     override fun getItemCount() = videoList.size

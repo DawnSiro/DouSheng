@@ -1,8 +1,8 @@
-package com.qxy.dousheng.model
+package com.qxy.dousheng.model.friend
 
 class FansCheckBean {
-    var data: DataDTO? = null
-    var extra: ExtraDTO? = null
+    var data: DataDTO = DataDTO()
+    var extra: ExtraDTO = ExtraDTO()
 
     class DataDTO {
         var follow_time: Int? = null

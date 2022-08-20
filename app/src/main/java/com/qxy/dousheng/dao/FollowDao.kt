@@ -2,9 +2,8 @@ package com.qxy.dousheng.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.qxy.dousheng.model.FansItem
-import com.qxy.dousheng.model.FollowItem
-import com.qxy.dousheng.model.RankItem
+import com.qxy.dousheng.model.friend.FansItem
+import com.qxy.dousheng.model.friend.FollowItem
 
 @Dao
 interface FollowDao {

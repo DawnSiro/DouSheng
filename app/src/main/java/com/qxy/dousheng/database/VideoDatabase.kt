@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.qxy.dousheng.dao.VideoDao
-import com.qxy.dousheng.model.VideoItem
+import com.qxy.dousheng.model.video.VideoItem
 import org.jetbrains.annotations.NotNull
 
 //singleton

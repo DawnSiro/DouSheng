@@ -8,12 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.qxy.dousheng.R
+import com.qxy.dousheng.adapter.OnItemClickListener
 import com.qxy.dousheng.adapter.VideoAdapter
 import com.qxy.dousheng.databinding.FragmentVideoBinding
-import com.qxy.dousheng.model.VideoItem
+import com.qxy.dousheng.model.video.VideoItem
 import com.qxy.dousheng.network.OkHttpCallback
 import com.qxy.dousheng.network.VideoOkHttpUtils
+
 
 class VideoFragment : Fragment() {
     private lateinit var viewModel: VideoViewModel
@@ -48,6 +52,7 @@ class VideoFragment : Fragment() {
             binding.videoRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
             binding.videoRecyclerView.adapter = videoAdapter
 
+
             viewModel.getLiveData().observe(requireActivity()) {
                 if (activity != null) {
                     videoAdapter.videoList = it
@@ -67,6 +72,18 @@ class VideoFragment : Fragment() {
                     } else {
                         Log.d("okHttp", "doVideoGet: json=null")
                     }
+                }
+            })
+
+
+            // 跳转到视频播放页面
+            val navController = NavHostFragment.findNavController(this)
+
+
+            videoAdapter.setOnItemClickListener(object : OnItemClickListener {
+                override fun onItemClick(position: Int) {
+//                    Toast.makeText(requireActivity(), "You clicked No.${position} item.", Toast.LENGTH_SHORT).show()
+                    navController.navigate(R.id.play_item)
                 }
             })
 
