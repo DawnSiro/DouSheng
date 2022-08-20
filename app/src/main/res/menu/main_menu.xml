@@ -10,9 +10,9 @@
         android:icon="@drawable/videos"
         android:title="@string/video" />
     <item
-        android:id="@+id/fans_item"
-        android:icon="@drawable/fans"
-        android:title="@string/fans" />
+        android:id="@+id/friend_item"
+        android:icon="@drawable/friend"
+        android:title="@string/friend" />
     <item
         android:id="@+id/info_item"
         android:icon="@drawable/info"

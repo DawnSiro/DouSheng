@@ -23,4 +23,9 @@
     <string name="time">时间</string>
     <string name="top">置顶</string>
     <string name="count">统计</string>
+    <string name="follow">关注</string>
+    <string name="friend">朋友</string>
+    <string name="is_follow">已关注</string>
+    <string name="female">女</string>
+    <string name="male">男</string>
 </resources>

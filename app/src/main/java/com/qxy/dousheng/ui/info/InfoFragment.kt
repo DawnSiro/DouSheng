@@ -45,7 +45,7 @@ class InfoFragment : Fragment() {
                         .load(info.avatar_larger)
                         .override(900)
                         .into(binding.avatarImageView)
-                    binding.cityTextView.text = "${info.country}/${info.city}"
+                    binding.cityTextView.text = "${info.country} ${info.province} ${info.city}"
                     binding.genderTextView.text = when (info.gender) {
                         0 -> "男"
                         else -> "女"

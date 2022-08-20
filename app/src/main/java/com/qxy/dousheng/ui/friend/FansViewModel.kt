@@ -1,4 +1,4 @@
-package com.qxy.dousheng.ui.fans
+package com.qxy.dousheng.ui.friend
 
 import androidx.lifecycle.ViewModel
 
