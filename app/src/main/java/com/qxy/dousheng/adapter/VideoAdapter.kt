@@ -45,7 +45,7 @@ class VideoAdapter(var videoList: List<VideoItem>) :
 
         // TODO("BUG:相对于当前时间的 时间戳")
         holder.time.text =
-            "创建时间：" + SimpleDateFormat("YYYY-MM-DD-hh-mm-ss").format(videoItem.create_time * 1000)
+            "创建时间：" + SimpleDateFormat("YYYY-MM-DD").format(videoItem.create_time * 1000)
         Log.d("okHttp", (videoItem.create_time / 1000 / 60 / 60 / 24).toString())
 
         holder.count.text =

@@ -9,7 +9,7 @@ import com.qxy.dousheng.model.FriendItem
 import org.jetbrains.annotations.NotNull
 
 //singleton
-@Database(entities = [FriendItem::class], version = 1, exportSchema = false)
+@Database(entities = [FriendItem::class], version = 2, exportSchema = false)
 abstract class FriendDatabase : RoomDatabase() {
     companion object {
         private lateinit var database: FriendDatabase

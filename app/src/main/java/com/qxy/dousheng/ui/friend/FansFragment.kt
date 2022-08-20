@@ -69,9 +69,6 @@ class FansFragment : Fragment() {
                     Log.d("okHttp", "doFansGet: json=null")
                 }
             }
-
         })
-
     }
-
 }

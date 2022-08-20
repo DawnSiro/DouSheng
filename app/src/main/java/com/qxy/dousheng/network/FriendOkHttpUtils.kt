@@ -17,6 +17,7 @@ class FriendOkHttpUtils {
         private const val TAG = "okHttp"
         private lateinit var followRequest: Request
         private lateinit var fansRequest: Request
+        private lateinit var checkRequest: Request
 
 
         private val handle = Handler(Looper.getMainLooper())
@@ -49,8 +50,8 @@ class FriendOkHttpUtils {
             if (!this::fansRequest.isInitialized) {
                 fansRequest = Request.Builder()
                     .url(url)
-                    .header("Content-Type", "application/json")
-                    .header("access-token", token)
+                    .addHeader("Content-Type", "application/json")
+                    .addHeader("access-token", token)
                     .build()
             }
             Log.d(TAG, "getFollowRequest: $url")
@@ -62,14 +63,14 @@ class FriendOkHttpUtils {
             val interfaceUrl = "/fans/check/"
 
             val url = "$baseUrl$interfaceUrl?follower_open_id=$checkId&open_id=$id"
-            if (!this::fansRequest.isInitialized) {
+            if (!this::checkRequest.isInitialized) {
                 fansRequest = Request.Builder()
                     .url(url)
-                    .header("Content-Type", "application/json")
-                    .header("access-token", token)
+                    .addHeader("Content-Type", "application/json")
+                    .addHeader("access-token", token)
                     .build()
             }
-            Log.d(TAG, "getFollowRequest: $url")
+            Log.d(TAG, "getFansCheckRequest: $url")
             return fansRequest
         }
 
@@ -104,14 +105,14 @@ class FriendOkHttpUtils {
         fun doFansGet(callback: OkHttpCallback) {
             friendClient.newCall(getFansRequest()).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
-                    Log.e(TAG, "onFailure: $e")
+                    Log.e(TAG, "doFansGet: $e")
                     handle.post {
                         callback.isFail()
                     }
                 }
 
                 override fun onResponse(call: Call, response: Response) {
-                    Log.d(TAG, "onResponse: ${response.body}")
+                    Log.d(TAG, "doFansGet: ${response.body}")
                     val json = response.body?.string()
                     if (json != null) {
                         handle.post {
@@ -128,30 +129,9 @@ class FriendOkHttpUtils {
         }
 
         // 判断是否为粉丝
-        fun doFansCheckGet(callback: OkHttpCallback, checkId: String) {
-            friendClient.newCall(getFansCheckRequest(checkId)).enqueue(object : Callback {
-                override fun onFailure(call: Call, e: IOException) {
-                    Log.e(TAG, "onFailure: $e")
-                    handle.post {
-                        callback.isFail()
-                    }
-                }
-
-                override fun onResponse(call: Call, response: Response) {
-                    Log.d(TAG, "onResponse: ${response.body}")
-                    val json = response.body?.string()
-                    if (json != null) {
-                        handle.post {
-                            callback.isSuccess(json)
-                        }
-                    } else {
-                        handle.post {
-                            callback.isFail()
-                        }
-                    }
-                }
-
-            })
+        fun doFansCheckGet(checkId: String): String {
+            val response = friendClient.newCall(getFansCheckRequest(checkId)).execute()
+            return response.body?.string() ?: ""
         }
 
     }
