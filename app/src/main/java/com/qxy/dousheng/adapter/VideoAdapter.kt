@@ -1,7 +1,9 @@
 package com.qxy.dousheng.adapter
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.icu.text.SimpleDateFormat
+import android.net.Uri
 import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
@@ -52,6 +54,14 @@ class VideoAdapter(var videoList: List<VideoItem>) :
             "播放：${videoItem.play_count} 点赞：${videoItem.digg_count} 评论：${videoItem.comment_count}"
         if (!videoItem.is_top) {
             holder.top.visibility = View.INVISIBLE
+        }
+
+        // 设置点击事件
+        holder.itemView.setOnClickListener {
+            val uri = Uri.parse(videoItem.share_url)
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = uri
+            holder.itemView.context.startActivity(intent)
         }
     }
 
