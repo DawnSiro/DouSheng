@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/follow_menu_item">
+
+    <!--这里的 id 要和 menu 包的 id 一一对应-->
+    <fragment
+        android:id="@+id/follow_menu_item"
+        android:name="com.qxy.dousheng.ui.friend.FollowFragment"
+        android:label="fragment_follow"
+        tools:layout="@layout/fragment_follow" >
+        <action
+            android:id="@+id/action_followFragment_to_fansFragment"
+            app:destination="@id/fans_menu_item" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fans_menu_item"
+        android:name="com.qxy.dousheng.ui.friend.FansFragment"
+        android:label="fragment_fans"
+        tools:layout="@layout/fragment_fans" >
+        <action
+            android:id="@+id/action_fansFragment_to_followFragment"
+            app:destination="@id/follow_menu_item" />
+    </fragment>
+
+</navigation>

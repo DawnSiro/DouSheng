@@ -17,9 +17,9 @@ class MainActivity : BaseAppCompatActivity() {
 
 
         // Http
-        httpInit()
-        InfoOkHttpUtils.setContext(applicationContext)
-        InfoOkHttpUtils.getAccessToken()
+//        httpInit()
+//        InfoOkHttpUtils.setContext(applicationContext)
+//        InfoOkHttpUtils.getAccessToken()
 
         // load
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
