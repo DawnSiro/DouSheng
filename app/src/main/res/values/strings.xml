@@ -28,4 +28,6 @@
     <string name="female">Female</string>
     <string name="male">Male</string>
     <string name="mutual_concern">Mutual concern</string>
+    <string name="descriptionDefault">Always believe that good things are about to happen.</string>
+    <string name="china">China</string>
 </resources>

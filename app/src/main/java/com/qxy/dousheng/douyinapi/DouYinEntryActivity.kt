@@ -15,6 +15,7 @@ import com.bytedance.sdk.open.aweme.common.model.BaseResp
 import com.bytedance.sdk.open.douyin.DouYinOpenApiFactory
 import com.bytedance.sdk.open.douyin.api.DouYinOpenApi
 import com.qxy.dousheng.network.InfoOkHttpUtils
+import com.qxy.dousheng.network.OkHttpCallback
 
 /**
  * 主要功能：接受授权返回结果的activity
@@ -38,7 +39,7 @@ class DouYinEntryActivity : Activity(), IApiEventHandler {
                 Log.d("authCode", response.authCode)
 
                 // 持久化
-                val shp: SharedPreferences = getSharedPreferences("authCode", MODE_PRIVATE)
+                val shp: SharedPreferences = getSharedPreferences("Code", MODE_PRIVATE)
                 val editor: SharedPreferences.Editor = shp.edit()
                 editor.putString("authCode", response.authCode)
                 editor.apply()
@@ -48,7 +49,21 @@ class DouYinEntryActivity : Activity(), IApiEventHandler {
                 ).show()
 
                 InfoOkHttpUtils.setContext(this)
-                InfoOkHttpUtils.getAccessToken()
+                InfoOkHttpUtils.doAccessGet(object : OkHttpCallback {
+                    override fun isFail() {
+                        Log.d("okHttp", "doAccessGet 出错")
+                    }
+
+                    override fun isSuccess(json: String?) {
+                        if (json != null && json != "{}") {
+                            Log.d("okHttp", "doAccessGet: $json")
+                            editor.putString("accessCode", json)
+                            editor.apply()
+                        } else {
+                            Log.d("okHttp", "doAccessGet 为空")
+                        }
+                    }
+                })
 
             } else {
                 Toast.makeText(

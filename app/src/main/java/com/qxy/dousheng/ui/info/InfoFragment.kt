@@ -9,6 +9,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import com.bumptech.glide.request.RequestOptions
+import com.qxy.dousheng.R
 import com.qxy.dousheng.databinding.FragmentInfoBinding
 import com.qxy.dousheng.network.InfoOkHttpUtils
 import com.qxy.dousheng.network.OkHttpCallback
@@ -41,16 +44,44 @@ class InfoFragment : Fragment() {
                     val info = it[0]
                     binding.nicknameTextView.text = info.nickname
 
+                    // 设置图片
+                    val options: RequestOptions = RequestOptions().transform(CircleCrop())
                     Glide.with(this)
                         .load(info.avatar_larger)
-                        .override(900)
+                        .apply(options)
                         .into(binding.avatarImageView)
-                    binding.cityTextView.text = "${info.country} ${info.province} ${info.city}"
+
+                    // 设置城市
+                    if (info.country == "") {
+                        binding.cityTextView.text =
+                            "${requireActivity().resources.getString(R.string.city)}: ${
+                                requireActivity().resources.getString(
+                                    R.string.china
+                                )
+                            }"
+                    } else
+                        binding.cityTextView.text =
+                            "${requireActivity().resources.getString(R.string.city)}: ${info.country} ${info.province} ${info.city}"
+
+                    // 设置性别
                     binding.genderTextView.text = when (info.gender) {
-                        0 -> "男"
-                        else -> "女"
+                        0 -> "${requireActivity().resources.getString(R.string.gender)}: ${
+                            requireActivity().resources.getString(
+                                R.string.male
+                            )
+                        }"
+                        else -> "${requireActivity().resources.getString(R.string.gender)}: ${
+                            requireActivity().resources.getString(
+                                R.string.female
+                            )
+                        }"
                     }
-                    binding.descriptionTextView.text = info.description
+
+                    // 设置简介
+                    if (info.description == "") {
+                        binding.descriptionTextView.text =
+                            requireActivity().resources.getString(R.string.descriptionDefault)
+                    } else binding.descriptionTextView.text = info.description
                 }
             }
 

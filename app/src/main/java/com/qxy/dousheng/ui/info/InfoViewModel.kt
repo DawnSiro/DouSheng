@@ -25,7 +25,7 @@ class InfoViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getLiveData(): LiveData<List<InfoItem>> = allInfoItemLiveData
 
-    fun clear() {
+    private fun clear() {
         ClearItem(infoDao).execute()
     }
 

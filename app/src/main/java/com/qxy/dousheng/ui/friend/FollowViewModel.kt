@@ -54,27 +54,29 @@ class FollowViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     fun update(response: String) {
-        clear()
-        Log.d("okHttp", "clearItem: 清除成功")
-        val gson = Gson()
-        Log.d("okHttp", "Gson: 初始化成功")
-        val friendJson: FriendJson = gson.fromJson(response, FriendJson::class.java)
-        Log.d("okHttp", "update: $friendJson")
+        if (response != "") {
+            clear()
+            Log.d("okHttp", "clearItem: 清除成功")
+            val gson = Gson()
+            Log.d("okHttp", "Gson: 初始化成功")
+            val friendJson: FriendJson = gson.fromJson(response, FriendJson::class.java)
+            Log.d("okHttp", "update: $friendJson")
 
-        for (i in friendJson.data.list) {
-            insert(
-                FriendItem(
-                    i.avatar,
-                    i.nickname,
-                    i.gender,
-                    i.country,
-                    i.province,
-                    i.city,
-                    i.open_id,
-                    1,
-                    2
+            for (i in friendJson.data.list) {
+                insert(
+                    FriendItem(
+                        i.avatar,
+                        i.nickname,
+                        i.gender,
+                        i.country,
+                        i.province,
+                        i.city,
+                        i.open_id,
+                        1,
+                        2
+                    )
                 )
-            )
+            }
         }
     }
 

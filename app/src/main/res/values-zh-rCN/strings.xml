@@ -29,4 +29,6 @@
     <string name="female">女</string>
     <string name="male">男</string>
     <string name="mutual_concern">相互关注</string>
+    <string name="descriptionDefault">永远相信，美好的事情即将发生。</string>
+    <string name="china">中国</string>
 </resources>

@@ -7,6 +7,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.qxy.dousheng.R
+import com.qxy.dousheng.network.InfoOkHttpUtils
 
 class MainActivity : BaseAppCompatActivity() {
 
@@ -16,7 +17,9 @@ class MainActivity : BaseAppCompatActivity() {
 
 
         // Http
-        httpInit()
+        val shp = getSharedPreferences("Code", MODE_PRIVATE)
+        InfoOkHttpUtils.setContext(this)
+        if (shp.getString("accessCode", "") == "") httpInit()
 
         // load
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
