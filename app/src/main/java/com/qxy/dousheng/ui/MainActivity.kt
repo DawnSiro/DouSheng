@@ -8,6 +8,7 @@ import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.qxy.dousheng.R
 import com.qxy.dousheng.network.InfoOkHttpUtils
+import com.qxy.dousheng.network.RankOkHttpUtils
 
 class MainActivity : BaseAppCompatActivity() {
 
@@ -17,6 +18,7 @@ class MainActivity : BaseAppCompatActivity() {
 
 
         // Http
+        RankOkHttpUtils.getClientAccess()
         val shp = getSharedPreferences("Code", MODE_PRIVATE)
         InfoOkHttpUtils.setContext(this)
         if (shp.getString("accessCode", "") == "") httpInit()

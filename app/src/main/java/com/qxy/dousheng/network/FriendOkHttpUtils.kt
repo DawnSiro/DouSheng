@@ -85,7 +85,7 @@ class FriendOkHttpUtils {
                 override fun onResponse(call: Call, response: Response) {
                     Log.d(TAG, "onResponse: ${response.body}")
                     val json = response.body?.string()
-                    if (json != null) {
+                    if ((json != null) || (json != "")) {
                         handle.post {
                             callback.isSuccess(json)
                         }

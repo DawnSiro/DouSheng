@@ -3,34 +3,102 @@ package com.qxy.dousheng.network
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import com.google.gson.Gson
+import com.qxy.dousheng.model.ClientAccessJson
 import okhttp3.*
 import java.io.IOException
 
 class RankOkHttpUtils {
     companion object {
-        private const val baseUrl = "https://mock.apifox.cn/m1/1441581-0-default"
+        private const val baseUrl = "https://open.douyin.com"
+        private const val mockUrl = "https://mock.apifox.cn/m1/1441581-0-default"
+        private const val clientKey = "awr4g04kxg26jk2l" // 需要到开发者网站申请并替换
+        private const val clientSecret = "ce6a9c54648b7f99565a66f20fd70866"
         private const val TAG = "okHttp"
         private lateinit var movieRequest: Request
         private lateinit var videoRequest: Request
         private lateinit var artRequest: Request
+        private lateinit var ClientAccessRequest: Request
 
         private val handle = Handler(Looper.getMainLooper())
         private val rankClient = OkHttpClient()
+        private val ClientAccessClient = OkHttpClient()
+        private val gson = Gson()
+        var clientAccess: String = ""
 
 
-        private fun getClientAccessToken(): String {
-            return "clt.55179e5b40952a805aede83e26852ce8jEBWR5yhrhv4yWYG29KKPMkAZ1kS"
+        private fun getClientAccessRequest(): Request {
+            val interfaceUrl = "/oauth/client_token/"
+            val url = baseUrl + interfaceUrl
+            val body = FormBody.Builder()
+                .addEncoded("client_key", clientKey)
+                .addEncoded("client_secret", clientSecret)
+                .addEncoded("grant_type", "client_credential")
+                .build()
+            if (!this::ClientAccessRequest.isInitialized) {
+                ClientAccessRequest = Request.Builder()
+                    .url(url)
+                    .addHeader("Content-Type", "multipart/form-data")
+                    .post(body)
+                    .build()
+            }
+            Log.d(TAG, "getClientAccessRequest: $url")
+            return ClientAccessRequest
+        }
+
+        private fun doClientAccessGet(callback: OkHttpCallback) {
+            ClientAccessClient.newCall(getClientAccessRequest()).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    Log.e(TAG, "doClientAccessGet: $e")
+                    handle.post {
+                        callback.isFail()
+                    }
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    Log.d(TAG, "doClientAccessGet: ${response.body}")
+                    val json = response.body?.string()
+                    if (json != null) {
+                        handle.post {
+                            callback.isSuccess(json)
+                        }
+                    } else {
+                        handle.post {
+                            callback.isFail()
+                        }
+                    }
+                }
+
+            })
+        }
+
+        fun getClientAccess() {
+            doClientAccessGet(object : OkHttpCallback {
+                override fun isFail() {
+                    Log.d(TAG, "isFail: doClientAccessGet")
+                }
+
+                override fun isSuccess(json: String?) {
+                    if (json == null || json == "") {
+                        Log.d("okHttp", "getClientAccess: json is null")
+                    } else {
+                        Log.d("okHttp", "getClientAccess: $json")
+                        val clientAccessJson = gson.fromJson(json, ClientAccessJson::class.java)
+                        clientAccess = clientAccessJson.data.access_token
+                        Log.d("okHttp", "getClientAccess: ${clientAccessJson.data.access_token}")
+                    }
+                }
+            })
         }
 
 
         private fun getMovieRankRequest(): Request {
             val interfaceUrl = "/discovery/ent/rank/item/?type=1"
             val url = baseUrl + interfaceUrl
-            val accessToken = getClientAccessToken()
             if (!this::movieRequest.isInitialized) {
                 movieRequest = Request.Builder()
                     .url(url)
-//                    .header("access-token", getClientAccessToken())
+                    .addHeader("access-token", clientAccess)
                     .build()
             }
             Log.d(TAG, "getMovieRankRequest: $url")
@@ -40,13 +108,13 @@ class RankOkHttpUtils {
         private fun getVideoRankRequest(): Request {
             val interfaceUrl = "/discovery/ent/rank/item/?type=2"
             val url = baseUrl + interfaceUrl
-            val accessToken = getClientAccessToken()
-            if (!this::videoRequest.isInitialized) {
-                videoRequest = Request.Builder()
-                    .url(url)
-//                    .header("access-token", getClientAccessToken())
-                    .build()
-            }
+
+            videoRequest = Request.Builder()
+                .url(url)
+                .addHeader("access-token", clientAccess)
+                .build()
+
+            Log.d("okHttp", "getClientAccess: $clientAccess")
             Log.d(TAG, "getVideoRankRequest: $url")
             return videoRequest
         }
@@ -54,11 +122,11 @@ class RankOkHttpUtils {
         private fun getArtRankRequest(): Request {
             val interfaceUrl = "/discovery/ent/rank/item/?type=3"
             val url = baseUrl + interfaceUrl
-            val accessToken = getClientAccessToken()
+
             if (!this::artRequest.isInitialized) {
                 artRequest = Request.Builder()
                     .url(url)
-//                    .header("access-token", getClientAccessToken())
+                    .addHeader("access-token", clientAccess)
                     .build()
             }
             Log.d(TAG, "getArtRankRequest: $url")
