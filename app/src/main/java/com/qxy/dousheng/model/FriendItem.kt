@@ -21,7 +21,7 @@ data class FriendItem(
     @ColumnInfo(name = "open_id")
     val open_id: String,
     @ColumnInfo(name = "is_follow")
-    var isFollow: Int, // isFollow:1 noFollow:2 non:0
+    var isFollow: Int, // isFollow:1 isFans:2 mutualConcern:3 non:0
     @ColumnInfo(name = "flag")
     val flag: Int  // 标志位 fans:1 follow:2 non:0
 ) {

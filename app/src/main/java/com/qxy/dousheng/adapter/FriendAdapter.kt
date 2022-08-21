@@ -55,6 +55,7 @@ class FriendAdapter(var friendList: List<FriendItem>) :
             when (friendItem.isFollow) {
                 1 -> holder.itemView.resources.getString(R.string.is_follow)
                 2 -> holder.itemView.resources.getString(R.string.follow)
+                3 -> holder.itemView.resources.getString(R.string.mutual_concern)
                 else -> "non"
             }
     }
