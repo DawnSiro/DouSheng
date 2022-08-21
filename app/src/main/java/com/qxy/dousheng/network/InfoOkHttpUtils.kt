@@ -52,16 +52,11 @@ class InfoOkHttpUtils() {
 
         private fun getAccessRequest(): Request {
             val interfaceUrl = "/oauth/access_token/"
-            val url = mockUrl + interfaceUrl
-            val code = getCode()
+            val url =
+                "$baseUrl$interfaceUrl?grant_type=authorization_code&redirect_uri=https://www.bytedance.com/&client_secret=$clientSecret&client_key=$clientKey&code=${getCode()}"
             if (!this::accessRequest.isInitialized) {
                 accessRequest = Request.Builder()
                     .url(url)
-                    .addHeader("grant_type", "authorization_code")
-                    .addHeader("redirect_uri", "https://www.bytedance.com/")
-                    .addHeader("code", code)
-                    .addHeader("client_secret", clientSecret)
-                    .addHeader("client_key", clientKey)
                     .build()
             }
             Log.d(TAG, "getAccessRequest: $url")
@@ -85,7 +80,6 @@ class InfoOkHttpUtils() {
                         Log.d(TAG, "getAccessToken 为空")
                     }
                 }
-
             })
             return accessToken
         }
