@@ -11,6 +11,8 @@ import com.qxy.dousheng.dao.RankDao
 import com.qxy.dousheng.database.RankDatabase
 import com.qxy.dousheng.model.RankItem
 import com.qxy.dousheng.model.RankJson
+import com.qxy.dousheng.network.OkHttpCallback
+import com.qxy.dousheng.network.RankOkHttpUtils
 
 class VideoRankViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -34,6 +36,24 @@ class VideoRankViewModel(application: Application) : AndroidViewModel(applicatio
 
     fun getLiveData(): LiveData<List<RankItem>> {
         return allRankItemLive
+    }
+
+    fun doGet() {
+        RankOkHttpUtils.doVideoGet(object : OkHttpCallback {
+            override fun isFail() {
+                Log.d("okHttp", "doVideoGet 出错")
+            }
+
+            override fun isSuccess(json: String?) {
+                if (json != null) {
+                    Log.d("okHttp", "doVideoGet: $json")
+                    update(json)
+                } else {
+                    Log.d("okHttp", "doVideoGet: json=null")
+                }
+            }
+
+        })
     }
 
     fun update(response: String) {
@@ -64,7 +84,7 @@ class VideoRankViewModel(application: Application) : AndroidViewModel(applicatio
     @SuppressLint("StaticFieldLeak")
     inner class ClearItem(private val rankDao: RankDao) : AsyncTask<Void, Int, Boolean>() {
         override fun doInBackground(vararg void: Void): Boolean {
-            rankDao.clearItem()
+            rankDao.clearVideoItem()
             return true
         }
     }

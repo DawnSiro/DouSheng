@@ -2,7 +2,6 @@ package com.qxy.dousheng.ui.friend
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.qxy.dousheng.adapter.FriendAdapter
 import com.qxy.dousheng.databinding.FragmentFollowBinding
 import com.qxy.dousheng.model.FriendItem
-import com.qxy.dousheng.network.FriendOkHttpUtils
-import com.qxy.dousheng.network.OkHttpCallback
 
 class FollowFragment : Fragment() {
     private lateinit var binding: FragmentFollowBinding
@@ -46,6 +43,10 @@ class FollowFragment : Fragment() {
 
             binding.followRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
             binding.followRecyclerView.adapter = followAdapter
+            binding.followSwipeRefreshLayout.setOnRefreshListener {
+                viewModel.doGet()
+                binding.followSwipeRefreshLayout.isRefreshing = false
+            }
 
             viewModel.getLiveData().observe(requireActivity()) {
                 if (activity != null) {
@@ -54,22 +55,6 @@ class FollowFragment : Fragment() {
                 }
             }
         }
-
-        FriendOkHttpUtils.doFollowGet(object : OkHttpCallback {
-            override fun isFail() {
-                Log.d("okHttp", "doFollowGet 出错")
-
-            }
-
-            override fun isSuccess(json: String?) {
-                if (json != null && json != "") {
-                    Log.d("okHttp", "doFollowGet: $json")
-                    viewModel.update(json)
-                } else {
-                    Log.d("okHttp", "doFollowGet: json=null")
-                }
-            }
-        })
     }
 
 }

@@ -12,6 +12,8 @@ import com.qxy.dousheng.database.VideoDatabase
 import com.qxy.dousheng.model.VideoItem
 import com.qxy.dousheng.model.VideoJson
 import com.qxy.dousheng.model.VideoList
+import com.qxy.dousheng.network.OkHttpCallback
+import com.qxy.dousheng.network.VideoOkHttpUtils
 
 class VideoViewModel(application: Application) : AndroidViewModel(application) {
     private var videoDao: VideoDao
@@ -32,6 +34,23 @@ class VideoViewModel(application: Application) : AndroidViewModel(application) {
 
     fun insert(vararg videoItem: VideoItem) {
         InsertItem(videoDao).execute(*videoItem)
+    }
+
+    fun doGet() {
+        VideoOkHttpUtils.doVideoGet(object : OkHttpCallback {
+            override fun isFail() {
+                Log.d("okHttp", "doVideoGet 出错")
+            }
+
+            override fun isSuccess(json: String?) {
+                if (json != null && json != "") {
+                    Log.d("okHttp", "doVideoGet: $json")
+                    update(json)
+                } else {
+                    Log.d("okHttp", "doVideoGet: json=null")
+                }
+            }
+        })
     }
 
     fun update(response: String) {
@@ -72,6 +91,7 @@ class VideoViewModel(application: Application) : AndroidViewModel(application) {
     // 后台异步插入数据
     @SuppressLint("StaticFieldLeak")
     inner class InsertItem(private val videoDao: VideoDao) : AsyncTask<VideoItem, Int, Boolean>() {
+        @Deprecated("Deprecated in Java")
         override fun doInBackground(vararg params: VideoItem): Boolean {
             videoDao.insertItem(*params)
             return true
@@ -81,6 +101,7 @@ class VideoViewModel(application: Application) : AndroidViewModel(application) {
     // 后台异步清除数据
     @SuppressLint("StaticFieldLeak")
     inner class ClearItem(private val videoDao: VideoDao) : AsyncTask<Void, Int, Boolean>() {
+        @Deprecated("Deprecated in Java")
         override fun doInBackground(vararg params: Void?): Boolean {
             videoDao.clearItem()
             return true

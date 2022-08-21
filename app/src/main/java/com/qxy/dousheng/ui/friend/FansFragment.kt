@@ -2,7 +2,6 @@ package com.qxy.dousheng.ui.friend
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.qxy.dousheng.adapter.FriendAdapter
 import com.qxy.dousheng.databinding.FragmentFansBinding
 import com.qxy.dousheng.model.FriendItem
-import com.qxy.dousheng.network.FriendOkHttpUtils
-import com.qxy.dousheng.network.OkHttpCallback
 
 class FansFragment : Fragment() {
     private lateinit var binding: FragmentFansBinding
@@ -46,6 +43,10 @@ class FansFragment : Fragment() {
 
             binding.fansRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
             binding.fansRecyclerView.adapter = fansAdapter
+            binding.fansSwipeRefreshLayout.setOnRefreshListener {
+                viewModel.doGet()
+                binding.fansSwipeRefreshLayout.isRefreshing = false
+            }
 
             viewModel.getLiveData().observe(requireActivity()) {
                 if (activity != null) {
@@ -54,21 +55,5 @@ class FansFragment : Fragment() {
                 }
             }
         }
-
-        FriendOkHttpUtils.doFansGet(object : OkHttpCallback {
-            override fun isFail() {
-                Log.d("okHttp", "doFansGet 出错")
-
-            }
-
-            override fun isSuccess(json: String?) {
-                if (json != null && json != "") {
-                    Log.d("okHttp", "doFansGet: $json")
-                    viewModel.update(json)
-                } else {
-                    Log.d("okHttp", "doFansGet: json=null")
-                }
-            }
-        })
     }
 }
