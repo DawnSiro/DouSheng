@@ -2,7 +2,6 @@ package com.qxy.dousheng.ui.video
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.qxy.dousheng.adapter.VideoAdapter
 import com.qxy.dousheng.databinding.FragmentVideoBinding
 import com.qxy.dousheng.model.VideoItem
-import com.qxy.dousheng.network.OkHttpCallback
-import com.qxy.dousheng.network.VideoOkHttpUtils
 
 class VideoFragment : Fragment() {
     private lateinit var viewModel: VideoViewModel
@@ -47,6 +44,10 @@ class VideoFragment : Fragment() {
 
             binding.videoRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
             binding.videoRecyclerView.adapter = videoAdapter
+            binding.videoSwipRefreshLayout.setOnRefreshListener {
+                viewModel.doGet()
+                binding.videoSwipRefreshLayout.isRefreshing = false
+            }
 
             viewModel.getLiveData().observe(requireActivity()) {
                 if (activity != null) {
@@ -54,22 +55,6 @@ class VideoFragment : Fragment() {
                     videoAdapter.notifyDataSetChanged()
                 }
             }
-
-            VideoOkHttpUtils.doVideoGet(object : OkHttpCallback {
-                override fun isFail() {
-                    Log.d("okHttp", "doVideoGet 出错")
-                }
-
-                override fun isSuccess(json: String?) {
-                    if (json != null && json != "") {
-                        Log.d("okHttp", "doVideoGet: $json")
-                        viewModel.update(json)
-                    } else {
-                        Log.d("okHttp", "doVideoGet: json=null")
-                    }
-                }
-            })
-
         }
     }
 
