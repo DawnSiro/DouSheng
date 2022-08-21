@@ -42,7 +42,7 @@ class InfoOkHttpUtils() {
         private fun getCode(): String {
             if (this::context.isInitialized) {
                 val shp: SharedPreferences = context.getSharedPreferences(
-                    "authCode",
+                    "Code",
                     Activity.MODE_PRIVATE
                 )
                 return shp.getString("authCode", "")!!
@@ -65,26 +65,22 @@ class InfoOkHttpUtils() {
 
         @JvmName("getAccessToken1")
         fun getAccessToken(): AccessTokenJson {
-            if (this::accessToken.isInitialized) return accessToken
-            accessToken = AccessTokenJson() // 默认值
-            doAccessGet(object : OkHttpCallback {
-                override fun isFail() {
-                    Log.d(TAG, "getAccessToken 出错")
-                }
+            if (!this::accessToken.isInitialized) {
+                accessToken = AccessTokenJson() // 默认值
 
-                override fun isSuccess(json: String?) {
-                    if (json != null && json != "{}") {
-                        Log.d("okHttp", "getAccessToken: $json")
-                        accessToken = gson.fromJson(json, AccessTokenJson::class.java)
-                    } else {
-                        Log.d(TAG, "getAccessToken 为空")
-                    }
-                }
-            })
+                val shp: SharedPreferences = context.getSharedPreferences(
+                    "Code",
+                    Activity.MODE_PRIVATE
+                )
+                val accessTokenJson: String = shp.getString("accessCode", "")!!
+
+                if (accessTokenJson != "")
+                    accessToken = gson.fromJson(accessTokenJson, AccessTokenJson::class.java)
+            }
             return accessToken
         }
 
-        private fun doAccessGet(callback: OkHttpCallback) {
+        fun doAccessGet(callback: OkHttpCallback) {
             infoClient.newCall(getAccessRequest()).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
                     Log.e(TAG, "onFailure: $e")
