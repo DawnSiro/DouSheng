@@ -71,9 +71,8 @@ class FansViewModel(application: Application) : AndroidViewModel(application) {
                 val checkJson = gson.fromJson(json, FansCheckJson::class.java)
                 i.isFollow = if (checkJson.data.is_follower) 1 else 2
                 Log.d("okHttp", "doFansCheckGet: ${i.name} ${i.isFollow}")
-
-                friendDao.insertItem(i)
             }
+            friendDao.insertItem(*params)
             return true
         }
     }
