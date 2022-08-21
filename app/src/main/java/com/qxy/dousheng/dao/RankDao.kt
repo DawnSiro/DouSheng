@@ -18,6 +18,15 @@ interface RankDao {
     @Query("DELETE FROM RankItem")
     fun clearItem()
 
+    @Query("DELETE FROM RankItem WHERE type = 1")
+    fun clearMovieItem()
+
+    @Query("DELETE FROM RankItem WHERE type = 2")
+    fun clearVideoItem()
+
+    @Query("DELETE FROM RankItem WHERE type = 3")
+    fun clearArtItem()
+
     @Query("SELECT * FROM RankItem WHERE type = 1 ORDER BY hot DESC")
     fun allMovieItemLive(): LiveData<List<RankItem>>
 

@@ -91,6 +91,7 @@ class VideoViewModel(application: Application) : AndroidViewModel(application) {
     // 后台异步插入数据
     @SuppressLint("StaticFieldLeak")
     inner class InsertItem(private val videoDao: VideoDao) : AsyncTask<VideoItem, Int, Boolean>() {
+        @Deprecated("Deprecated in Java")
         override fun doInBackground(vararg params: VideoItem): Boolean {
             videoDao.insertItem(*params)
             return true
@@ -100,6 +101,7 @@ class VideoViewModel(application: Application) : AndroidViewModel(application) {
     // 后台异步清除数据
     @SuppressLint("StaticFieldLeak")
     inner class ClearItem(private val videoDao: VideoDao) : AsyncTask<Void, Int, Boolean>() {
+        @Deprecated("Deprecated in Java")
         override fun doInBackground(vararg params: Void?): Boolean {
             videoDao.clearItem()
             return true

@@ -64,7 +64,7 @@ class VideoRankViewModel(application: Application) : AndroidViewModel(applicatio
     @SuppressLint("StaticFieldLeak")
     inner class ClearItem(private val rankDao: RankDao) : AsyncTask<Void, Int, Boolean>() {
         override fun doInBackground(vararg void: Void): Boolean {
-            rankDao.clearItem()
+            rankDao.clearVideoItem()
             return true
         }
     }

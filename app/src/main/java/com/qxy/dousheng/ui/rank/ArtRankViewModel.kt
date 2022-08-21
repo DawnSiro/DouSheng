@@ -63,7 +63,7 @@ class ArtRankViewModel(application: Application) : AndroidViewModel(application)
     @SuppressLint("StaticFieldLeak")
     inner class ClearItem(private val rankDao: RankDao) : AsyncTask<Void, Int, Boolean>() {
         override fun doInBackground(vararg void: Void): Boolean {
-            rankDao.clearItem()
+            rankDao.clearArtItem()
             return true
         }
     }
