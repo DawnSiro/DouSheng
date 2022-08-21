@@ -6,25 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".ui.friend.FriendFragment">
 
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/friendNavigationView"
-        android:layout_width="match_parent"
+        android:id="@+id/friendBottomNavigationView"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/friendFragmentContainerView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:menu="@menu/menu_friend" />
+        app:menu="@menu/friend_menu" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/friendFragmentContainerView"
         android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         app:defaultNavHost="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/friendNavigationView"
-        app:navGraph="@navigation/nav_friend" />
-
+        app:layout_constraintTop_toBottomOf="@+id/friendBottomNavigationView"
+        app:navGraph="@navigation/friend_nav" />
 </androidx.constraintlayout.widget.ConstraintLayout>

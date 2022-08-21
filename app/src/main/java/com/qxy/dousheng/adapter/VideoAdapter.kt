@@ -3,6 +3,7 @@ package com.qxy.dousheng.adapter
 import android.annotation.SuppressLint
 import android.icu.text.SimpleDateFormat
 import android.os.Build
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,8 +42,12 @@ class VideoAdapter(var videoList: List<VideoItem>) :
             .into(holder.cover)
 
         holder.title.text = videoItem.title
+
+        // TODO("BUG:相对于当前时间的 时间戳")
         holder.time.text =
-            "创建时间：" + SimpleDateFormat("YY-MM-DD-hh-mm-ss").format(videoItem.create_time)
+            "创建时间：" + SimpleDateFormat("YYYY-MM-DD").format(videoItem.create_time * 1000)
+        Log.d("okHttp", (videoItem.create_time / 1000 / 60 / 60 / 24).toString())
+
         holder.count.text =
             "播放：${videoItem.play_count} 点赞：${videoItem.digg_count} 评论：${videoItem.comment_count}"
         if (!videoItem.is_top) {

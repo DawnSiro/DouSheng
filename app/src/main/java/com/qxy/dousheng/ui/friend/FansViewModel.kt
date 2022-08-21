@@ -7,71 +7,83 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.google.gson.Gson
-import com.qxy.dousheng.dao.FollowDao
-import com.qxy.dousheng.database.FollowDatabase
-import com.qxy.dousheng.model.FollowBean
-import com.qxy.dousheng.model.FollowItem
+import com.qxy.dousheng.dao.FriendDao
+import com.qxy.dousheng.database.FriendDatabase
+import com.qxy.dousheng.model.FansCheckJson
+import com.qxy.dousheng.model.FriendItem
+import com.qxy.dousheng.model.FriendJson
+import com.qxy.dousheng.network.FriendOkHttpUtils
 
 class FansViewModel(application: Application) : AndroidViewModel(application) {
-
-    private var followDao: FollowDao
-    private var followLiveData: LiveData<List<FollowItem>>
+    private var friendDao: FriendDao
+    private val allFansLiveData: LiveData<List<FriendItem>>
 
     init {
-        val followDatabase = FollowDatabase.getDatabase(application.applicationContext)
-        followDao = followDatabase.getFollowDao()
-        followLiveData = followDao.getFollowItemLive()
+        val friendDatabase = FriendDatabase.getDatabase(application)
+        friendDao = friendDatabase.getItemDao()
+        allFansLiveData = friendDao.getAllFansLiveData()
     }
 
-    private fun insertItem(vararg followItem: FollowItem) {
-        InsertItem(followDao).execute(*followItem)
+    fun getLiveData(): LiveData<List<FriendItem>> = allFansLiveData
+
+    private fun clear() {
+        ClearItem(friendDao).execute()
     }
 
-    private fun clearItem() {
-        ClearItem(followDao).execute()
-    }
-
-
-    fun getLiveData(): LiveData<List<FollowItem>> {
-        return followLiveData
+    fun insert(vararg friendItem: FriendItem) {
+        InsertItem(friendDao).execute(*friendItem)
     }
 
     fun update(response: String) {
-        clearItem()
-        Log.d("okHttp", "clearFollowItem: 清除成功")
+        clear()
+        Log.d("okHttp", "clearItem: 清除成功")
         val gson = Gson()
         Log.d("okHttp", "Gson: 初始化成功")
+        val friendJson: FriendJson = gson.fromJson(response, FriendJson::class.java)
+        Log.d("okHttp", "update: $friendJson")
 
-        Log.d("okHttp", "update: $response")
-
-        // 解析 json
-        val bean = gson.fromJson(response, FollowBean::class.java)
-        // 选择用到的数据存入数据库
-        for (i in bean.data.list) {
-            Log.d("okHttp", "update: ${i.nickname}")
-
-            insertItem(
-                FollowItem(i.avatar, i.nickname, i.gender, i.country,
-                i.province, i.city, isFollow = false)
-            ) // TODO 找到是否关注了粉丝的方法，目前默认未关注
+        for (i in friendJson.data.list) {
+            insert(
+                FriendItem(
+                    i.avatar,
+                    i.nickname,
+                    i.gender,
+                    i.country,
+                    i.province,
+                    i.city,
+                    i.open_id,
+                    1,
+                    1
+                )
+            )
         }
     }
 
     // 后台异步插入数据
     @SuppressLint("StaticFieldLeak")
-    inner class InsertItem(private val followDao: FollowDao) : AsyncTask<FollowItem, Int, Boolean>() {
-        override fun doInBackground(vararg followItem: FollowItem): Boolean {
-            followDao.insertFollowItem(*followItem)
+    inner class InsertItem(private val friendDao: FriendDao) :
+        AsyncTask<FriendItem, Int, Boolean>() {
+        override fun doInBackground(vararg params: FriendItem): Boolean {
+            for (i in params) {
+                val gson = Gson()
+                val json = FriendOkHttpUtils.doFansCheckGet(i.open_id)
+                Log.d("okHttp", "doFansCheckGet: ${i.name} $json")
+                val checkJson = gson.fromJson(json, FansCheckJson::class.java)
+                i.isFollow = if (checkJson.data.is_follower) 1 else 2
+                Log.d("okHttp", "doFansCheckGet: ${i.name} ${i.isFollow}")
+            }
+            friendDao.insertItem(*params)
             return true
         }
     }
 
     // 后台异步清除数据
     @SuppressLint("StaticFieldLeak")
-    inner class ClearItem(private val followDao: FollowDao) : AsyncTask<Void, Int, Boolean>() {
-        override fun doInBackground(vararg void: Void): Boolean {
-            followDao.clearFollowItem()
+    inner class ClearItem(private val friendDao: FriendDao) : AsyncTask<Void, Int, Boolean>() {
+        override fun doInBackground(vararg params: Void?): Boolean {
+            friendDao.clearFansItem()
             return true
         }
     }
+
 }

@@ -3,96 +3,73 @@ package com.qxy.dousheng.ui.friend
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.qxy.dousheng.adapter.FollowAdapter
+import com.qxy.dousheng.adapter.FriendAdapter
 import com.qxy.dousheng.databinding.FragmentFollowBinding
-import com.qxy.dousheng.model.FollowItem
+import com.qxy.dousheng.model.FriendItem
+import com.qxy.dousheng.network.FriendOkHttpUtils
 import com.qxy.dousheng.network.OkHttpCallback
-import com.qxy.dousheng.network.FollowOkHttpUtils
-
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
 
 class FollowFragment : Fragment() {
-
-    private var _binding: FragmentFollowBinding? = null
-
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
-
+    private lateinit var binding: FragmentFollowBinding
     private lateinit var viewModel: FollowViewModel
+
+    companion object {
+        fun newInstance() = FollowFragment()
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentFollowBinding.inflate(inflater, container, false)
+    ): View? {
+        binding = FragmentFollowBinding.inflate(inflater, container, false)
         return binding.root
     }
 
+    @Deprecated("Deprecated in Java")
     @SuppressLint("NotifyDataSetChanged")
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         if (activity != null) {
-            viewModel = ViewModelProvider(this)[FollowViewModel::class.java] //.get(FollowViewModel::class.java)
+            viewModel = ViewModelProvider(this)[FollowViewModel::class.java]
 
-            val list: List<FollowItem> = if(viewModel.getLiveData().value != null) {
-                viewModel.getLiveData().value!!
-            }else{
-                listOf()
-            }
+            val followList: List<FriendItem> =
+                if (viewModel.getLiveData().value != null) viewModel.getLiveData().value!! else listOf()
 
-            val adapter = FollowAdapter(requireActivity(), list)
+            val followAdapter = FriendAdapter(followList)
 
-            // 设置 View 的 LayoutManager 和 Adapter
-            val recyclerViewFollow = binding.recyclerViewFollow
-            recyclerViewFollow.layoutManager = LinearLayoutManager(requireActivity())
-            recyclerViewFollow.adapter = adapter
+            binding.followRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
+            binding.followRecyclerView.adapter = followAdapter
 
             viewModel.getLiveData().observe(requireActivity()) {
-                adapter.followList = it
-                adapter.notifyDataSetChanged()
+                if (activity != null) {
+                    followAdapter.friendList = it
+                    followAdapter.notifyDataSetChanged()
+                }
             }
-
-
-            // 发送网络请求
-            FollowOkHttpUtils.doFollowGet(object : OkHttpCallback {
-                private val TAG = "Follow OkHttp"
-                override fun isFail() {
-                    Log.d(TAG, "isFail: Callback 出错")
-                    Toast.makeText(requireActivity(), "Follow OkHttp Callback 出错",
-                        Toast.LENGTH_SHORT)
-                        .show()
-                }
-
-                override fun isSuccess(json: String?) {
-                    if(json != null) {
-                        Log.d(TAG, "isSuccess: $json")
-                        viewModel.update(json) // 如果有 json 数据，更新 ViewModel
-                    }else{
-                        Toast.makeText(requireActivity(), "Response Body 为空", Toast.LENGTH_SHORT)
-                            .show()
-                    }
-                }
-
-            })
-
-
         }
 
+        FriendOkHttpUtils.doFollowGet(object : OkHttpCallback {
+            override fun isFail() {
+                Log.d("okHttp", "doFollowGet 出错")
+
+            }
+
+            override fun isSuccess(json: String?) {
+                if (json != null && json != "") {
+                    Log.d("okHttp", "doFollowGet: $json")
+                    viewModel.update(json)
+                } else {
+                    Log.d("okHttp", "doFollowGet: json=null")
+                }
+            }
+        })
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }

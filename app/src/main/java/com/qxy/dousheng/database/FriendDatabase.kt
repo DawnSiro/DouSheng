@@ -4,32 +4,29 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.qxy.dousheng.dao.FollowDao
-import com.qxy.dousheng.model.FansItem
-import com.qxy.dousheng.model.FollowItem
+import com.qxy.dousheng.dao.FriendDao
+import com.qxy.dousheng.model.FriendItem
 import org.jetbrains.annotations.NotNull
 
 //singleton
-@Database(entities = [FollowItem::class, FansItem::class], version = 1, exportSchema = false)
-abstract class FollowDatabase : RoomDatabase() {
-
+@Database(entities = [FriendItem::class], version = 2, exportSchema = false)
+abstract class FriendDatabase : RoomDatabase() {
     companion object {
-        private lateinit var database: FollowDatabase
+        private lateinit var database: FriendDatabase
 
         @JvmStatic
         @Synchronized
-        fun getDatabase(@NotNull context: Context): FollowDatabase {
+        fun getDatabase(@NotNull context: Context): FriendDatabase {
             if (!this::database.isInitialized) {
                 database = Room.databaseBuilder(
                     context.applicationContext,
-                    FollowDatabase::class.java,
-                    "database"
+                    FriendDatabase::class.java,
+                    "Friend_Database"
                 ).fallbackToDestructiveMigration().build()
             }
             return database
         }
     }
 
-    abstract fun getFollowDao(): FollowDao
-
+    abstract fun getItemDao(): FriendDao
 }

@@ -1,14 +1,12 @@
 package com.qxy.dousheng.ui
 
 import android.os.Bundle
-
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.qxy.dousheng.R
-import com.qxy.dousheng.database.RankDatabase
 import com.qxy.dousheng.network.InfoOkHttpUtils
 
 class MainActivity : BaseAppCompatActivity() {
@@ -17,13 +15,11 @@ class MainActivity : BaseAppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // init database manage &&load database
-        RankDatabase.getDatabase(applicationContext)
 
         // Http
-//        httpInit()
-//        InfoOkHttpUtils.setContext(applicationContext)
-//        InfoOkHttpUtils.getAccessToken()
+        httpInit()
+        InfoOkHttpUtils.setContext(applicationContext)
+        InfoOkHttpUtils.getAccessToken()
 
         // load
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)

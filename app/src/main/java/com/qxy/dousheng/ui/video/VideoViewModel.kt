@@ -26,7 +26,7 @@ class VideoViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getLiveData(): LiveData<List<VideoItem>> = allVideoLiveData
 
-    fun clear() {
+    private fun clear() {
         ClearItem(videoDao).execute()
     }
 
