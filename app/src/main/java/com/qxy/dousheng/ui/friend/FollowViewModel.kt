@@ -88,7 +88,7 @@ class FollowViewModel(application: Application) : AndroidViewModel(application) 
                 val json = FriendOkHttpUtils.doFansCheckGet(i.open_id)
                 Log.d("okHttp", "doFansCheckGet: ${i.name} $json")
                 val checkJson = gson.fromJson(json, FansCheckJson::class.java)
-                i.isFollow = if (checkJson.data.is_follower) 1 else 2
+                i.isFollow = if (checkJson.data.is_follower) 3 else 1
                 Log.d("okHttp", "doFansCheckGet: ${i.name} ${i.isFollow}")
 
                 friendDao.insertItem(i)

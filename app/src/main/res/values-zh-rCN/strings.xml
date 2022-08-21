@@ -28,4 +28,5 @@
     <string name="is_follow">已关注</string>
     <string name="female">女</string>
     <string name="male">男</string>
+    <string name="mutual_concern">相互关注</string>
 </resources>
