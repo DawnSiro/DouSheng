@@ -43,9 +43,9 @@ class VideoRankFragment : Fragment() {
 
             binding.videoRecycler.layoutManager = LinearLayoutManager(requireActivity())
             binding.videoRecycler.adapter = adapter
-            binding.videoRankSwipRefreshLayout.setOnRefreshListener {
+            binding.videoRankSwipeRefreshLayout.setOnRefreshListener {
                 viewModel.doGet()
-                binding.videoRankSwipRefreshLayout.isRefreshing = false
+                binding.videoRankSwipeRefreshLayout.isRefreshing = false
             }
 
             viewModel.getLiveData().observe(requireActivity()) {

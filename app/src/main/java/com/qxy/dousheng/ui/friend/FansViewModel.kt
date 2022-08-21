@@ -13,6 +13,7 @@ import com.qxy.dousheng.model.FansCheckJson
 import com.qxy.dousheng.model.FriendItem
 import com.qxy.dousheng.model.FriendJson
 import com.qxy.dousheng.network.FriendOkHttpUtils
+import com.qxy.dousheng.network.OkHttpCallback
 
 class FansViewModel(application: Application) : AndroidViewModel(application) {
     private var friendDao: FriendDao
@@ -32,6 +33,24 @@ class FansViewModel(application: Application) : AndroidViewModel(application) {
 
     fun insert(vararg friendItem: FriendItem) {
         InsertItem(friendDao).execute(*friendItem)
+    }
+
+    fun doGet() {
+        FriendOkHttpUtils.doFansGet(object : OkHttpCallback {
+            override fun isFail() {
+                Log.d("okHttp", "doFansGet 出错")
+
+            }
+
+            override fun isSuccess(json: String?) {
+                if (json != null && json != "") {
+                    Log.d("okHttp", "doFansGet: $json")
+                    update(json)
+                } else {
+                    Log.d("okHttp", "doFansGet: json=null")
+                }
+            }
+        })
     }
 
     fun update(response: String) {

@@ -44,9 +44,9 @@ class VideoFragment : Fragment() {
 
             binding.videoRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
             binding.videoRecyclerView.adapter = videoAdapter
-            binding.videoSwipRefreshLayout.setOnRefreshListener {
+            binding.videoSwipeRefreshLayout.setOnRefreshListener {
                 viewModel.doGet()
-                binding.videoSwipRefreshLayout.isRefreshing = false
+                binding.videoSwipeRefreshLayout.isRefreshing = false
             }
 
             viewModel.getLiveData().observe(requireActivity()) {

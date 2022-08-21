@@ -42,9 +42,9 @@ class MovieRankFragment : Fragment() {
             val adapter = RankAdapter(list)
             binding.movieRecycler.layoutManager = LinearLayoutManager(requireActivity())
             binding.movieRecycler.adapter = adapter
-            binding.movieRankSwipRefreshLayout.setOnRefreshListener {
+            binding.movieRankSwipeRefreshLayout.setOnRefreshListener {
                 viewModel.doGet()
-                binding.movieRankSwipRefreshLayout.isRefreshing = false
+                binding.movieRankSwipeRefreshLayout.isRefreshing = false
             }
             viewModel.getLiveData().observe(requireActivity()) {
                 if (activity != null) {

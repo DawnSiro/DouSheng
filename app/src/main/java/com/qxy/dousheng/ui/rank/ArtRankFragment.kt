@@ -45,9 +45,9 @@ class ArtRankFragment : Fragment() {
 
             binding.artRecycler.layoutManager = LinearLayoutManager(requireActivity())
             binding.artRecycler.adapter = adapter
-            binding.artRankSwipRefreshLayout.setOnRefreshListener {
+            binding.artRankSwipeRefreshLayout.setOnRefreshListener {
                 viewModel.doGet()
-                binding.artRankSwipRefreshLayout.isRefreshing = false
+                binding.artRankSwipeRefreshLayout.isRefreshing = false
             }
 
             viewModel.getLiveData().observe(requireActivity()) {
