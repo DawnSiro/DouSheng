@@ -31,13 +31,8 @@ class DouShengApplication:Application() {
             val jitterNanos = frameTimeNanos - mLastFrameTimeNanos
             if (jitterNanos >= mFrameIntervalNanos) {
                 val skippedFrames = jitterNanos / mFrameIntervalNanos
-                if (skippedFrames > 30) {
-                    // 丢帧30以上打印日志
                     Log.i(
-                        "FPS_TEST", "Skipped " + skippedFrames + " frames!  "
-                                + "The application may be doing too much work on its main thread."
-                    )
-                }
+                        "FPS_TEST", "Skipped " + skippedFrames + " frames!  ")
             }
             mLastFrameTimeNanos = frameTimeNanos
             // 注册下一帧回调
