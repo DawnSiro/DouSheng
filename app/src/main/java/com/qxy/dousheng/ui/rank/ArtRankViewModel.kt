@@ -11,6 +11,8 @@ import com.qxy.dousheng.dao.RankDao
 import com.qxy.dousheng.database.RankDatabase
 import com.qxy.dousheng.model.RankItem
 import com.qxy.dousheng.model.RankJson
+import com.qxy.dousheng.network.OkHttpCallback
+import com.qxy.dousheng.network.RankOkHttpUtils
 
 class ArtRankViewModel(application: Application) : AndroidViewModel(application) {
     private var rankDao: RankDao
@@ -35,6 +37,23 @@ class ArtRankViewModel(application: Application) : AndroidViewModel(application)
         return allRankItemLive
     }
 
+    fun doGet() {
+        RankOkHttpUtils.doArtGet(object : OkHttpCallback {
+            override fun isFail() {
+                Log.d("okHttp", "doArtGet 出错")
+            }
+
+            override fun isSuccess(json: String?) {
+                if (json != null) {
+                    Log.d("okHttp", "doArtGet: $json")
+                    update(json)
+                } else {
+                    Log.d("okHttp", "doArtGet: json=null")
+                }
+            }
+        })
+    }
+
     fun update(response: String) {
         clearItem()
         Log.d("okHttp", "clearItem: 清除成功")
@@ -53,6 +72,7 @@ class ArtRankViewModel(application: Application) : AndroidViewModel(application)
     // 后台异步插入数据
     @SuppressLint("StaticFieldLeak")
     inner class InsertItem(private val rankDao: RankDao) : AsyncTask<RankItem, Int, Boolean>() {
+        @Deprecated("Deprecated in Java")
         override fun doInBackground(vararg rankItem: RankItem): Boolean {
             rankDao.insertItem(*rankItem)
             return true
@@ -62,6 +82,7 @@ class ArtRankViewModel(application: Application) : AndroidViewModel(application)
     // 后台异步清除数据
     @SuppressLint("StaticFieldLeak")
     inner class ClearItem(private val rankDao: RankDao) : AsyncTask<Void, Int, Boolean>() {
+        @Deprecated("Deprecated in Java")
         override fun doInBackground(vararg void: Void): Boolean {
             rankDao.clearArtItem()
             return true
