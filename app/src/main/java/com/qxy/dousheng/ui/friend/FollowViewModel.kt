@@ -8,10 +8,10 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.google.gson.Gson
 import com.qxy.dousheng.dao.FriendDao
-import com.qxy.dousheng.database.FriendDatabase
-import com.qxy.dousheng.model.FansCheckJson
-import com.qxy.dousheng.model.FriendItem
-import com.qxy.dousheng.model.FriendJson
+import com.qxy.dousheng.database.DouShengDatabase
+import com.qxy.dousheng.model.friend.FansCheckJson
+import com.qxy.dousheng.model.friend.FriendItem
+import com.qxy.dousheng.model.friend.FriendJson
 import com.qxy.dousheng.network.FriendOkHttpUtils
 import com.qxy.dousheng.network.OkHttpCallback
 
@@ -20,8 +20,8 @@ class FollowViewModel(application: Application) : AndroidViewModel(application) 
     private val allFollowLiveData: LiveData<List<FriendItem>>
 
     init {
-        val friendDatabase = FriendDatabase.getDatabase(application)
-        friendDao = friendDatabase.getItemDao()
+        val douShengDatabase = DouShengDatabase.getDatabase(application)
+        friendDao = douShengDatabase.getFriendItemDao()
         allFollowLiveData = friendDao.getAllFollowLiveData()
     }
 

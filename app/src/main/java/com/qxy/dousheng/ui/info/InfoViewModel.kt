@@ -8,19 +8,18 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.google.gson.Gson
 import com.qxy.dousheng.dao.InfoDao
-import com.qxy.dousheng.database.InfoDatabase
-import com.qxy.dousheng.model.InfoItem
-import com.qxy.dousheng.model.InfoJson
+import com.qxy.dousheng.database.DouShengDatabase
+import com.qxy.dousheng.model.info.InfoItem
+import com.qxy.dousheng.model.info.InfoJson
 
 class InfoViewModel(application: Application) : AndroidViewModel(application) {
     private var infoDao: InfoDao
     private val allInfoItemLiveData: LiveData<List<InfoItem>>
 
     init {
-        val infoDatabase = InfoDatabase.getDatabase(application)
-        infoDao = infoDatabase.getItemDao()
+        val database = DouShengDatabase.getDatabase(application)
+        infoDao = database.getInfoItemDao()
         allInfoItemLiveData = infoDao.getAllInfoLiveData()
-
     }
 
     fun getLiveData(): LiveData<List<InfoItem>> = allInfoItemLiveData

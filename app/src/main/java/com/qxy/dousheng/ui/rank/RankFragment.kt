@@ -12,6 +12,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.qxy.dousheng.R
+import com.qxy.dousheng.databinding.FragmentRankBinding
 
 class RankFragment : Fragment() {
 
@@ -20,12 +21,14 @@ class RankFragment : Fragment() {
     }
 
     private lateinit var viewModel: RankViewModel
+    private lateinit var binding: FragmentRankBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_rank, container, false);
+    ): View {
+        binding = FragmentRankBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     @SuppressLint("ResourceType")

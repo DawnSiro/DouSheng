@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.qxy.dousheng.adapter.VideoAdapter
 import com.qxy.dousheng.databinding.FragmentVideoBinding
-import com.qxy.dousheng.model.VideoItem
+import com.qxy.dousheng.model.video.VideoItem
 
 class VideoFragment : Fragment() {
     private lateinit var viewModel: VideoViewModel

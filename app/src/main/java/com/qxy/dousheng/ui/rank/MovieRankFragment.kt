@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.qxy.dousheng.adapter.RankAdapter
 import com.qxy.dousheng.databinding.FragmentMovieRankBinding
-import com.qxy.dousheng.model.RankItem
+import com.qxy.dousheng.model.rank.RankItem
 
 class MovieRankFragment : Fragment() {
     private lateinit var viewModel: MovieRankViewModel

@@ -1,4 +1,4 @@
-package com.qxy.dousheng.model
+package com.qxy.dousheng.model.friend
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

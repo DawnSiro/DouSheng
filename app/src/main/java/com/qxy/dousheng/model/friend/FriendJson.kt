@@ -1,4 +1,4 @@
-package com.qxy.dousheng.model
+package com.qxy.dousheng.model.friend
 
 class FriendJson {
     var data: DataDTO = DataDTO()

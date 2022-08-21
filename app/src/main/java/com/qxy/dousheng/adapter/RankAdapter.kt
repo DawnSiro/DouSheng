@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.qxy.dousheng.R
-import com.qxy.dousheng.model.RankItem
+import com.qxy.dousheng.model.rank.RankItem
 
 class RankAdapter(var rankList: List<RankItem>) :
     RecyclerView.Adapter<RankAdapter.ViewHolder>() {
@@ -54,8 +54,4 @@ class RankAdapter(var rankList: List<RankItem>) :
 
     override fun getItemCount() = rankList.size
 
-}
-
-internal interface CallBack {
-    fun onClick()
 }

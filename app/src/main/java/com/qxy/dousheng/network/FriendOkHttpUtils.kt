@@ -129,6 +129,7 @@ class FriendOkHttpUtils {
         // 判断是否为粉丝
         fun doFansCheckGet(checkId: String): String {
             val response = friendClient.newCall(getFansCheckRequest(checkId)).execute()
+            Log.i(TAG, "doFansCheckGet: haoye")
             return response.body?.string() ?: ""
         }
 

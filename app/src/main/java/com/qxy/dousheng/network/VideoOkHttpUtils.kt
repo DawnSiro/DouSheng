@@ -3,7 +3,7 @@ package com.qxy.dousheng.network
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import com.qxy.dousheng.model.InfoJson
+import com.qxy.dousheng.model.info.InfoJson
 import okhttp3.*
 import java.io.IOException
 

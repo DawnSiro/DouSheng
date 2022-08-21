@@ -8,9 +8,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.google.gson.Gson
 import com.qxy.dousheng.dao.RankDao
-import com.qxy.dousheng.database.RankDatabase
-import com.qxy.dousheng.model.RankItem
-import com.qxy.dousheng.model.RankJson
+import com.qxy.dousheng.database.DouShengDatabase
+import com.qxy.dousheng.model.rank.RankItem
+import com.qxy.dousheng.model.rank.RankJson
 import com.qxy.dousheng.network.OkHttpCallback
 import com.qxy.dousheng.network.RankOkHttpUtils
 
@@ -19,8 +19,8 @@ class ArtRankViewModel(application: Application) : AndroidViewModel(application)
     private var allRankItemLive: LiveData<List<RankItem>>
 
     init {
-        val rankDatabase = RankDatabase.getDatabase(application.applicationContext)
-        rankDao = rankDatabase.getItemDao()
+        val database = DouShengDatabase.getDatabase(application.applicationContext)
+        rankDao = database.getRankItemDao()
         allRankItemLive = rankDao.allArtItemLive()
     }
 

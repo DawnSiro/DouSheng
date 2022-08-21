@@ -1,4 +1,4 @@
-package com.qxy.dousheng.model
+package com.qxy.dousheng.model.friend
 
 data class FansCheckJson(
     var data: DataDTO = DataDTO(),

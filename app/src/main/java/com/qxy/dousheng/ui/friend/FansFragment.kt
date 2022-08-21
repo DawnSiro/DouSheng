@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.qxy.dousheng.adapter.FriendAdapter
 import com.qxy.dousheng.databinding.FragmentFansBinding
-import com.qxy.dousheng.model.FriendItem
+import com.qxy.dousheng.model.friend.FriendItem
 
 class FansFragment : Fragment() {
     private lateinit var binding: FragmentFansBinding

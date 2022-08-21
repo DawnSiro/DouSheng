@@ -5,6 +5,7 @@ import android.app.Application
 import android.content.Context
 import android.util.Log
 import android.view.Choreographer
+import com.qxy.dousheng.monitor.BlockDetectByPrinter
 
 class DouShengApplication:Application() {
     companion object{

@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.qxy.dousheng.adapter.RankAdapter
 import com.qxy.dousheng.databinding.FragmentVideoRankBinding
-import com.qxy.dousheng.model.RankItem
+import com.qxy.dousheng.model.rank.RankItem
 
 class VideoRankFragment : Fragment() {
     private lateinit var binding: FragmentVideoRankBinding

@@ -8,10 +8,10 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.google.gson.Gson
 import com.qxy.dousheng.dao.VideoDao
-import com.qxy.dousheng.database.VideoDatabase
-import com.qxy.dousheng.model.VideoItem
-import com.qxy.dousheng.model.VideoJson
-import com.qxy.dousheng.model.VideoList
+import com.qxy.dousheng.database.DouShengDatabase
+import com.qxy.dousheng.model.video.VideoItem
+import com.qxy.dousheng.model.video.VideoJson
+import com.qxy.dousheng.model.video.VideoList
 import com.qxy.dousheng.network.OkHttpCallback
 import com.qxy.dousheng.network.VideoOkHttpUtils
 
@@ -21,8 +21,8 @@ class VideoViewModel(application: Application) : AndroidViewModel(application) {
     var updateFlag = true
 
     init {
-        val videoDatabase = VideoDatabase.getDatabase(application)
-        videoDao = videoDatabase.getItemDao()
+        val database = DouShengDatabase.getDatabase(application)
+        videoDao = database.getVideoItemDao()
         allVideoLiveData = videoDao.allVideoLiveData()
     }
 

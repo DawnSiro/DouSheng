@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.qxy.dousheng.model.InfoItem
+import com.qxy.dousheng.model.info.InfoItem
 
 @Dao
 interface InfoDao {
