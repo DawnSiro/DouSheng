@@ -2,10 +2,10 @@ package com.qxy.dousheng.ui.info
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -13,8 +13,8 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 import com.qxy.dousheng.R
 import com.qxy.dousheng.databinding.FragmentInfoBinding
-import com.qxy.dousheng.network.InfoOkHttpUtils
-import com.qxy.dousheng.network.OkHttpCallback
+import com.qxy.dousheng.network.RankOkHttpUtils
+
 
 class InfoFragment : Fragment() {
     private lateinit var binding: FragmentInfoBinding
@@ -85,21 +85,18 @@ class InfoFragment : Fragment() {
                 }
             }
 
-            InfoOkHttpUtils.doInfoPost(object : OkHttpCallback {
-                override fun isFail() {
-                    Log.d("okHttp", "isFail: doInfoPost")
-                }
+            viewModel.doInfoPost()
 
-                override fun isSuccess(json: String?) {
-                    if (json == null) {
-                        Log.d("okHttp", "isSuccess: json is null")
-                    } else {
-                        Log.d("okHttp", "isSuccess: json is ok")
-                        viewModel.update(json)
-                    }
-                }
 
-            })
+            val adapter = ArrayAdapter(
+                requireActivity(),
+                android.R.layout.simple_spinner_dropdown_item,
+                RankOkHttpUtils.getRankVersion()
+            )
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+            binding.spinner.adapter = adapter
+            binding.spinner.prompt = requireActivity().resources.getString(R.string.version)
         }
     }
 

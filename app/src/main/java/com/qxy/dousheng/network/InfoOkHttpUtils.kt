@@ -136,7 +136,7 @@ class InfoOkHttpUtils() {
         fun doInfoPost(callback: OkHttpCallback) {
             infoClient.newCall(getInfoRequest()).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
-                    Log.e(TAG, "onFailure: $e")
+                    Log.e(TAG, "doInfoPost: $e")
                     handle.post {
                         callback.isFail()
                     }
