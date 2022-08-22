@@ -3,6 +3,9 @@ package com.qxy.dousheng.model.video
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/**
+ * 数据实体类，对应数据库中的表
+ */
 @Entity
 data class VideoItem(
     var title: String = "",

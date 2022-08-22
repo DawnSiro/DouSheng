@@ -2,10 +2,10 @@ package com.qxy.dousheng.ui.info
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -13,8 +13,8 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 import com.qxy.dousheng.R
 import com.qxy.dousheng.databinding.FragmentInfoBinding
-import com.qxy.dousheng.network.RankOkHttpUtils
-
+import com.qxy.dousheng.network.InfoOkHttpUtils
+import com.qxy.dousheng.network.OkHttpCallback
 
 class InfoFragment : Fragment() {
     private lateinit var binding: FragmentInfoBinding
@@ -45,11 +45,7 @@ class InfoFragment : Fragment() {
                     binding.nicknameTextView.text = info.nickname
 
                     // 设置图片
-                    val options: RequestOptions = RequestOptions().transform(CircleCrop())
-                    Glide.with(this)
-                        .load(info.avatar_larger)
-                        .apply(options)
-                        .into(binding.avatarImageView)
+                    GlideUtils.loadCircle(this, info.avatar_larger, binding.avatarImageView)
 
                     // 设置城市
                     if (info.country == "") {

@@ -20,7 +20,6 @@ class VideoFragment : Fragment() {
         fun newInstance() = VideoFragment()
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

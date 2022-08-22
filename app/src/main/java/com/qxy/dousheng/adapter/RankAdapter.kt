@@ -11,14 +11,16 @@ import com.bumptech.glide.Glide
 import com.qxy.dousheng.R
 import com.qxy.dousheng.model.rank.RankItem
 
+/**
+ * Adapter 适配器层
+ * 持有数据集合对象，将数据同步更新到视图上
+ */
 class RankAdapter(var rankList: List<RankItem>) :
     RecyclerView.Adapter<RankAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val itemPoster: ImageView = view.findViewById(R.id.imageViewPoster)
         val itemName: TextView = view.findViewById(R.id.textViewName)
-
-        //        val itemRank: TextView = view.findViewById(R.id.textViewRank)
         val itemTime: TextView = view.findViewById(R.id.textViewTime)
         val itemHot: TextView = view.findViewById(R.id.textViewHot)
     }
@@ -42,7 +44,6 @@ class RankAdapter(var rankList: List<RankItem>) :
         val rank = position.plus(1)
 
         holder.itemName.text = rank.toString() + ". " + item.name
-//        holder.itemRank.text = rank.toString()
         if (item.hot > 10000) {
             holder.itemHot.text = ((item.hot / 10000).toString() + "万")
         } else {

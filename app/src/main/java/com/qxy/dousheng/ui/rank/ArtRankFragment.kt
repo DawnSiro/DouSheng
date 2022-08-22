@@ -21,7 +21,6 @@ class ArtRankFragment : Fragment() {
         fun newInstance() = ArtRankFragment()
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

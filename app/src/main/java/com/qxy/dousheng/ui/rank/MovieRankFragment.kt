@@ -20,7 +20,6 @@ class MovieRankFragment : Fragment() {
         fun newInstance() = MovieRankFragment()
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

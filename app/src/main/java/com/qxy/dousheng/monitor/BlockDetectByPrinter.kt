@@ -3,6 +3,9 @@ package com.qxy.dousheng.monitor
 import android.os.Looper
 import android.util.Printer
 
+/**
+ * 性能耗时监控
+ */
 class BlockDetectByPrinter {
     companion object {
         fun start() {
