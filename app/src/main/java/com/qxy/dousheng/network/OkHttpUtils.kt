@@ -8,6 +8,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import com.google.gson.Gson
+import com.qxy.dousheng.constant.AppConstant
 import com.qxy.dousheng.model.AccessTokenJson
 import com.qxy.dousheng.model.ClientAccessJson
 import com.qxy.dousheng.model.rank.RankVersionJson
@@ -19,10 +20,10 @@ import java.io.IOException
  */
 class OkHttpUtils {
     companion object {
-        private const val baseUrl = "https://open.douyin.com" // 抖音平台
-        private const val mockUrl = "https://mock.apifox.cn/m1/1441581-0-default" // mock 地址
-        private const val clientKey = "awr4g04kxg26jk2l" // 需要到开发者网站申请并替换
-        private const val clientSecret = "ce6a9c54648b7f99565a66f20fd70866"
+        private const val baseUrl = AppConstant.BASE_URL // 抖音平台
+        private const val mockUrl = AppConstant.MOCK_URL // mock 地址
+        private const val clientKey = AppConstant.CLIENT_KEY // 需要到开发者网站申请并替换
+        private const val clientSecret = AppConstant.CLIENT_SECRET
         private const val TAG = "okHttp"
 
         // 验权用的 openid 和 access_token
@@ -236,7 +237,7 @@ class OkHttpUtils {
          */
         private fun getMovieRankRequest(): Request {
             val interfaceUrl = "/discovery/ent/rank/item/?type=1"
-            val url = mockUrl + interfaceUrl
+            val url = baseUrl + interfaceUrl
             if (!this::movieRequest.isInitialized) {
                 movieRequest = Request.Builder()
                     .url(url)
@@ -252,7 +253,7 @@ class OkHttpUtils {
          */
         private fun getTeleplayRankRequest(): Request {
             val interfaceUrl = "/discovery/ent/rank/item/?type=2"
-            val url = mockUrl + interfaceUrl
+            val url = baseUrl + interfaceUrl
 
             teleplayRequest = Request.Builder()
                 .url(url)
@@ -269,7 +270,7 @@ class OkHttpUtils {
          */
         private fun getArtRankRequest(): Request {
             val interfaceUrl = "/discovery/ent/rank/item/?type=3"
-            val url = mockUrl + interfaceUrl
+            val url = baseUrl + interfaceUrl
 
             if (!this::artRequest.isInitialized) {
                 artRequest = Request.Builder()

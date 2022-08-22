@@ -57,19 +57,25 @@ class VideoAdapter(var videoList: List<VideoItem>) :
         Log.d("okHttp", (videoItem.create_time / 1000 / 60 / 60 / 24).toString())
 
         // 对播放量、点赞数、评论数进行量级处理
-        val playCount: String = if(videoItem.play_count > 10000){
+        val playCount: String = if(videoItem.play_count > 100000000){
+            (videoItem.play_count / 100000000).toString() + "亿"
+        }else if(videoItem.play_count > 10000){
             (videoItem.play_count / 10000).toString() + "万"
         }else{
             videoItem.play_count.toString()
         }
 
-        val diggCount: String = if(videoItem.digg_count > 10000){
+        val diggCount: String = if(videoItem.digg_count > 100000000){
+            (videoItem.digg_count / 100000000).toString() + "亿"
+        }else if(videoItem.digg_count > 10000){
             (videoItem.digg_count / 10000).toString() + "万"
         }else{
             videoItem.digg_count.toString()
         }
 
-        val commentCount: String = if(videoItem.comment_count > 10000){
+        val commentCount: String = if(videoItem.comment_count > 100000000){
+            (videoItem.comment_count / 100000000).toString() + "亿"
+        }else if(videoItem.comment_count > 10000){
             (videoItem.comment_count / 10000).toString() + "万"
         }else{
             videoItem.comment_count.toString()

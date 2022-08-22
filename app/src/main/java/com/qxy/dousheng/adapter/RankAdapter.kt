@@ -46,7 +46,9 @@ class RankAdapter(var rankList: List<RankItem>) :
 
         holder.itemName.text = rank.toString() + ". " + item.name
         // 热度量级处理
-        if (item.hot > 10000) {
+        if(item.hot > 100000000) {
+            holder.itemHot.text = ("热度: " + (item.hot / 100000000).toString() + "亿")
+        }else if (item.hot > 10000) {
             holder.itemHot.text = ("热度: " + (item.hot / 10000).toString() + "万")
         } else {
             holder.itemHot.text = "热度: " + item.hot.toString()
