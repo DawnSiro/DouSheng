@@ -2,21 +2,21 @@ package com.qxy.dousheng.model.friend
 
 data class FansCheckJson(
     var data: DataDTO = DataDTO(),
-    var extra: ExtraDTO? = null
+    var extra: ExtraDTO = ExtraDTO()
 )
 
 data class DataDTO(
-    var follow_time: Int? = null,
+    var follow_time: Int = 0,
     var is_follower: Boolean = false,
-    var error_code: Int? = null,
-    var description: String? = null
+    var error_code: Int = 0,
+    var description: String = ""
 )
 
 data class ExtraDTO(
-    var error_code: Int? = null,
-    var description: String? = null,
-    var sub_error_code: Int? = null,
-    var sub_description: String? = null,
-    var now: Long? = null,
-    var logid: String? = null
+    var error_code: Int = 0,
+    var description: String = "",
+    var sub_error_code: Int = 0,
+    var sub_description: String = "",
+    var now: Long = 0,
+    var logid: String = ""
 )

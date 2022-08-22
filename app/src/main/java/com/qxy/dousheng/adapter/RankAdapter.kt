@@ -11,6 +11,10 @@ import com.bumptech.glide.Glide
 import com.qxy.dousheng.R
 import com.qxy.dousheng.model.rank.RankItem
 
+/**
+ * Adapter 适配器层
+ * 持有数据集合对象，将数据同步更新到视图上
+ */
 class RankAdapter(var rankList: List<RankItem>) :
     RecyclerView.Adapter<RankAdapter.ViewHolder>() {
 

@@ -5,7 +5,10 @@ import android.os.HandlerThread
 import android.os.Looper
 import android.util.Log
 
-public object LogMonitor {
+/**
+ * 日志监视器
+ */
+object LogMonitor {
     private val TAG = "LogMonitor"
     private var mIoHandler: Handler
     //方法耗时的卡口,300毫秒

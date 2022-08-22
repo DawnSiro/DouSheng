@@ -6,6 +6,10 @@ import androidx.room.Insert
 import androidx.room.Query
 import com.qxy.dousheng.model.friend.FriendItem
 
+/**
+ * DAO(Data Access Object) 数据访问对象
+ * 由 room 提供具体实现
+ */
 @Dao
 interface FriendDao {
     @Insert

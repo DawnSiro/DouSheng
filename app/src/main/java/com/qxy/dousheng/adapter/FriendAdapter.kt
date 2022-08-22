@@ -14,6 +14,10 @@ import com.bumptech.glide.request.RequestOptions
 import com.qxy.dousheng.R
 import com.qxy.dousheng.model.friend.FriendItem
 
+/**
+ * Adapter 适配器层
+ * 持有数据集合对象，将数据同步更新到视图上
+ */
 class FriendAdapter(var friendList: List<FriendItem>) :
     RecyclerView.Adapter<FriendAdapter.ViewHolder>() {
 

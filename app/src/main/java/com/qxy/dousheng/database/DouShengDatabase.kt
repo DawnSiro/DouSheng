@@ -14,7 +14,9 @@ import com.qxy.dousheng.model.rank.RankItem
 import com.qxy.dousheng.model.video.VideoItem
 import org.jetbrains.annotations.NotNull
 
-//singleton
+/**
+ * room 数据库对象，采用了单例模式实现
+ */
 @Database(entities = [FriendItem::class, InfoItem::class, RankItem::class, VideoItem::class], version = 2, exportSchema = false)
 abstract class DouShengDatabase : RoomDatabase() {
     companion object {
