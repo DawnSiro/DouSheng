@@ -20,7 +20,6 @@ class FollowFragment : Fragment() {
         fun newInstance() = FollowFragment()
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
