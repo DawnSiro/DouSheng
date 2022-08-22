@@ -1,5 +1,8 @@
 package com.qxy.dousheng.model.friend
 
+/**
+ * 获取关注列表和粉丝列表的 JSON 对象
+ */
 class FriendJson {
     var data: DataDTO = DataDTO()
     var extra: ExtraDTO = ExtraDTO()
@@ -30,6 +33,6 @@ class FriendJson {
         var description: String = ""
         var sub_error_code: Int = 0
         var sub_description: String = ""
-        var now: Int = 0
+        var now: Long = 0 // 这里用 Int 可能会超出范围。Long 最大值为 9 开头的 19 位数
     }
 }

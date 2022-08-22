@@ -10,9 +10,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.qxy.dousheng.R
 import com.qxy.dousheng.databinding.FragmentInfoBinding
-import com.qxy.dousheng.network.RankOkHttpUtils
+import com.qxy.dousheng.network.OkHttpUtils
 import com.qxy.dousheng.util.GlideUtils
 
+/**
+ * Info 用户信息模块 Fragment
+ */
 class InfoFragment : Fragment() {
     private lateinit var binding: FragmentInfoBinding
     private lateinit var viewModel: InfoViewModel
@@ -84,7 +87,7 @@ class InfoFragment : Fragment() {
             val adapter = ArrayAdapter(
                 requireActivity(),
                 android.R.layout.simple_spinner_dropdown_item,
-                RankOkHttpUtils.getRankVersion()
+                OkHttpUtils.getRankVersion()
             )
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 

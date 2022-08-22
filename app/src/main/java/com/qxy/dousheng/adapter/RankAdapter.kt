@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.qxy.dousheng.R
 import com.qxy.dousheng.model.rank.RankItem
+import com.qxy.dousheng.util.GlideUtils
 
 /**
  * Adapter 适配器层
@@ -18,6 +18,9 @@ import com.qxy.dousheng.model.rank.RankItem
 class RankAdapter(var rankList: List<RankItem>) :
     RecyclerView.Adapter<RankAdapter.ViewHolder>() {
 
+    /**
+     * 视图持有类，其成员变量对应 .xml 中的视图
+     */
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val itemPoster: ImageView = view.findViewById(R.id.imageViewPoster)
         val itemName: TextView = view.findViewById(R.id.textViewName)
@@ -37,17 +40,16 @@ class RankAdapter(var rankList: List<RankItem>) :
         val poster = item.poster
 
         // 更新海报
-        Glide.with(holder.itemView)
-            .load(poster)
-            .into(holder.itemPoster)
+        GlideUtils.load(holder.itemView, poster, holder.itemPoster)
 
         val rank = position.plus(1)
 
         holder.itemName.text = rank.toString() + ". " + item.name
+        // 热度量级处理
         if (item.hot > 10000) {
-            holder.itemHot.text = ((item.hot / 10000).toString() + "万")
+            holder.itemHot.text = ("热度: " + (item.hot / 10000).toString() + "万")
         } else {
-            holder.itemHot.text = item.hot.toString()
+            holder.itemHot.text = "热度: " + item.hot.toString()
         }
 
         holder.itemTime.text = item.time

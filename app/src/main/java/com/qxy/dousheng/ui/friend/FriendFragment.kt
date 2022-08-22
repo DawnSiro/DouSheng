@@ -12,6 +12,9 @@ import androidx.navigation.ui.NavigationUI
 import com.qxy.dousheng.R
 import com.qxy.dousheng.databinding.FragmentFriendBinding
 
+/**
+ * Friend 朋友模块页面 Fragment
+ */
 class FriendFragment : Fragment() {
     private lateinit var binding: FragmentFriendBinding
     private lateinit var viewModel: FriendViewModel
@@ -30,7 +33,7 @@ class FriendFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(FriendViewModel::class.java)
+        viewModel = ViewModelProvider(this)[FriendViewModel::class.java]
 
         // load
         val friendNavHostFragment: NavHostFragment =

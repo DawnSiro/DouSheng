@@ -1,5 +1,8 @@
 package com.qxy.dousheng.model.rank
 
+/**
+ * 获取排行榜版本 JSON 对象
+ */
 data class RankVersionJson(
     var data: RankVersionData = RankVersionData(),
     var extra: RankVersionExtra = RankVersionExtra()

@@ -14,6 +14,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.qxy.dousheng.R
 import com.qxy.dousheng.databinding.FragmentRankBinding
 
+/**
+ * Rank 榜单模块 Fragment
+ */
 class RankFragment : Fragment() {
 
     companion object {

@@ -12,9 +12,12 @@ import com.qxy.dousheng.database.DouShengDatabase
 import com.qxy.dousheng.model.rank.RankItem
 import com.qxy.dousheng.model.rank.RankJson
 import com.qxy.dousheng.network.OkHttpCallback
-import com.qxy.dousheng.network.RankOkHttpUtils
+import com.qxy.dousheng.network.OkHttpUtils
 
-class VideoRankViewModel(application: Application) : AndroidViewModel(application) {
+/**
+ * 电视剧榜单 ViewModel 类，对相关数据进行监控并及时同步到 View
+ */
+class TeleplayRankViewModel(application: Application) : AndroidViewModel(application) {
 
     private var rankDao: RankDao
     private var allRankItemLive: LiveData<List<RankItem>>
@@ -39,17 +42,17 @@ class VideoRankViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     fun doGet() {
-        RankOkHttpUtils.doVideoGet(object : OkHttpCallback {
+        OkHttpUtils.doTeleplayGet(object : OkHttpCallback {
             override fun isFail() {
-                Log.d("okHttp", "doVideoGet 出错")
+                Log.d("okHttp", "doTeleplayGet 出错")
             }
 
             override fun isSuccess(json: String?) {
                 if (json != null) {
-                    Log.d("okHttp", "doVideoGet: $json")
+                    Log.d("okHttp", "doTeleplayGet: $json")
                     update(json)
                 } else {
-                    Log.d("okHttp", "doVideoGet: json=null")
+                    Log.d("okHttp", "doTeleplayGet: json=null")
                 }
             }
 

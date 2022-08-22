@@ -1,5 +1,8 @@
 package com.qxy.dousheng.model
 
+/**
+ * 获取 client_access_token JSON 对象
+ */
 data class ClientAccessJson(
     var data: ClientData = ClientData(),
     var message: String = "",

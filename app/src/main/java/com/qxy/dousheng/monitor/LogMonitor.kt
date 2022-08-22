@@ -9,10 +9,10 @@ import android.util.Log
  * 日志监视器
  */
 object LogMonitor {
-    private val TAG = "LogMonitor"
+    private const val TAG = "LogMonitor"
     private var mIoHandler: Handler
     //方法耗时的卡口,300毫秒
-    private val TIME_BLOCK = 300L
+    private const val TIME_BLOCK = 300L
 
     private val mLogRunnable = Runnable() {
         //打印出执行的耗时方法的栈消息

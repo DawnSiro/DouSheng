@@ -12,7 +12,9 @@ import com.qxy.dousheng.adapter.RankAdapter
 import com.qxy.dousheng.databinding.FragmentArtRankBinding
 import com.qxy.dousheng.model.rank.RankItem
 
-
+/**
+ * 综艺排行榜单 Fragment
+ */
 class ArtRankFragment : Fragment() {
     private lateinit var binding: FragmentArtRankBinding
     private lateinit var viewModel: ArtRankViewModel
@@ -29,7 +31,6 @@ class ArtRankFragment : Fragment() {
         return binding.root
     }
 
-    @Deprecated("Deprecated in Java")
     @SuppressLint("NotifyDataSetChanged")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

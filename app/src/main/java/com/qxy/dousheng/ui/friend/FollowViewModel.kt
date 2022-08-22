@@ -12,9 +12,12 @@ import com.qxy.dousheng.database.DouShengDatabase
 import com.qxy.dousheng.model.friend.FansCheckJson
 import com.qxy.dousheng.model.friend.FriendItem
 import com.qxy.dousheng.model.friend.FriendJson
-import com.qxy.dousheng.network.FriendOkHttpUtils
 import com.qxy.dousheng.network.OkHttpCallback
+import com.qxy.dousheng.network.OkHttpUtils
 
+/**
+ * 关注列表 ViewModel 类，对相关数据进行监控并及时同步到 View
+ */
 class FollowViewModel(application: Application) : AndroidViewModel(application) {
     private var friendDao: FriendDao
     private val allFollowLiveData: LiveData<List<FriendItem>>
@@ -36,7 +39,7 @@ class FollowViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     fun doGet() {
-        FriendOkHttpUtils.doFollowGet(object : OkHttpCallback {
+        OkHttpUtils.doFollowGet(object : OkHttpCallback {
             override fun isFail() {
                 Log.d("okHttp", "doFollowGet 出错")
 
@@ -87,7 +90,7 @@ class FollowViewModel(application: Application) : AndroidViewModel(application) 
         override fun doInBackground(vararg params: FriendItem): Boolean {
             for (i in params) {
                 val gson = Gson()
-                val json = FriendOkHttpUtils.doFansCheckGet(i.open_id)
+                val json = OkHttpUtils.doFansCheckGet(i.open_id)
                 Log.d("okHttp", "doFansCheckGet: ${i.name} $json")
                 val checkJson = gson.fromJson(json, FansCheckJson::class.java)
                 i.isFollow = if (checkJson.data.is_follower) 3 else 1

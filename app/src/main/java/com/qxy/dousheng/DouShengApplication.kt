@@ -12,6 +12,7 @@ class DouShengApplication:Application() {
         @SuppressLint("StaticFieldLeak")
         lateinit var context: Context
     }
+
     override fun onCreate() {
         super.onCreate()
         context = applicationContext
@@ -20,6 +21,10 @@ class DouShengApplication:Application() {
         //滑动FPS监控
         Choreographer.getInstance().postFrameCallback(FPSFrameCallback(System.nanoTime()))
     }
+
+    /**
+     * FPS 回调
+     */
     inner class FPSFrameCallback(lastFrameTimeNanos: Long) : Choreographer.FrameCallback {
         private var mLastFrameTimeNanos: Long = 0
         private val mFrameIntervalNanos: Long

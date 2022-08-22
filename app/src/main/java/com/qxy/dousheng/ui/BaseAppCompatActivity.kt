@@ -8,6 +8,7 @@ import com.bytedance.sdk.open.douyin.DouYinOpenConfig
 import com.bytedance.sdk.open.douyin.api.DouYinOpenApi
 
 open class BaseAppCompatActivity : AppCompatActivity() {
+    // 授权的权限
     private val mScope = "trial.whitelist," +
             "user_info," +
             "discovery.ent," +

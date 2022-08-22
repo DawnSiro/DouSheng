@@ -13,9 +13,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.qxy.dousheng.R
 import com.qxy.dousheng.model.video.VideoItem
+import com.qxy.dousheng.util.GlideUtils
 
 /**
  * Adapter 适配器层
@@ -24,6 +24,9 @@ import com.qxy.dousheng.model.video.VideoItem
 class VideoAdapter(var videoList: List<VideoItem>) :
     RecyclerView.Adapter<VideoAdapter.ViewHolder>() {
 
+    /**
+     * 视图持有类，其成员变量对应 .xml 中的视图
+     */
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val cover: ImageView = view.findViewById(R.id.videoCoverImageView)
         val title: TextView = view.findViewById(R.id.videoTitleTextView)
@@ -43,9 +46,8 @@ class VideoAdapter(var videoList: List<VideoItem>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val videoItem = videoList[position]
 
-        Glide.with(holder.itemView)
-            .load(videoItem.cover)
-            .into(holder.cover)
+        // 加载视频封面
+        GlideUtils.load(holder.itemView, videoItem.cover, holder.cover)
 
         holder.title.text = videoItem.title
 
@@ -55,19 +57,19 @@ class VideoAdapter(var videoList: List<VideoItem>) :
         Log.d("okHttp", (videoItem.create_time / 1000 / 60 / 60 / 24).toString())
 
         // 对播放量、点赞数、评论数进行量级处理
-        var playCount: String = if(videoItem.play_count > 10000){
+        val playCount: String = if(videoItem.play_count > 10000){
             (videoItem.play_count / 10000).toString() + "万"
         }else{
             videoItem.play_count.toString()
         }
 
-        var diggCount: String = if(videoItem.digg_count > 10000){
+        val diggCount: String = if(videoItem.digg_count > 10000){
             (videoItem.digg_count / 10000).toString() + "万"
         }else{
             videoItem.digg_count.toString()
         }
 
-        var commentCount: String = if(videoItem.comment_count > 10000){
+        val commentCount: String = if(videoItem.comment_count > 10000){
             (videoItem.comment_count / 10000).toString() + "万"
         }else{
             videoItem.comment_count.toString()

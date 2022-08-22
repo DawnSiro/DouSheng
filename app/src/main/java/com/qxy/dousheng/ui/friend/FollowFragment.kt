@@ -12,6 +12,9 @@ import com.qxy.dousheng.adapter.FriendAdapter
 import com.qxy.dousheng.databinding.FragmentFollowBinding
 import com.qxy.dousheng.model.friend.FriendItem
 
+/**
+ * 关注列表 Fragment
+ */
 class FollowFragment : Fragment() {
     private lateinit var binding: FragmentFollowBinding
     private lateinit var viewModel: FollowViewModel
@@ -28,7 +31,6 @@ class FollowFragment : Fragment() {
         return binding.root
     }
 
-    @Deprecated("Deprecated in Java")
     @SuppressLint("NotifyDataSetChanged")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

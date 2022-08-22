@@ -12,6 +12,9 @@ import com.qxy.dousheng.adapter.RankAdapter
 import com.qxy.dousheng.databinding.FragmentMovieRankBinding
 import com.qxy.dousheng.model.rank.RankItem
 
+/**
+ * 电影排行榜单 Fragment
+ */
 class MovieRankFragment : Fragment() {
     private lateinit var viewModel: MovieRankViewModel
     private lateinit var binding: FragmentMovieRankBinding

@@ -11,9 +11,12 @@ import com.qxy.dousheng.dao.InfoDao
 import com.qxy.dousheng.database.DouShengDatabase
 import com.qxy.dousheng.model.info.InfoItem
 import com.qxy.dousheng.model.info.InfoJson
-import com.qxy.dousheng.network.InfoOkHttpUtils
+import com.qxy.dousheng.network.OkHttpUtils
 import com.qxy.dousheng.network.OkHttpCallback
 
+/**
+ * 用户个人信息 ViewModel 类，对相关数据进行监控并及时同步到 View
+ */
 class InfoViewModel(application: Application) : AndroidViewModel(application) {
     private var infoDao: InfoDao
     private val allInfoItemLiveData: LiveData<List<InfoItem>>
@@ -35,7 +38,7 @@ class InfoViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun doInfoPost() {
-        InfoOkHttpUtils.doInfoPost(object : OkHttpCallback {
+        OkHttpUtils.doInfoPost(object : OkHttpCallback {
             override fun isFail() {
                 Log.d("okHttp", "isFail: doInfoPost")
             }

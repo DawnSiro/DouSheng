@@ -1,5 +1,8 @@
 package com.qxy.dousheng.model.friend
 
+/**
+ * 粉丝判断接口的 JSON 对象
+ */
 data class FansCheckJson(
     var data: DataDTO = DataDTO(),
     var extra: ExtraDTO = ExtraDTO()

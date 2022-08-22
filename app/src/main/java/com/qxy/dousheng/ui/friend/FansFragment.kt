@@ -12,6 +12,9 @@ import com.qxy.dousheng.adapter.FriendAdapter
 import com.qxy.dousheng.databinding.FragmentFansBinding
 import com.qxy.dousheng.model.friend.FriendItem
 
+/**
+ * 粉丝列表 Fragment
+ */
 class FansFragment : Fragment() {
     private lateinit var binding: FragmentFansBinding
     private lateinit var viewModel: FansViewModel
@@ -28,7 +31,6 @@ class FansFragment : Fragment() {
         return binding.root
     }
 
-    @Deprecated("Deprecated in Java")
     @SuppressLint("NotifyDataSetChanged")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

@@ -10,11 +10,20 @@ import com.bumptech.glide.request.RequestOptions
 
 
 /**
- * Glide 工具包，处理用图片用
+ * Glide 工具类，处理用图片用
  */
 class GlideUtils {
     companion object{
         private const val TAG = "GlideUtil"
+
+        /**
+         * 加载图片
+         */
+        fun load(view: View, url: String, imageView: ImageView) {
+            Glide.with(view)
+                .load(url)
+                .into(imageView)
+        }
 
         /**
          * 将图片处理成圆形(View)
@@ -50,16 +59,13 @@ class GlideUtils {
         fun loadCircle(fragment: Fragment, url: String, imageView: ImageView, size: Int) {
             // 设置
             val options: RequestOptions  = RequestOptions().transform(CircleCrop())
-
-            Log.i(TAG, "loadCircle: $url")
-
             // 加载图片
             Glide.with(fragment)
                 .load(url)
                 .override(900)
                 .apply(options)
                 .into(imageView)
-
+            Log.i(TAG, "loadCircle: $url")
         }
 
     }

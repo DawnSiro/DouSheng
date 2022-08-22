@@ -14,7 +14,7 @@ import com.bytedance.sdk.open.aweme.common.model.BaseReq
 import com.bytedance.sdk.open.aweme.common.model.BaseResp
 import com.bytedance.sdk.open.douyin.DouYinOpenApiFactory
 import com.bytedance.sdk.open.douyin.api.DouYinOpenApi
-import com.qxy.dousheng.network.InfoOkHttpUtils
+import com.qxy.dousheng.network.OkHttpUtils
 import com.qxy.dousheng.network.OkHttpCallback
 
 /**
@@ -48,8 +48,8 @@ class DouYinEntryActivity : Activity(), IApiEventHandler {
                     Toast.LENGTH_LONG
                 ).show()
 
-                InfoOkHttpUtils.setContext(this)
-                InfoOkHttpUtils.doAccessGet(object : OkHttpCallback {
+                OkHttpUtils.setContext(this)
+                OkHttpUtils.doAccessGet(object : OkHttpCallback {
                     override fun isFail() {
                         Log.d("okHttp", "doAccessGet 出错")
                     }
