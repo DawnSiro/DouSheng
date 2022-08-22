@@ -13,6 +13,7 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 import com.qxy.dousheng.R
 import com.qxy.dousheng.model.friend.FriendItem
+import com.qxy.dousheng.util.GlideUtils
 
 /**
  * Adapter 适配器层
@@ -39,13 +40,8 @@ class FriendAdapter(var friendList: List<FriendItem>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val friendItem = friendList[position]
 
-        // 设置图片
-        val options: RequestOptions = RequestOptions().transform(CircleCrop())
-        // 加载图片
-        Glide.with(holder.itemView)
-            .load(friendItem.avatar)
-            .apply(options)
-            .into(holder.avatar)
+        // 设置头像
+        GlideUtils.loadCircle(holder.itemView, friendItem.avatar, holder.avatar)
 
         holder.userName.text = friendItem.name
         holder.location.text = "${friendItem.country} ${friendItem.province} ${friendItem.city}"

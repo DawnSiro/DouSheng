@@ -20,7 +20,6 @@ class FansFragment : Fragment() {
         fun newInstance() = FansFragment()
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

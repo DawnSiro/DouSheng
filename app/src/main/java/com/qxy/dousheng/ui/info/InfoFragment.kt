@@ -15,6 +15,7 @@ import com.qxy.dousheng.R
 import com.qxy.dousheng.databinding.FragmentInfoBinding
 import com.qxy.dousheng.network.InfoOkHttpUtils
 import com.qxy.dousheng.network.OkHttpCallback
+import com.qxy.dousheng.util.GlideUtils
 
 class InfoFragment : Fragment() {
     private lateinit var binding: FragmentInfoBinding
@@ -23,7 +24,6 @@ class InfoFragment : Fragment() {
     companion object {
         fun newInstance() = InfoFragment()
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,11 +45,7 @@ class InfoFragment : Fragment() {
                     binding.nicknameTextView.text = info.nickname
 
                     // 设置图片
-                    val options: RequestOptions = RequestOptions().transform(CircleCrop())
-                    Glide.with(this)
-                        .load(info.avatar_larger)
-                        .apply(options)
-                        .into(binding.avatarImageView)
+                    GlideUtils.loadCircle(this, info.avatar_larger, binding.avatarImageView)
 
                     // 设置城市
                     if (info.country == "") {
