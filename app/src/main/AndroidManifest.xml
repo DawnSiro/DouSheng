@@ -38,7 +38,7 @@
 
 
         <activity
-            android:name=".douyinapi.DouYinEntryActivity"
+            android:name="com.qxy.dousheng.network.douyinapi.DouYinEntryActivity"
             android:launchMode="singleTask"
             android:taskAffinity="com.qxy.dousheng"
             android:exported="true"

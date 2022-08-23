@@ -8,7 +8,7 @@ import com.qxy.dousheng.model.info.InfoItem
 
 /**
  * DAO(Data Access Object) 数据访问对象
- * 由 room 提供具体实现
+ * 写方法名和 注解（SQL） 由 room 提供具体实现
  */
 @Dao
 interface InfoDao {
