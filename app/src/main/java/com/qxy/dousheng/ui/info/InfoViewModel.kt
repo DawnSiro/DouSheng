@@ -8,19 +8,23 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.google.gson.Gson
 import com.qxy.dousheng.dao.InfoDao
-import com.qxy.dousheng.database.InfoDatabase
-import com.qxy.dousheng.model.InfoItem
-import com.qxy.dousheng.model.InfoJson
+import com.qxy.dousheng.database.DouShengDatabase
+import com.qxy.dousheng.model.info.InfoItem
+import com.qxy.dousheng.model.info.InfoJson
+import com.qxy.dousheng.network.OkHttpUtils
+import com.qxy.dousheng.network.OkHttpCallback
 
+/**
+ * 用户个人信息 ViewModel 类，对相关数据进行监控并及时同步到 View
+ */
 class InfoViewModel(application: Application) : AndroidViewModel(application) {
     private var infoDao: InfoDao
     private val allInfoItemLiveData: LiveData<List<InfoItem>>
 
     init {
-        val infoDatabase = InfoDatabase.getDatabase(application)
-        infoDao = infoDatabase.getItemDao()
+        val database = DouShengDatabase.getDatabase(application)
+        infoDao = database.getInfoItemDao()
         allInfoItemLiveData = infoDao.getAllInfoLiveData()
-
     }
 
     fun getLiveData(): LiveData<List<InfoItem>> = allInfoItemLiveData
@@ -31,6 +35,24 @@ class InfoViewModel(application: Application) : AndroidViewModel(application) {
 
     fun insert(vararg infoItem: InfoItem) {
         InsertItem(infoDao).execute(*infoItem)
+    }
+
+    fun doInfoPost() {
+        OkHttpUtils.doInfoPost(object : OkHttpCallback {
+            override fun isFail() {
+                Log.d("okHttp", "isFail: doInfoPost")
+            }
+
+            override fun isSuccess(json: String?) {
+                if (json == null) {
+                    Log.d("okHttp", "isSuccess: json is null")
+                } else {
+                    Log.d("okHttp", "isSuccess: json is ok")
+                    update(json)
+                }
+            }
+
+        })
     }
 
     fun update(response: String) {

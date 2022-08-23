@@ -10,8 +10,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.qxy.dousheng.adapter.VideoAdapter
 import com.qxy.dousheng.databinding.FragmentVideoBinding
-import com.qxy.dousheng.model.VideoItem
+import com.qxy.dousheng.model.video.VideoItem
 
+/**
+ * Video 视频模块 Fragment
+ */
 class VideoFragment : Fragment() {
     private lateinit var viewModel: VideoViewModel
     private lateinit var binding: FragmentVideoBinding
@@ -19,7 +22,6 @@ class VideoFragment : Fragment() {
     companion object {
         fun newInstance() = VideoFragment()
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,7 +31,6 @@ class VideoFragment : Fragment() {
         return binding.root
     }
 
-    @Deprecated("Deprecated in Java")
     @SuppressLint("NotifyDataSetChanged")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

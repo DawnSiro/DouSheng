@@ -10,8 +10,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.qxy.dousheng.adapter.RankAdapter
 import com.qxy.dousheng.databinding.FragmentMovieRankBinding
-import com.qxy.dousheng.model.RankItem
+import com.qxy.dousheng.model.rank.RankItem
 
+/**
+ * 电影排行榜单 Fragment
+ */
 class MovieRankFragment : Fragment() {
     private lateinit var viewModel: MovieRankViewModel
     private lateinit var binding: FragmentMovieRankBinding
@@ -19,7 +22,6 @@ class MovieRankFragment : Fragment() {
     companion object {
         fun newInstance() = MovieRankFragment()
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

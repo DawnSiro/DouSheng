@@ -5,8 +5,12 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import com.qxy.dousheng.model.VideoItem
+import com.qxy.dousheng.model.video.VideoItem
 
+/**
+ * DAO(Data Access Object) 数据访问对象
+ * 写方法名和 注解（SQL） 由 room 提供具体实现
+ */
 @Dao
 interface VideoDao {
     @Insert

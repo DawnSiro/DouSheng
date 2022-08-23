@@ -5,12 +5,14 @@ import android.app.Application
 import android.content.Context
 import android.util.Log
 import android.view.Choreographer
+import com.qxy.dousheng.monitor.BlockDetectByPrinter
 
 class DouShengApplication:Application() {
     companion object{
         @SuppressLint("StaticFieldLeak")
         lateinit var context: Context
     }
+
     override fun onCreate() {
         super.onCreate()
         context = applicationContext
@@ -19,6 +21,10 @@ class DouShengApplication:Application() {
         //Sliding FPS monitoring
         Choreographer.getInstance().postFrameCallback(FPSFrameCallback(System.nanoTime()))
     }
+
+    /**
+     * FPS 回调
+     */
     inner class FPSFrameCallback(lastFrameTimeNanos: Long) : Choreographer.FrameCallback {
         private var mLastFrameTimeNanos: Long = 0
         private val mFrameIntervalNanos: Long

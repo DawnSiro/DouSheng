@@ -8,21 +8,24 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.google.gson.Gson
 import com.qxy.dousheng.dao.VideoDao
-import com.qxy.dousheng.database.VideoDatabase
-import com.qxy.dousheng.model.VideoItem
-import com.qxy.dousheng.model.VideoJson
-import com.qxy.dousheng.model.VideoList
+import com.qxy.dousheng.database.DouShengDatabase
+import com.qxy.dousheng.model.video.VideoItem
+import com.qxy.dousheng.model.video.VideoJson
+import com.qxy.dousheng.model.video.VideoList
 import com.qxy.dousheng.network.OkHttpCallback
-import com.qxy.dousheng.network.VideoOkHttpUtils
+import com.qxy.dousheng.network.OkHttpUtils
 
+/**
+ * 视频数据 ViewModel 类，对相关数据进行监控并及时同步到 View
+ */
 class VideoViewModel(application: Application) : AndroidViewModel(application) {
     private var videoDao: VideoDao
     private val allVideoLiveData: LiveData<List<VideoItem>>
     var updateFlag = true
 
     init {
-        val videoDatabase = VideoDatabase.getDatabase(application)
-        videoDao = videoDatabase.getItemDao()
+        val database = DouShengDatabase.getDatabase(application)
+        videoDao = database.getVideoItemDao()
         allVideoLiveData = videoDao.allVideoLiveData()
     }
 
@@ -37,17 +40,17 @@ class VideoViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun doGet() {
-        VideoOkHttpUtils.doVideoGet(object : OkHttpCallback {
+        OkHttpUtils.doVideoGet(object : OkHttpCallback {
             override fun isFail() {
-                Log.d("okHttp", "doVideoGet 出错")
+                Log.d("okHttp", "doTeleplayGet 出错")
             }
 
             override fun isSuccess(json: String?) {
                 if (json != null && json != "") {
-                    Log.d("okHttp", "doVideoGet: $json")
+                    Log.d("okHttp", "doTeleplayGet: $json")
                     update(json)
                 } else {
-                    Log.d("okHttp", "doVideoGet: json=null")
+                    Log.d("okHttp", "doTeleplayGet: json=null")
                 }
             }
         })

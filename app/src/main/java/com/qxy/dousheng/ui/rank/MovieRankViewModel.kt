@@ -8,19 +8,22 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.google.gson.Gson
 import com.qxy.dousheng.dao.RankDao
-import com.qxy.dousheng.database.RankDatabase
-import com.qxy.dousheng.model.RankItem
-import com.qxy.dousheng.model.RankJson
+import com.qxy.dousheng.database.DouShengDatabase
+import com.qxy.dousheng.model.rank.RankItem
+import com.qxy.dousheng.model.rank.RankJson
 import com.qxy.dousheng.network.OkHttpCallback
-import com.qxy.dousheng.network.RankOkHttpUtils
+import com.qxy.dousheng.network.OkHttpUtils
 
+/**
+ * 电影榜单 ViewModel 类，对相关数据进行监控并及时同步到 View
+ */
 class MovieRankViewModel(application: Application) : AndroidViewModel(application) {
     private var rankDao: RankDao
     private var allRankItemLive: LiveData<List<RankItem>>
 
     init {
-        val rankDatabase = RankDatabase.getDatabase(application.applicationContext)
-        rankDao = rankDatabase.getItemDao()
+        val database = DouShengDatabase.getDatabase(application.applicationContext)
+        rankDao = database.getRankItemDao()
         allRankItemLive = rankDao.allMovieItemLive()
     }
 
@@ -38,7 +41,7 @@ class MovieRankViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     fun doGet() {
-        RankOkHttpUtils.doMovieGet(object : OkHttpCallback {
+        OkHttpUtils.doMovieGet(object : OkHttpCallback {
             override fun isFail() {
                 Log.d("okHttp", "doMovieGet 出错")
             }

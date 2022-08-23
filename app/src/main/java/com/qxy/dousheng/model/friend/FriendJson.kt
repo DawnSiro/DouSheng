@@ -1,5 +1,8 @@
-package com.qxy.dousheng.model
+package com.qxy.dousheng.model.friend
 
+/**
+ * 获取关注列表和粉丝列表的 JSON 对象
+ */
 class FriendJson {
     var data: DataDTO = DataDTO()
     var extra: ExtraDTO = ExtraDTO()
@@ -8,9 +11,9 @@ class FriendJson {
         var cursor: Int = 0
         var has_more: Boolean = false
         var list: Array<ListDTO> = arrayOf()
-        var total: Int? = null
-        var error_code: Int? = null
-        var description: String? = null
+        var total: Int = 0
+        var error_code: Int = 0
+        var description: String = ""
 
         class ListDTO {
             var avatar: String = ""
@@ -25,11 +28,11 @@ class FriendJson {
     }
 
     class ExtraDTO {
-        var logid: String? = null
-        var error_code: Int? = null
-        var description: String? = null
-        var sub_error_code: Int? = null
-        var sub_description: String? = null
-        var now: Int? = null
+        var logid: String = ""
+        var error_code: Int = 0
+        var description: String = ""
+        var sub_error_code: Int = 0
+        var sub_description: String = ""
+        var now: Long = 0 // 这里用 Int 可能会超出范围。Long 最大值为 9 开头的 19 位数
     }
 }

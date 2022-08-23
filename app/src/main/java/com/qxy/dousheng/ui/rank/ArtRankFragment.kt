@@ -10,9 +10,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.qxy.dousheng.adapter.RankAdapter
 import com.qxy.dousheng.databinding.FragmentArtRankBinding
-import com.qxy.dousheng.model.RankItem
+import com.qxy.dousheng.model.rank.RankItem
 
-
+/**
+ * 综艺排行榜单 Fragment
+ */
 class ArtRankFragment : Fragment() {
     private lateinit var binding: FragmentArtRankBinding
     private lateinit var viewModel: ArtRankViewModel
@@ -20,7 +22,6 @@ class ArtRankFragment : Fragment() {
     companion object {
         fun newInstance() = ArtRankFragment()
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,7 +31,6 @@ class ArtRankFragment : Fragment() {
         return binding.root
     }
 
-    @Deprecated("Deprecated in Java")
     @SuppressLint("NotifyDataSetChanged")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

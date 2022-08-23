@@ -7,18 +7,23 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.qxy.dousheng.R
-import com.qxy.dousheng.model.RankItem
+import com.qxy.dousheng.model.rank.RankItem
+import com.qxy.dousheng.util.GlideUtils
 
+/**
+ * Adapter 适配器层
+ * 持有数据集合对象，将数据同步更新到视图上
+ */
 class RankAdapter(var rankList: List<RankItem>) :
     RecyclerView.Adapter<RankAdapter.ViewHolder>() {
 
+    /**
+     * 视图持有类，其成员变量对应 .xml 中的视图
+     */
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val itemPoster: ImageView = view.findViewById(R.id.imageViewPoster)
         val itemName: TextView = view.findViewById(R.id.textViewName)
-
-        //        val itemRank: TextView = view.findViewById(R.id.textViewRank)
         val itemTime: TextView = view.findViewById(R.id.textViewTime)
         val itemHot: TextView = view.findViewById(R.id.textViewHot)
     }
@@ -35,18 +40,18 @@ class RankAdapter(var rankList: List<RankItem>) :
         val poster = item.poster
 
         // 更新海报
-        Glide.with(holder.itemView)
-            .load(poster)
-            .into(holder.itemPoster)
+        GlideUtils.load(holder.itemView, poster, holder.itemPoster)
 
         val rank = position.plus(1)
 
         holder.itemName.text = rank.toString() + ". " + item.name
-//        holder.itemRank.text = rank.toString()
-        if (item.hot > 10000) {
-            holder.itemHot.text = ((item.hot / 10000).toString() + "万")
+        // 热度量级处理
+        if(item.hot > 100000000) {
+            holder.itemHot.text = ("热度: " + (item.hot / 100000000).toString() + "亿")
+        }else if (item.hot > 10000) {
+            holder.itemHot.text = ("热度: " + (item.hot / 10000).toString() + "万")
         } else {
-            holder.itemHot.text = item.hot.toString()
+            holder.itemHot.text = "热度: " + item.hot.toString()
         }
 
         holder.itemTime.text = item.time
@@ -54,8 +59,4 @@ class RankAdapter(var rankList: List<RankItem>) :
 
     override fun getItemCount() = rankList.size
 
-}
-
-internal interface CallBack {
-    fun onClick()
 }

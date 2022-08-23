@@ -2,8 +2,12 @@ package com.qxy.dousheng.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.qxy.dousheng.model.RankItem
+import com.qxy.dousheng.model.rank.RankItem
 
+/**
+ * DAO(Data Access Object) 数据访问对象
+ * 写方法名和 注解（SQL） 由 room 提供具体实现
+ */
 @Dao
 interface RankDao {
     @Insert

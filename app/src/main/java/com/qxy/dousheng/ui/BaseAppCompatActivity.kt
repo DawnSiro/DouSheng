@@ -6,8 +6,10 @@ import com.bytedance.sdk.open.aweme.authorize.model.Authorization
 import com.bytedance.sdk.open.douyin.DouYinOpenApiFactory
 import com.bytedance.sdk.open.douyin.DouYinOpenConfig
 import com.bytedance.sdk.open.douyin.api.DouYinOpenApi
+import com.qxy.dousheng.constant.AppConstant
 
 open class BaseAppCompatActivity : AppCompatActivity() {
+    // 授权的权限
     private val mScope = "trial.whitelist," +
             "user_info," +
             "discovery.ent," +
@@ -18,8 +20,8 @@ open class BaseAppCompatActivity : AppCompatActivity() {
             "video.list"
 
     private var douYinOpenApi: DouYinOpenApi? = null
-    private val clientKey = "awr4g04kxg26jk2l" // 需要到开发者网站申请并替换
-    private val clientSecret = "ce6a9c54648b7f99565a66f20fd70866"
+    private val clientKey = AppConstant.CLIENT_KEY // 需要到开发者网站申请并替换
+    private val clientSecret = AppConstant.CLIENT_SECRET
 
     val mPermissionList = arrayOf(  //权限列表
         Manifest.permission.WRITE_EXTERNAL_STORAGE,

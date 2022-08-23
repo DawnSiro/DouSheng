@@ -4,8 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.qxy.dousheng.model.InfoItem
+import com.qxy.dousheng.model.info.InfoItem
 
+/**
+ * DAO(Data Access Object) 数据访问对象
+ * 写方法名和 注解（SQL） 由 room 提供具体实现
+ */
 @Dao
 interface InfoDao {
     @Insert

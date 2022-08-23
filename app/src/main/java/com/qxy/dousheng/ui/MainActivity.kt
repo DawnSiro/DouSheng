@@ -7,21 +7,24 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.qxy.dousheng.R
-import com.qxy.dousheng.network.InfoOkHttpUtils
+import com.qxy.dousheng.network.OkHttpUtils
 
+/**
+ * 主启动 Activity 类
+ */
 class MainActivity : BaseAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-        // Http
+        // 调用接口进行验权
+        OkHttpUtils.getClientAccess()
         val shp = getSharedPreferences("Code", MODE_PRIVATE)
-        InfoOkHttpUtils.setContext(this)
+        OkHttpUtils.setContext(this)
         if (shp.getString("accessCode", "") == "") httpInit()
 
-        // load
+        // 通过 Navigation 来控制 页面切换
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
         val navHostFragment: NavHostFragment =
             supportFragmentManager.findFragmentById(R.id.bottomFragmentContainerView) as NavHostFragment

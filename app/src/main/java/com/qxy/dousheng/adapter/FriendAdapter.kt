@@ -8,15 +8,20 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CircleCrop
-import com.bumptech.glide.request.RequestOptions
 import com.qxy.dousheng.R
-import com.qxy.dousheng.model.FriendItem
+import com.qxy.dousheng.model.friend.FriendItem
+import com.qxy.dousheng.util.GlideUtils
 
+/**
+ * Adapter 适配器层
+ * 持有数据集合对象，将数据同步更新到视图上
+ */
 class FriendAdapter(var friendList: List<FriendItem>) :
     RecyclerView.Adapter<FriendAdapter.ViewHolder>() {
 
+    /**
+     * 视图持有类，其成员变量对应 .xml 中的视图
+     */
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val avatar: ImageView = view.findViewById(R.id.imageViewAvatar)
         val userName: TextView = view.findViewById(R.id.textViewUserName)
@@ -35,22 +40,18 @@ class FriendAdapter(var friendList: List<FriendItem>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val friendItem = friendList[position]
 
-        // 设置图片
-        val options: RequestOptions = RequestOptions().transform(CircleCrop())
-        // 加载图片
-        Glide.with(holder.itemView)
-            .load(friendItem.avatar)
-            .apply(options)
-            .into(holder.avatar)
+        // 设置头像
+        GlideUtils.loadCircle(holder.itemView, friendItem.avatar, holder.avatar)
 
         holder.userName.text = friendItem.name
         holder.location.text = "${friendItem.country} ${friendItem.province} ${friendItem.city}"
         holder.gender.text = when (friendItem.gender) {
             1 -> holder.itemView.resources.getString(R.string.male)
             2 -> holder.itemView.resources.getString(R.string.female)
-            else -> "null"
+            else -> ""
         }
 
+        // 设置关注状态，目前实现了检测是否相互关注
         holder.follow.text =
             when (friendItem.isFollow) {
                 1 -> holder.itemView.resources.getString(R.string.is_follow)

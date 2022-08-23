@@ -10,8 +10,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.qxy.dousheng.adapter.FriendAdapter
 import com.qxy.dousheng.databinding.FragmentFollowBinding
-import com.qxy.dousheng.model.FriendItem
+import com.qxy.dousheng.model.friend.FriendItem
 
+/**
+ * 关注列表 Fragment
+ */
 class FollowFragment : Fragment() {
     private lateinit var binding: FragmentFollowBinding
     private lateinit var viewModel: FollowViewModel
@@ -20,16 +23,14 @@ class FollowFragment : Fragment() {
         fun newInstance() = FollowFragment()
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentFollowBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-    @Deprecated("Deprecated in Java")
     @SuppressLint("NotifyDataSetChanged")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

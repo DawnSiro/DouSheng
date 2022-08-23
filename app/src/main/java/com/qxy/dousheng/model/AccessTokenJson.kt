@@ -1,5 +1,8 @@
 package com.qxy.dousheng.model
 
+/**
+ * 获取 access_token JSON 对象
+ */
 data class AccessTokenJson(
     var data: AccessTokenData = AccessTokenData(),
     var message: String = "",

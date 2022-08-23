@@ -10,16 +10,18 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.qxy.dousheng.adapter.RankAdapter
 import com.qxy.dousheng.databinding.FragmentVideoRankBinding
-import com.qxy.dousheng.model.RankItem
+import com.qxy.dousheng.model.rank.RankItem
 
-class VideoRankFragment : Fragment() {
+/**
+ * 电视剧排行榜单 Fragment
+ */
+class TeleplayRankFragment : Fragment() {
     private lateinit var binding: FragmentVideoRankBinding
-    private lateinit var viewModel: VideoRankViewModel
+    private lateinit var viewModel: TeleplayRankViewModel
 
     companion object {
-        fun newInstance() = VideoRankFragment()
+        fun newInstance() = TeleplayRankFragment()
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +35,7 @@ class VideoRankFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         if (activity != null) {
-            viewModel = ViewModelProvider(this)[VideoRankViewModel::class.java]
+            viewModel = ViewModelProvider(this)[TeleplayRankViewModel::class.java]
 
             val list: List<RankItem> = if (viewModel.getLiveData().value != null) {
                 viewModel.getLiveData().value!!
