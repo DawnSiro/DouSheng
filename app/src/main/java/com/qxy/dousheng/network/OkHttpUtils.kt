@@ -237,7 +237,7 @@ class OkHttpUtils {
          */
         private fun getMovieRankRequest(): Request {
             val interfaceUrl = "/discovery/ent/rank/item/?type=1"
-            val url = baseUrl + interfaceUrl
+            val url = mockUrl + interfaceUrl
             if (!this::movieRequest.isInitialized) {
                 movieRequest = Request.Builder()
                     .url(url)
@@ -253,7 +253,7 @@ class OkHttpUtils {
          */
         private fun getTeleplayRankRequest(): Request {
             val interfaceUrl = "/discovery/ent/rank/item/?type=2"
-            val url = baseUrl + interfaceUrl
+            val url = mockUrl + interfaceUrl
 
             teleplayRequest = Request.Builder()
                 .url(url)
@@ -270,7 +270,7 @@ class OkHttpUtils {
          */
         private fun getArtRankRequest(): Request {
             val interfaceUrl = "/discovery/ent/rank/item/?type=3"
-            val url = baseUrl + interfaceUrl
+            val url = mockUrl + interfaceUrl
 
             if (!this::artRequest.isInitialized) {
                 artRequest = Request.Builder()

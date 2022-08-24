@@ -1,4 +1,4 @@
-package com.qxy.dousheng.network.douyinapi
+package com.qxy.dousheng.douyinapi
 
 import android.app.Activity
 import android.content.Intent
