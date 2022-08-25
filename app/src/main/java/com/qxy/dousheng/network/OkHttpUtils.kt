@@ -235,8 +235,8 @@ class OkHttpUtils {
         /**
          * 获取 电影榜单 请求
          */
-        private fun getMovieRankRequest(): Request {
-            val interfaceUrl = "/discovery/ent/rank/item/?type=1"
+        private fun getMovieRankRequest(version: Int?): Request {
+            val interfaceUrl = "/discovery/ent/rank/item/?type=1&version=$version"
             val url = mockUrl + interfaceUrl
             if (!this::movieRequest.isInitialized) {
                 movieRequest = Request.Builder()
@@ -251,8 +251,8 @@ class OkHttpUtils {
         /**
          * 获取 电视剧榜单 请求
          */
-        private fun getTeleplayRankRequest(): Request {
-            val interfaceUrl = "/discovery/ent/rank/item/?type=2"
+        private fun getTeleplayRankRequest(version: Int?): Request {
+            val interfaceUrl = "/discovery/ent/rank/item/?type=2&version=$version"
             val url = mockUrl + interfaceUrl
 
             teleplayRequest = Request.Builder()
@@ -268,8 +268,8 @@ class OkHttpUtils {
         /**
          * 获取 综艺榜单 请求
          */
-        private fun getArtRankRequest(): Request {
-            val interfaceUrl = "/discovery/ent/rank/item/?type=3"
+        private fun getArtRankRequest(version: Int?): Request {
+            val interfaceUrl = "/discovery/ent/rank/item/?type=3&version=$version"
             val url = mockUrl + interfaceUrl
 
             if (!this::artRequest.isInitialized) {
@@ -286,7 +286,7 @@ class OkHttpUtils {
          * 调用获取 电影榜单 请求，获取电影榜单
          */
         fun doMovieGet(callback: OkHttpCallback) {
-            rankClient.newCall(getMovieRankRequest()).enqueue(object : Callback {
+            rankClient.newCall(getMovieRankRequest(143)).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
                     Log.e(TAG, "onFailure: $e")
                     handle.post {
@@ -315,7 +315,7 @@ class OkHttpUtils {
          * 调用获取 电视剧榜单 请求，获取电视剧榜单
          */
         fun doTeleplayGet(callback: OkHttpCallback) {
-            rankClient.newCall(getTeleplayRankRequest()).enqueue(object : Callback {
+            rankClient.newCall(getTeleplayRankRequest(143)).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
                     Log.e(TAG, "onFailure: $e")
                     handle.post {
@@ -344,7 +344,7 @@ class OkHttpUtils {
          * 调用获取 综艺榜单 请求，获取综艺榜单
          */
         fun doArtGet(callback: OkHttpCallback) {
-            rankClient.newCall(getArtRankRequest()).enqueue(object : Callback {
+            rankClient.newCall(getArtRankRequest(143)).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
                     Log.e(TAG, "onFailure: $e")
                     handle.post {
@@ -374,7 +374,7 @@ class OkHttpUtils {
          */
         private fun getRankVersionRequest(): Request {
             val interfaceUrl = "/discovery/ent/rank/version/"
-            var url = "$baseUrl$interfaceUrl?cursor=0&count=10&type=1"
+            var url = "$mockUrl$interfaceUrl?cursor=0&count=10&type=1"
             if (!this::rankVersionRequest.isInitialized) {
                 rankVersionRequest = Request.Builder()
                     .addHeader("Content-Type", "application/json")
