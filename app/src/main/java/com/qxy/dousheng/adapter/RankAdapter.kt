@@ -44,17 +44,23 @@ class RankAdapter(var rankList: List<RankItem>) :
 
         val rank = position.plus(1)
 
-        holder.itemName.text = rank.toString() + ". " + item.name
+        // 电影过长的话进行省略处理
+        if(item.name.length > 9) {
+            holder.itemName.text = rank.toString() + ". " + item.name.substring(0,8) + "..."
+        } else {
+            holder.itemName.text = rank.toString() + ". " + item.name
+        }
+
         // 热度量级处理
         if(item.hot > 100000000) {
             holder.itemHot.text = ("热度: " + (item.hot / 100000000).toString() + "亿")
-        }else if (item.hot > 10000) {
+        } else if (item.hot > 10000) {
             holder.itemHot.text = ("热度: " + (item.hot / 10000).toString() + "万")
         } else {
             holder.itemHot.text = "热度: " + item.hot.toString()
         }
 
-        holder.itemTime.text = item.time
+        holder.itemTime.text = item.releaseDate
     }
 
     override fun getItemCount() = rankList.size

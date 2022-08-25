@@ -41,17 +41,18 @@ data class RankItemList(
     var actors: Array<String> = arrayOf(" "),
     val areas: Array<String> = arrayOf(" "),
     var directors: Array<String> = arrayOf(" "),
-    var discussion_hot: Int = 0,
-    var hot: Int = 0,
+    var discussion_hot: Long = 0,
+    var hot: Long = 0,
     var id: String = " ",
-    var influence_hot: Int = 0,
+    var influence_hot: Long = 0,
     var maoyan_id: String = " ",
     var name: String = " ",
     var name_en: String = " ",
     var poster: String = " ",
     var release_date: String = " ",
-    var search_hot: Int = 0,
-    var topic_hot: Int = 0,
+    var search_hot: Long = 0,
+    var topic_hot: Long = 0,
+    var tags: Array<String> = arrayOf(""),
     var type: Int = 1
 ) {
     override fun equals(other: Any?): Boolean {
