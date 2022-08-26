@@ -11,11 +11,11 @@
     <string name="item_rank">Rank</string>
     <string name="item_release_date">Release Date</string>
     <string name="item_hot">Hot</string>
-    <string name="discussion_hot">discussion Hot</string>
-    <string name="topic_hot">topic Hot</string>
-    <string name="search_hot">search Hot</string>
-    <string name="influence_hot">influence Hot</string>
-    <string name="tags">tags</string>
+    <string name="discussion_hot">Discussion Hot</string>
+    <string name="topic_hot">Topic Hot</string>
+    <string name="search_hot">Search Hot</string>
+    <string name="influence_hot">Influence Hot</string>
+    <string name="tags">Tags</string>
     <string name="item_poster">Poster</string>
     <string name="rank">Rank</string>
     <string name="video">Video</string>

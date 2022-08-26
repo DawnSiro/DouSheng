@@ -41,7 +41,11 @@ class ArtRankViewModel(application: Application) : AndroidViewModel(application)
     }
 
     fun doGet() {
-        OkHttpUtils.doArtGet(object : OkHttpCallback {
+        // TODO 接上版本
+
+        val rankVersion = OkHttpUtils.getRankVersion()
+
+        OkHttpUtils.doArtGet(-1, object : OkHttpCallback {
             override fun isFail() {
                 Log.d("okHttp", "doArtGet 出错")
             }

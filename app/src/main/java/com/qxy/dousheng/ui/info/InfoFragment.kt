@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.qxy.dousheng.R
@@ -77,22 +79,14 @@ class InfoFragment : Fragment() {
                     if (info.description == "") {
                         binding.descriptionTextView.text =
                             requireActivity().resources.getString(R.string.descriptionDefault)
-                    } else binding.descriptionTextView.text = info.description
+                    } else {
+                        binding.descriptionTextView.text = info.description
+                    }
                 }
             }
 
             viewModel.doInfoPost()
 
-
-            val adapter = ArrayAdapter(
-                requireActivity(),
-                android.R.layout.simple_spinner_dropdown_item,
-                OkHttpUtils.getRankVersion()
-            )
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
-            binding.spinner.adapter = adapter
-            binding.spinner.prompt = requireActivity().resources.getString(R.string.version)
         }
     }
 

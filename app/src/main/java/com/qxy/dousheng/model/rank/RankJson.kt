@@ -9,8 +9,8 @@ data class RankJson(
 )
 
 data class RankData(
-    var active_time: String = " ",
-    var description: String = " ",
+    var active_time: String = "",
+    var description: String = "",
     var error_code: Int = 0,
     var list: Array<RankItemList> = arrayOf()
 ) {
@@ -38,18 +38,18 @@ data class RankData(
 }
 
 data class RankItemList(
-    var actors: Array<String> = arrayOf(" "),
-    val areas: Array<String> = arrayOf(" "),
-    var directors: Array<String> = arrayOf(" "),
+    var actors: Array<String> = arrayOf(""),
+    val areas: Array<String> = arrayOf(""),
+    var directors: Array<String> = arrayOf(""),
     var discussion_hot: Long = 0,
     var hot: Long = 0,
-    var id: String = " ",
+    var id: String = "",
     var influence_hot: Long = 0,
-    var maoyan_id: String = " ",
-    var name: String = " ",
-    var name_en: String = " ",
-    var poster: String = " ",
-    var release_date: String = " ",
+    var maoyan_id: String = "",
+    var name: String = "",
+    var name_en: String = "",
+    var poster: String = "",
+    var release_date: String = "",
     var search_hot: Long = 0,
     var topic_hot: Long = 0,
     var tags: Array<String> = arrayOf(""),
@@ -72,10 +72,10 @@ data class RankItemList(
 }
 
 data class RankExtra(
-    var description: String = " ",
+    var description: String = "",
     var error_code: Int = 0,
-    var logid: String = " ",
+    var logid: String = "",
     var now: Long = 0,
-    val sub_description: String = " ",
-    val sub_error_code: String = " "
+    val sub_description: String = "",
+    val sub_error_code: String = ""
 )

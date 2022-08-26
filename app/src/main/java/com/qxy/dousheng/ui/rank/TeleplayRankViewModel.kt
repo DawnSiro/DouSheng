@@ -42,7 +42,8 @@ class TeleplayRankViewModel(application: Application) : AndroidViewModel(applica
     }
 
     fun doGet() {
-        OkHttpUtils.doTeleplayGet(object : OkHttpCallback {
+        // TODO 接上版本
+        OkHttpUtils.doTeleplayGet(143, object : OkHttpCallback {
             override fun isFail() {
                 Log.d("okHttp", "doTeleplayGet 出错")
             }
