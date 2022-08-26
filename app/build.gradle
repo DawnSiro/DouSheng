@@ -41,9 +41,6 @@ android {
 
 }
 
-repositories {
-}
-
 dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -82,5 +79,5 @@ dependencies {
 
     // 下拉刷新
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
-
+    implementation 'com.github.arcadefire:nice-spinner:1.4.4'
 }
