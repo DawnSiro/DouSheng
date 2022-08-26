@@ -16,9 +16,9 @@ class DouShengApplication:Application() {
     override fun onCreate() {
         super.onCreate()
         context = applicationContext
-        //性能耗时监控
+        //Performance time-consuming monitoring
         BlockDetectByPrinter.start()
-        //滑动FPS监控
+        //Sliding FPS monitoring
         Choreographer.getInstance().postFrameCallback(FPSFrameCallback(System.nanoTime()))
     }
 
@@ -30,15 +30,15 @@ class DouShengApplication:Application() {
         private val mFrameIntervalNanos: Long
 
         override fun doFrame(frameTimeNanos: Long) {
-            // 初始化时间
+            // initialization time
             if (mLastFrameTimeNanos == 0L) {
                 mLastFrameTimeNanos = frameTimeNanos
             }
             val jitterNanos = frameTimeNanos - mLastFrameTimeNanos
             if (jitterNanos >= mFrameIntervalNanos) {
                 val skippedFrames = jitterNanos / mFrameIntervalNanos
-                    Log.i(
-                        "FPS_TEST", "Skipped " + skippedFrames + " frames!  ")
+                    // print drop frame log
+                    Log.i("FPS_TEST", "Skipped " + skippedFrames + " frames!  ")
             }
             mLastFrameTimeNanos = frameTimeNanos
             // 注册下一帧回调
