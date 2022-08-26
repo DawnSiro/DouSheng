@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">极简抖音</string>
+    <string name="app_name">抖声</string>
     <string name="movie_rank">电影排名</string>
     <string name="video_rank">电视剧排名</string>
     <string name="art_rank">综艺排名</string>
-    <string name="item_name">名称</string>
+    <string name="item_name">电影名称</string>
     <string name="item_rank">排名</string>
-    <string name="item_time">时间</string>
+    <string name="item_release_date">上映时间</string>
     <string name="item_hot">热度</string>
     <string name="item_poster">海报</string>
     <string name="rank">榜单</string>
@@ -32,4 +32,13 @@
     <string name="descriptionDefault">永远相信，美好的事情即将发生。</string>
     <string name="china">中国</string>
     <string name="version">历史版本</string>
+    <string name="directors">导演</string>
+    <string name="areas">上映区域</string>
+    <string name="actors">演员</string>
+    <string name="discussion_hot">讨论热度</string>
+    <string name="topic_hot">主题热度</string>
+    <string name="search_hot">搜索热度</string>
+    <string name="influence_hot">影响热度</string>
+    <string name="item_english_name">英文名称</string>
+    <string name="tags">标签</string>
 </resources>

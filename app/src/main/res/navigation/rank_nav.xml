@@ -13,7 +13,7 @@
         android:id="@+id/video_menu_item"
         android:name="com.qxy.dousheng.ui.rank.TeleplayRankFragment"
         android:label="@string/video_rank"
-        tools:layout="@layout/fragment_video_rank" />
+        tools:layout="@layout/fragment_teleplay_rank" />
     <fragment
         android:id="@+id/movie_menu_item"
         android:name="com.qxy.dousheng.ui.rank.MovieRankFragment"

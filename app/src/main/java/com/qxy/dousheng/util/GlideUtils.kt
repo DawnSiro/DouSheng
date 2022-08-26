@@ -50,7 +50,9 @@ class GlideUtils {
                 .load(url)
                 .apply(options)
                 .into(imageView)
+            Log.i(TAG, "loadCircle: $fragment")
             Log.i(TAG, "loadCircle: $url")
+            Log.i(TAG, "loadCircle: $imageView")
         }
 
         /**

@@ -49,7 +49,12 @@ class VideoAdapter(var videoList: List<VideoItem>) :
         // 加载视频封面
         GlideUtils.load(holder.itemView, videoItem.cover, holder.cover)
 
-        holder.title.text = videoItem.title
+        // 视频标题
+        if(videoItem.title.length > 12){
+            holder.title.text = videoItem.title.substring(0,11) + "..."
+        } else {
+            holder.title.text = videoItem.title
+        }
 
         // TODO("BUG:相对于当前时间的 时间戳")
         holder.time.text =

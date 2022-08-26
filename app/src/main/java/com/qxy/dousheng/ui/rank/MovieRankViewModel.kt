@@ -41,7 +41,8 @@ class MovieRankViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     fun doGet() {
-        OkHttpUtils.doMovieGet(object : OkHttpCallback {
+        // TODO 接上版本
+        OkHttpUtils.doMovieGet(143, object : OkHttpCallback {
             override fun isFail() {
                 Log.d("okHttp", "doMovieGet 出错")
             }
@@ -77,6 +78,7 @@ class MovieRankViewModel(application: Application) : AndroidViewModel(applicatio
                    directors.append("/") // 如果不是最后一个，就加上 / 分隔
                 }
             }
+            Log.d("Movie", "update: 字符串转储完成")
 
             // 将上映地区转储成字符串
             val areas = StringBuilder()
@@ -118,7 +120,9 @@ class MovieRankViewModel(application: Application) : AndroidViewModel(applicatio
                 i.poster,
                 i.release_date,
                 tags.toString(), 1)) // 类型：1=电影 2=电视剧 3=综艺
+            Log.d("Movie", "update: 数据库")
         }
+        Log.d("Movie", "update: 总体字符串转储完成")
     }
 
     // 后台异步插入数据

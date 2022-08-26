@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.16" />
+        app:layout_constraintGuide_percent="0.32" />
 
     <ImageView
         android:id="@+id/imageViewPoster"
@@ -34,41 +34,181 @@
     <!--        app:layout_constraintTop_toTopOf="parent"-->
     <!--        app:layout_constraintVertical_bias="0.25" />-->
 
-    <TextView
-        android:id="@+id/textViewTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="@string/item_time"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/textViewName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textViewName"
-        app:layout_constraintTop_toBottomOf="@+id/textViewName" />
+    <!--名称-->
+
+
+    <!--英文名称-->
 
     <TextView
         android:id="@+id/textViewName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
         android:text="@string/item_name"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/textViewTime"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/text_view_english_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/item_english_name"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/textViewName"
+        app:layout_constraintTop_toBottomOf="@+id/textViewName" />
+
+    <!--导演-->
+
+
+    <!--上映区域-->
+
+
+    <!--演员-->
+
+    <!--标签-->
+
+    <TextView
+        android:id="@+id/text_view_directors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="244dp"
+        android:text="@string/directors"
+        android:textSize="12sp"
+        android:singleLine="false"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/guideline3"
+        app:layout_constraintTop_toBottomOf="@id/text_view_english_name" />
+
+    <TextView
+        android:id="@+id/text_view_areas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="244dp"
+        android:text="@string/areas"
+        android:textSize="12sp"
+        android:singleLine="false"
+        app:layout_constraintStart_toStartOf="@id/guideline3"
+        app:layout_constraintTop_toBottomOf="@id/text_view_directors" />
+
+    <TextView
+        android:id="@+id/text_view_actors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="240dp"
+        android:text="@string/actors"
+        android:textSize="12sp"
+        android:singleLine="false"
+        app:layout_constraintStart_toStartOf="@id/guideline3"
+        app:layout_constraintTop_toBottomOf="@id/text_view_areas" />
+
+    <!--上映时间-->
+
+    <!--热度-->
+
+    <!--讨论热度-->
+
+    <TextView
+        android:id="@+id/text_view_tags"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="252dp"
+        android:text="@string/tags"
+        android:textSize="12sp"
+        android:singleLine="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@id/guideline3"
+        app:layout_constraintTop_toBottomOf="@id/text_view_actors" />
+
+    <!--主题热度-->
+
+    <!--搜索热度-->
 
     <TextView
         android:id="@+id/textViewHot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginStart="12dp"
         android:layout_marginEnd="16dp"
         android:text="@string/item_hot"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/textViewName"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/text_view_tags"
+        app:layout_constraintBottom_toTopOf="@id/text_view_discussion_hot"
+        app:layout_constraintStart_toStartOf="@id/guideline3" />
+
+    <TextView
+        android:id="@+id/text_view_discussion_hot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/discussion_hot"
+        android:textSize="11sp"
+        app:layout_constraintStart_toStartOf="@id/guideline3"
+        app:layout_constraintBottom_toTopOf="@id/text_view_topic_hot" />
+
+    <TextView
+        android:id="@+id/text_view_topic_hot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/topic_hot"
+        android:textSize="11sp"
+        app:layout_constraintStart_toStartOf="@id/guideline3"
+        app:layout_constraintBottom_toTopOf="@id/text_view_search_hot" />
+
+
+    <TextView
+        android:id="@+id/text_view_search_hot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/search_hot"
+        android:textSize="11sp"
+        app:layout_constraintStart_toStartOf="@id/guideline3"
+        app:layout_constraintBottom_toTopOf="@id/text_view_influence_hot"/>
+
+    <!--影响力热度-->
+    <TextView
+        android:id="@+id/text_view_influence_hot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/influence_hot"
+        android:textSize="11sp"
+        app:layout_constraintStart_toStartOf="@id/guideline3"
+        app:layout_constraintBottom_toTopOf="@id/text_view_release_date"
+        app:layout_constraintHorizontal_bias="1.0" />
+
+    <TextView
+        android:id="@+id/text_view_release_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="6dp"
+        android:text="@string/item_release_date"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_influence_hot"
+        />
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
