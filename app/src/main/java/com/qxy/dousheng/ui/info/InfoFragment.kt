@@ -5,14 +5,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.qxy.dousheng.R
+import com.qxy.dousheng.adapter.VideoAdapter
 import com.qxy.dousheng.databinding.FragmentInfoBinding
-import com.qxy.dousheng.network.OkHttpUtils
+import com.qxy.dousheng.model.video.VideoItem
+import com.qxy.dousheng.ui.video.VideoViewModel
 import com.qxy.dousheng.util.GlideUtils
 
 /**
@@ -20,7 +20,8 @@ import com.qxy.dousheng.util.GlideUtils
  */
 class InfoFragment : Fragment() {
     private lateinit var binding: FragmentInfoBinding
-    private lateinit var viewModel: InfoViewModel
+    private lateinit var infoViewModel: InfoViewModel
+    private lateinit var videoViewModel: VideoViewModel
 
     companion object {
         fun newInstance() = InfoFragment()
@@ -39,9 +40,9 @@ class InfoFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         if (activity != null) {
-            viewModel = ViewModelProvider(this)[InfoViewModel::class.java]
+            infoViewModel = ViewModelProvider(this)[InfoViewModel::class.java]
 
-            viewModel.getLiveData().observe(requireActivity()) {
+            infoViewModel.getLiveData().observe(requireActivity()) {
                 if (it.isNotEmpty() && activity != null) {
                     val info = it[0]
                     binding.nicknameTextView.text = info.nickname
@@ -85,7 +86,32 @@ class InfoFragment : Fragment() {
                 }
             }
 
-            viewModel.doInfoPost()
+            infoViewModel.doInfoPost()
+
+
+            // 个人视频页面
+            videoViewModel = ViewModelProvider(this)[videoViewModel::class.java]
+
+            val videoList: List<VideoItem> = if (videoViewModel.getLiveData().value != null) {
+                videoViewModel.getLiveData().value!!
+            } else listOf()
+
+            val videoAdapter = VideoAdapter(videoList)
+
+            binding.videoRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
+            binding.videoRecyclerView.adapter = videoAdapter
+            binding.videoSwipeRefreshLayout.setOnRefreshListener {
+                videoViewModel.doGet()
+                binding.videoSwipeRefreshLayout.isRefreshing = false
+            }
+
+            videoViewModel.getLiveData().observe(requireActivity()) {
+                if (activity != null) {
+                    videoAdapter.videoList = it
+                    videoAdapter.notifyDataSetChanged()
+                }
+            }
+
 
         }
     }

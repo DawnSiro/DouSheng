@@ -10,8 +10,8 @@ import com.qxy.dousheng.constant.AppConstant
 
 open class BaseAppCompatActivity : AppCompatActivity() {
     // 授权的权限
-    private val mScope = "trial.whitelist," +
-            "user_info," +
+    private val mScope = "trial.whitelist," + // 白名单
+            "user_info," +                    // 用户信息
             "discovery.ent," +
             "fans.list," +
             "following.list," +
