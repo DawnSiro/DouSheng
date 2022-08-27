@@ -24,10 +24,6 @@ class ArtRankFragment : Fragment() {
     private lateinit var binding: FragmentArtRankBinding
     private lateinit var viewModel: ArtRankViewModel
 
-    companion object {
-        fun newInstance() = ArtRankFragment()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

@@ -22,7 +22,7 @@ class FriendAdapter(var friendList: List<FriendItem>) :
     /**
      * 视图持有类，其成员变量对应 .xml 中的视图
      */
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val avatar: ImageView = view.findViewById(R.id.imageViewAvatar)
         val userName: TextView = view.findViewById(R.id.textViewUserName)
         val location: TextView = view.findViewById(R.id.textViewLocation)

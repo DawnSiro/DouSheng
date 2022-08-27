@@ -19,10 +19,6 @@ class FriendFragment : Fragment() {
     private lateinit var binding: FragmentFriendBinding
     private lateinit var viewModel: FriendViewModel
 
-    companion object {
-        fun newInstance() = FriendFragment()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

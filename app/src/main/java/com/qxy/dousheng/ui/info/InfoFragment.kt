@@ -23,11 +23,6 @@ class InfoFragment : Fragment() {
     private lateinit var infoViewModel: InfoViewModel
     private lateinit var videoViewModel: VideoViewModel
 
-    companion object {
-        fun newInstance() = InfoFragment()
-    }
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -90,7 +85,7 @@ class InfoFragment : Fragment() {
 
 
             // 个人视频页面
-            videoViewModel = ViewModelProvider(this)[videoViewModel::class.java]
+            videoViewModel = ViewModelProvider(this)[VideoViewModel::class.java]
 
             val videoList: List<VideoItem> = if (videoViewModel.getLiveData().value != null) {
                 videoViewModel.getLiveData().value!!

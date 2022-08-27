@@ -21,6 +21,8 @@ class InfoViewModel(application: Application) : AndroidViewModel(application) {
     private var infoDao: InfoDao
     private val allInfoItemLiveData: LiveData<List<InfoItem>>
 
+    private val gson = Gson()
+
     init {
         val database = DouShengDatabase.getDatabase(application)
         infoDao = database.getInfoItemDao()
@@ -58,8 +60,6 @@ class InfoViewModel(application: Application) : AndroidViewModel(application) {
     fun update(response: String) {
         clear()
         Log.d("okHttp", "clearItem: 清除成功")
-        val gson = Gson()
-        Log.d("okHttp", "Gson: 初始化成功")
         val infoJson: InfoJson = gson.fromJson(response, InfoJson::class.java)
         Log.d("okHttp", "update: $infoJson")
 

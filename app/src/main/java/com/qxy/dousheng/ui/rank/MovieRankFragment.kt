@@ -24,10 +24,6 @@ class MovieRankFragment : Fragment() {
     private lateinit var viewModel: MovieRankViewModel
     private lateinit var binding: FragmentMovieRankBinding
 
-    companion object {
-        fun newInstance() = MovieRankFragment()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
