@@ -21,6 +21,8 @@ class ArtRankViewModel(application: Application) : AndroidViewModel(application)
     private var rankDao: RankDao
     private var allRankItemLive: LiveData<List<RankItem>>
 
+    private val gson = Gson()
+
     init {
         val database = DouShengDatabase.getDatabase(application.applicationContext)
         rankDao = database.getRankItemDao()
@@ -41,10 +43,6 @@ class ArtRankViewModel(application: Application) : AndroidViewModel(application)
     }
 
     fun doGet() {
-        // TODO 接上版本
-
-        val rankVersion = OkHttpUtils.getRankVersion()
-
         OkHttpUtils.doArtGet(-1, object : OkHttpCallback {
             override fun isFail() {
                 Log.d("okHttp", "doArtGet 出错")
@@ -64,8 +62,6 @@ class ArtRankViewModel(application: Application) : AndroidViewModel(application)
     fun update(response: String) {
         clearItem()
         Log.d("okHttp", "clearItem: 清除成功")
-        val gson = Gson()
-        Log.d("okHttp", "Gson: 初始化成功")
 
         Log.d("okHttp", "update: $response")
 

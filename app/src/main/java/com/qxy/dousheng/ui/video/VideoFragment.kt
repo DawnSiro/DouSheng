@@ -19,10 +19,6 @@ class VideoFragment : Fragment() {
     private lateinit var viewModel: VideoViewModel
     private lateinit var binding: FragmentVideoBinding
 
-    companion object {
-        fun newInstance() = VideoFragment()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

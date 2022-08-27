@@ -19,10 +19,6 @@ import com.qxy.dousheng.databinding.FragmentRankBinding
  */
 class RankFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = RankFragment()
-    }
-
     private lateinit var viewModel: RankViewModel
     private lateinit var binding: FragmentRankBinding
 

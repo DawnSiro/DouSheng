@@ -22,6 +22,8 @@ class FollowViewModel(application: Application) : AndroidViewModel(application) 
     private var friendDao: FriendDao
     private val allFollowLiveData: LiveData<List<FriendItem>>
 
+    private val gson = Gson()
+
     init {
         val douShengDatabase = DouShengDatabase.getDatabase(application)
         friendDao = douShengDatabase.getFriendItemDao()
@@ -60,7 +62,6 @@ class FollowViewModel(application: Application) : AndroidViewModel(application) 
         if (response != "") {
             clear()
             Log.d("okHttp", "clearItem: 清除成功")
-            val gson = Gson()
             Log.d("okHttp", "Gson: 初始化成功")
             val friendJson: FriendJson = gson.fromJson(response, FriendJson::class.java)
             Log.d("okHttp", "update: $friendJson")
@@ -89,7 +90,6 @@ class FollowViewModel(application: Application) : AndroidViewModel(application) 
         AsyncTask<FriendItem, Int, Boolean>() {
         override fun doInBackground(vararg params: FriendItem): Boolean {
             for (i in params) {
-                val gson = Gson()
                 val json = OkHttpUtils.doFansCheckGet(i.open_id)
                 Log.d("okHttp", "doFansCheckGet: ${i.name} $json")
                 val checkJson = gson.fromJson(json, FansCheckJson::class.java)

@@ -23,7 +23,7 @@ class RankAdapter(var rankList: List<RankItem>) :
     /**
      * 视图持有类，其成员变量对应 .xml 中的视图
      */
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val itemPoster: ImageView = view.findViewById(R.id.imageViewPoster)
         val itemName: TextView = view.findViewById(R.id.textViewName)
         val itemEnglishName: TextView = view.findViewById(R.id.text_view_english_name)
@@ -57,14 +57,14 @@ class RankAdapter(var rankList: List<RankItem>) :
 
         // 电影过长的话进行省略处理
         if(item.name.length > 9) {
-            holder.itemName.text = rank.toString() + ". " + item.name.substring(0,8) + "..."
+            holder.itemName.text = "$rank. ${item.name.substring(0, 8)}..."
         } else {
-            holder.itemName.text = rank.toString() + ". " + item.name
+            holder.itemName.text = "$rank. ${item.name}"
         }
 
         // 电影英文名过长的话进行省略处理
         if(item.englishName.length > 20){
-            holder.itemEnglishName.text = item.englishName.substring(0,19) + "..."
+            holder.itemEnglishName.text = "${item.englishName.substring(0, 19)}..."
         } else {
             holder.itemEnglishName.text = item.englishName
         }
@@ -72,9 +72,9 @@ class RankAdapter(var rankList: List<RankItem>) :
         // 导演
         if(item.directors != ""){
             if(item.directors.length > 6) {
-                holder.itemDirectors.text = "导演: " + item.directors.substring(0,5) + "..."
+                holder.itemDirectors.text = "导演: ${item.directors.substring(0, 5)}..."
             } else {
-                holder.itemDirectors.text = "导演: " + item.directors
+                holder.itemDirectors.text = "导演: ${item.directors}"
             }
         }else{
             holder.itemDirectors.text = "导演: 无"
@@ -84,82 +84,82 @@ class RankAdapter(var rankList: List<RankItem>) :
         // 上映区域
         if(item.areas != ""){
             if(item.areas.length > 6) {
-                holder.itemAreas.text = "上映区域: " + item.areas.substring(0,5) + "..."
+                holder.itemAreas.text = "上映区域: ${item.areas.substring(0, 5)}..."
             } else {
-                holder.itemAreas.text = "上映区域: " + item.areas
+                holder.itemAreas.text = "上映区域: ${item.areas}"
             }
         } else {
-            holder.itemAreas.text = "上映区域: 无"
+            holder.itemAreas.text = "上映区域: 暂无"
         }
 
 
         // 演员
         if(item.actors != ""){
             if(item.actors.length > 12) {
-                holder.itemActors.text = "演员: " + item.actors.substring(0,11) + "..."
+                holder.itemActors.text = "演员: ${item.actors.substring(0, 11)}..."
             } else {
-                holder.itemActors.text = "演员: " + item.actors
+                holder.itemActors.text = "演员: ${item.actors}"
             }
         }else{
-            holder.itemActors.text = "演员: 无"
+            holder.itemActors.text = "演员: 暂无"
         }
 
 
         // 标签
         if(item.tags != ""){
-            holder.itemTags.text = "标签: " + item.tags
+            holder.itemTags.text = "标签: ${item.tags}"
         }else{
-            holder.itemTags.text = "标签: "
+            holder.itemTags.text = "标签: 暂无"
         }
 
 
 
         // 热度量级处理
         if(item.hot > 100000000) {
-            holder.itemHot.text = ("热度: " + (item.hot / 100000000).toString() + "亿")
+            holder.itemHot.text = "热度: ${(item.hot / 100000000)}亿"
         } else if (item.hot > 10000) {
-            holder.itemHot.text = ("热度: " + (item.hot / 10000).toString() + "万")
+            holder.itemHot.text = "热度: ${item.hot / 10000}万"
         } else {
-            holder.itemHot.text = "热度: " + item.hot.toString()
+            holder.itemHot.text = "热度: ${item.hot}"
         }
 
         // 讨论热度量级处理
         if(item.discussionHot > 100000000) {
-            holder.itemDiscussionHot.text = ("讨论热度: " + (item.discussionHot / 100000000).toString() + "亿")
+            holder.itemDiscussionHot.text = "讨论热度: ${(item.discussionHot / 100000000)}亿"
         } else if (item.discussionHot > 10000) {
-            holder.itemDiscussionHot.text = ("讨论热度: " + (item.discussionHot / 10000).toString() + "万")
+            holder.itemDiscussionHot.text = "讨论热度: ${(item.discussionHot / 10000)}万"
         } else {
-            holder.itemDiscussionHot.text = "讨论热度: " + item.hot.toString()
+            holder.itemDiscussionHot.text = "讨论热度: ${item.hot}"
         }
 
         // 主题热度量级处理
         if(item.topicHot > 100000000) {
-            holder.itemTopicHot.text = ("主题热度: " + (item.topicHot / 100000000).toString() + "亿")
+            holder.itemTopicHot.text = "主题热度: ${(item.topicHot / 100000000)}亿"
         } else if (item.topicHot > 10000) {
-            holder.itemTopicHot.text = ("主题热度: " + (item.topicHot / 10000).toString() + "万")
+            holder.itemTopicHot.text = "主题热度: ${(item.topicHot / 10000)}万"
         } else {
-            holder.itemTopicHot.text = "主题热度: " + item.topicHot.toString()
+            holder.itemTopicHot.text = "主题热度: ${item.topicHot}"
         }
 
         // 搜索热度量级处理
         if(item.searchHot > 100000000) {
-            holder.itemSearchHot.text = ("搜索热度: " + (item.searchHot / 100000000).toString() + "亿")
+            holder.itemSearchHot.text = "搜索热度: ${(item.searchHot / 100000000)}亿"
         } else if (item.searchHot > 10000) {
-            holder.itemSearchHot.text = ("搜索热度: " + (item.searchHot / 10000).toString() + "万")
+            holder.itemSearchHot.text = "搜索热度: ${(item.searchHot / 10000)}万"
         } else {
-            holder.itemSearchHot.text = "搜索热度: " + item.searchHot.toString()
+            holder.itemSearchHot.text = "搜索热度: ${item.searchHot}"
         }
 
         // 影响热度量级处理
         if(item.influenceHot > 100000000) {
-            holder.itemInfluenceHot.text = ("影响热度: " + (item.influenceHot / 100000000).toString() + "亿")
+            holder.itemInfluenceHot.text = "影响热度: ${(item.influenceHot / 100000000)}亿"
         } else if (item.influenceHot > 10000) {
-            holder.itemInfluenceHot.text = ("影响热度: " + (item.influenceHot / 10000).toString() + "万")
+            holder.itemInfluenceHot.text = "影响热度: ${(item.influenceHot / 10000)}万"
         } else {
-            holder.itemInfluenceHot.text = "影响热度: " + item.influenceHot.toString()
+            holder.itemInfluenceHot.text = "影响热度: ${item.influenceHot}"
         }
 
-        holder.itemReleaseDate.text = item.releaseDate
+        holder.itemReleaseDate.text = "上映日期：${item.releaseDate}"
     }
 
     override fun getItemCount() = rankList.size

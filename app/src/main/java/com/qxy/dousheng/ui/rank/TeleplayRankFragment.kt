@@ -24,10 +24,6 @@ class TeleplayRankFragment : Fragment() {
     private lateinit var binding: FragmentTeleplayRankBinding
     private lateinit var viewModel: TeleplayRankViewModel
 
-    companion object {
-        fun newInstance() = TeleplayRankFragment()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

@@ -19,10 +19,6 @@ class FansFragment : Fragment() {
     private lateinit var binding: FragmentFansBinding
     private lateinit var viewModel: FansViewModel
 
-    companion object {
-        fun newInstance() = FansFragment()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

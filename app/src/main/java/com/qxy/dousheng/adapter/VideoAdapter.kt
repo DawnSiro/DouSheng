@@ -27,7 +27,7 @@ class VideoAdapter(var videoList: List<VideoItem>) :
     /**
      * 视图持有类，其成员变量对应 .xml 中的视图
      */
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val cover: ImageView = view.findViewById(R.id.videoCoverImageView)
         val title: TextView = view.findViewById(R.id.videoTitleTextView)
         val time: TextView = view.findViewById(R.id.videoTimeTextView)
@@ -51,37 +51,38 @@ class VideoAdapter(var videoList: List<VideoItem>) :
 
         // 视频标题
         if(videoItem.title.length > 12){
-            holder.title.text = videoItem.title.substring(0,11) + "..."
+            holder.title.text = "${videoItem.title.substring(0, 11)}..."
         } else {
             holder.title.text = videoItem.title
         }
 
-        // TODO("BUG:相对于当前时间的 时间戳")
+        // 返回的时间戳是秒级的
         holder.time.text =
-            "创建时间：" + SimpleDateFormat("YYYY-MM-DD").format(videoItem.create_time * 1000)
+            """创建时间：${SimpleDateFormat("YYYY-MM-DD")
+                .format(videoItem.create_time * 1000)}"""
         Log.d("okHttp", (videoItem.create_time / 1000 / 60 / 60 / 24).toString())
 
         // 对播放量、点赞数、评论数进行量级处理
         val playCount: String = if(videoItem.play_count > 100000000){
-            (videoItem.play_count / 100000000).toString() + "亿"
+            "${(videoItem.play_count / 100000000)}亿"
         }else if(videoItem.play_count > 10000){
-            (videoItem.play_count / 10000).toString() + "万"
+            "${(videoItem.play_count / 10000)}万"
         }else{
             videoItem.play_count.toString()
         }
 
         val diggCount: String = if(videoItem.digg_count > 100000000){
-            (videoItem.digg_count / 100000000).toString() + "亿"
+            "${(videoItem.digg_count / 100000000)}亿"
         }else if(videoItem.digg_count > 10000){
-            (videoItem.digg_count / 10000).toString() + "万"
+            "${(videoItem.digg_count / 10000)}万"
         }else{
             videoItem.digg_count.toString()
         }
 
         val commentCount: String = if(videoItem.comment_count > 100000000){
-            (videoItem.comment_count / 100000000).toString() + "亿"
+            "${(videoItem.comment_count / 100000000)}亿"
         }else if(videoItem.comment_count > 10000){
-            (videoItem.comment_count / 10000).toString() + "万"
+            "${(videoItem.comment_count / 10000)}万"
         }else{
             videoItem.comment_count.toString()
         }
