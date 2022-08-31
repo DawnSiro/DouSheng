@@ -21,6 +21,7 @@ class TeleplayRankViewModel(application: Application) : AndroidViewModel(applica
 
     private var rankDao: RankDao
     private var allRankItemLive: LiveData<List<RankItem>>
+    var version = -1
 
     init {
         val database = DouShengDatabase.getDatabase(application.applicationContext)
@@ -42,7 +43,7 @@ class TeleplayRankViewModel(application: Application) : AndroidViewModel(applica
     }
 
     fun doGet() {
-        OkHttpUtils.doTeleplayGet(-1, object : OkHttpCallback {
+        OkHttpUtils.doTeleplayGet(version, object : OkHttpCallback {
             override fun isFail() {
                 Log.d("okHttp", "doTeleplayGet 出错")
             }
