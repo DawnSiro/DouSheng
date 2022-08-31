@@ -2,13 +2,13 @@ package com.qxy.dousheng.ui.rank
 
 import android.R
 import android.annotation.SuppressLint
+import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -59,27 +59,50 @@ class ArtRankFragment : Fragment() {
             }
 
             // 榜单版本
-            val versionAdapter = ArrayAdapter(
-                requireActivity(),
-                R.layout.simple_spinner_dropdown_item,
-                OkHttpUtils.getRankVersion()
-            )
-            versionAdapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
-
-            binding.spinner.adapter = versionAdapter
-            binding.spinner.prompt = requireActivity().resources.getString(com.qxy.dousheng.R.string.version)
-
-            binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                    Toast.makeText(requireActivity(), "选惹", Toast.LENGTH_SHORT).show()
-                }
-
-                override fun onNothingSelected(p0: AdapterView<*>?) {
-                    Toast.makeText(requireActivity(), "没有找到捏", Toast.LENGTH_SHORT).show()
-                }
-
+            val versionList: List<String> = OkHttpUtils.getRankVersion()
+            Log.d("TAG", "onActivityCreated: $versionList")
+            // 榜单版本
+            binding.versionTextview.setOnClickListener{
+                showSingDialog(binding.versionTextview, versionList.toTypedArray())
             }
 
         }
     }
+
+
+
+    var choice = 0
+    @SuppressLint("SetTextI18n")
+    private fun showSingDialog(versionView: TextView, versionArray: Array<CharSequence>) {
+        val items: Array<CharSequence> = listOf("版本1", "版本2", "版本3",
+            "版本4", "版本5", "版本6",
+            "版本7" ,"版本8", "版本9",
+            "版本10" ,"版本11", "版本12",
+            "版本13" ,"版本14", "版本15",
+            "版本16" ,"版本17", "版本18").toTypedArray()
+        val singleChoiceDialog = android.app.AlertDialog.Builder(requireActivity())
+        Log.d("TAG", "showSingDialog: $versionArray")
+        singleChoiceDialog.setTitle("单选Dialog 实现版本选择")
+        //第二个参数是默认的选项
+        singleChoiceDialog.setSingleChoiceItems(versionArray, choice) { _, which ->
+            choice = which
+            viewModel.version = versionArray[choice].split(":")[0].toInt()
+        }
+        singleChoiceDialog.setPositiveButton("确定",
+            DialogInterface.OnClickListener { _, _ ->
+                if (viewModel.version != -1) {
+                    Toast.makeText(
+                        requireActivity(),
+                        "你选择了" + versionArray[choice],
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    versionView.text = versionArray[choice]
+                }
+                Log.d("TAG", "showSingDialog: ${viewModel.version}")
+            })
+        singleChoiceDialog.show()
+        println("执行完毕")
+    }
+
+
 }

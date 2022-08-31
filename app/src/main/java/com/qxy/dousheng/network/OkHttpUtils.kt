@@ -35,21 +35,21 @@ object OkHttpUtils {
     private lateinit var accessRequest: Request
     private lateinit var accessToken: AccessTokenJson
 
-    // 调用凭证模块的Request 和 Client
+    // 调用凭证模块的Request
     // 接口调用的凭证client_access_token，主要用于调用不需要用户授权就可以调用的接口
     private lateinit var ClientAccessRequest: Request
     var clientAccess: String = ""
 
-    // Rank 模块的 Request 和 Client
+    // Rank 模块的 Request
     private lateinit var movieRequest: Request
     private lateinit var teleplayRequest: Request
     private lateinit var artRequest: Request
     private lateinit var rankVersionRequest: Request
 
-    // video 模块 Request 和 Client
+    // video 模块 Request
     private lateinit var videoRequest: Request
 
-    // Friend 模块的 Request 和 Client
+    // Friend 模块的 Request
     private lateinit var followRequest: Request
     private lateinit var fansRequest: Request
     private lateinit var checkRequest: Request
@@ -57,7 +57,7 @@ object OkHttpUtils {
     // 切换主线程执行
     private val handle = Handler(Looper.getMainLooper())
 
-    // Info 模块的 Request 和 Client
+    // Info 模块的 Request
     private lateinit var infoRequest: Request
 
     // JSON 处理类
@@ -232,18 +232,18 @@ object OkHttpUtils {
      * 获取 电影榜单 请求
      */
     private fun getMovieRankRequest(version: Int): Request {
+        Log.d(TAG, "getTeleplayRankRequest: $version")
         val interfaceUrl = if(version > 0){
             "/discovery/ent/rank/item/?type=1&version=$version"
         }else {
             "/discovery/ent/rank/item/?type=1"
         }
         val url = mockUrl + interfaceUrl
-        if (!this::movieRequest.isInitialized) {
-            movieRequest = Request.Builder()
-                .url(url)
-                .addHeader("access-token", clientAccess)
-                .build()
-        }
+        // url 有变化，每次都需要重新 build , Request 对象中的 url 是常量，不可变
+        movieRequest = Request.Builder()
+            .url(url)
+            .addHeader("access-token", clientAccess)
+            .build()
         Log.d(TAG, "getMovieRankRequest: $url")
         return movieRequest
     }
@@ -252,6 +252,7 @@ object OkHttpUtils {
      * 获取 电视剧榜单 请求
      */
     private fun getTeleplayRankRequest(version: Int): Request {
+        Log.d(TAG, "getTeleplayRankRequest: $version")
         val interfaceUrl = if(version > 0){
             "/discovery/ent/rank/item/?type=2&version=$version"
         }else {
@@ -281,12 +282,11 @@ object OkHttpUtils {
 
         val url = mockUrl + interfaceUrl
 
-        if (!this::artRequest.isInitialized) {
-            artRequest = Request.Builder()
-                .url(url)
-                .addHeader("access-token", clientAccess)
-                .build()
-        }
+        // 不用判断是否初始化
+        artRequest = Request.Builder()
+            .url(url)
+            .addHeader("access-token", clientAccess)
+            .build()
         Log.d(TAG, "getArtRankRequest: $url")
         return artRequest
     }
@@ -383,14 +383,14 @@ object OkHttpUtils {
      */
     private fun getRankVersionRequest(): Request {
         val interfaceUrl = "/discovery/ent/rank/version/"
-        var url = "$mockUrl$interfaceUrl?cursor=0&count=10&type=1"
-        if (!this::rankVersionRequest.isInitialized) {
+        val url = "$mockUrl$interfaceUrl?cursor=0&count=20&type=1"
+//        if (!this::rankVersionRequest.isInitialized) {
             rankVersionRequest = Request.Builder()
                 .addHeader("Content-Type", "application/json")
                 .addHeader("access-token", clientAccess)
                 .url(url)
                 .build()
-        }
+//        }
         return rankVersionRequest
     }
 

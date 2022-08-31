@@ -20,6 +20,7 @@ import com.qxy.dousheng.network.OkHttpUtils
 class MovieRankViewModel(application: Application) : AndroidViewModel(application) {
     private var rankDao: RankDao
     private var allRankItemLive: LiveData<List<RankItem>>
+    var version = -1
 
     private val gson = Gson()
 
@@ -43,7 +44,7 @@ class MovieRankViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     fun doGet() {
-        OkHttpUtils.doMovieGet(-1, object : OkHttpCallback {
+        OkHttpUtils.doMovieGet(version, object : OkHttpCallback {
             override fun isFail() {
                 Log.d("okHttp", "doMovieGet 出错")
             }

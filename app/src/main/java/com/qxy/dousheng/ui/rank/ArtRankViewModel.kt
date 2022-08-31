@@ -20,6 +20,7 @@ import com.qxy.dousheng.network.OkHttpUtils
 class ArtRankViewModel(application: Application) : AndroidViewModel(application) {
     private var rankDao: RankDao
     private var allRankItemLive: LiveData<List<RankItem>>
+    var version = -1
 
     private val gson = Gson()
 
@@ -43,7 +44,7 @@ class ArtRankViewModel(application: Application) : AndroidViewModel(application)
     }
 
     fun doGet() {
-        OkHttpUtils.doArtGet(-1, object : OkHttpCallback {
+        OkHttpUtils.doArtGet(version, object : OkHttpCallback {
             override fun isFail() {
                 Log.d("okHttp", "doArtGet 出错")
             }
